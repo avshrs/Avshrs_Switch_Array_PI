@@ -12,5 +12,6 @@
         "utility": "cpp",
         "thread": "cpp"
     },
-    "stm32-for-vscode.openOCDPath": false
+    "stm32-for-vscode.openOCDPath": false,
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }

@@ -23,8 +23,9 @@ void MCP_Manager::MCP_Init(){
     mcpc_out[2] = &mcpc_out_2;
     mcpc_out[3] = &mcpc_out_3;
     uint8_t mcp_io[4][16];
+    // initial values for output
     for(int i=0; i<4;i++){
-        mcpc_out[i]->write_all(0xff);
+        mcpc_out[i]->write_all(0x00);
     }
 
 }

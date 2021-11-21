@@ -16,6 +16,8 @@ class MCP_Manager {
     MCP mcpc_out_1;
     MCP mcpc_out_2;
     MCP mcpc_out_3;
+    
+        void 
 
 };
 
