@@ -10,7 +10,12 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp",
+        "ratio": "cpp"
     },
     "stm32-for-vscode.openOCDPath": false,
     "C_Cpp.intelliSenseEngineFallback": "Enabled"

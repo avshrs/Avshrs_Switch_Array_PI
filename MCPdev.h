@@ -1,5 +1,5 @@
-#ifndef MCP23017_h
-#define MCP23017_h
+#ifndef MCPDEV_H
+#define MCPDEV_H
 
 #include "vars.h"
 #include <stdio.h>
@@ -47,11 +47,8 @@ class MCP {
         int nr=0;
         uint8_t mcpAddress;
         
-        uint8_t read_io(uint8_t io_number);
-        MCP_values read_all();
-        void write_io(uint8_t io_number, uint8_t value);
-        void write_all(uint8_t io_number);
-        
-        uint8_t convert_bits(uint8_t bits);
+        bool read_io(uint8_t io_number);
+        void write_io(uint8_t io_number, bool state);
+        // uint8_t convert_bits(uint8_t bits);
 };
-#endif //MCP23017_h
+#endif //MCPDEV_H
