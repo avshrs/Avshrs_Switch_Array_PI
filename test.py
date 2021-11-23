@@ -21,17 +21,19 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((TCP_IP, TCP_PORT))
         s.send(frame_be)
+
+
+
+send_message(3, 1, 8, 1)  
         
-        
-        
-for i in range(64):
-    send_message(0, 1, i, i)
-    
-for i in range(64):
-    send_message(2, 1, i, i)
+# for i in range(64):
+#     send_message(0, 1, i, i)
     
 # for i in range(64):
-#     send_message(1, 0, 0, i)
+#     send_message(2, 1, i, i)
     
-# for i in range(64):
-#     send_message(3, 0, 0, i)    
+# # for i in range(64):
+# #     send_message(1, 0, 0, i)
+    
+# # for i in range(64):
+# #     send_message(3, 0, 0, i)    
