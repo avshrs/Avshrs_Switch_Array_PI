@@ -1,2 +1,2 @@
 scp -r /home/seba/Documents/RPI_Zero_mcp pi@192.168.1.21:/home/pi/ 
-ssh pi@192.168.1.21 "cd /home/pi/RPI_Zero_mcp; g++ -lwiringPi -I. -L. main.cpp MCPdev.cpp MCP_Settings.cpp MCP_Manager.cpp && ./a.out"
+ssh pi@192.168.1.21 "cd /home/pi/RPI_Zero_mcp; g++ -pthread -lwiringPi -I. -L. main.cpp MCPdev.cpp MCP_Settings.cpp MCP_Manager.cpp socket_server.cpp Settings_server.cpp && ./a.out"

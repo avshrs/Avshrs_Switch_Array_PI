@@ -11,15 +11,15 @@
 class MCP_Settings {
     public: 
         struct IN_SETTINGS{
-            uint8_t related_output;
-            bool in_alarm_armed;
+            uint8_t related_output=0;
+            bool in_alarm_armed=false;
             
         };
         
         struct OUT_SETTINGS{
-            bool out_enabled;
-            bool out_bistable; 
-            bool out_disabled_by_alarm;
+            bool out_enabled=true;
+            bool out_bistable=false; 
+            bool out_disabled_by_alarm=false;
 
             
         };
@@ -45,6 +45,5 @@ class MCP_Settings {
         void save_settings();
         void read_settings();
 };
-
 
 #endif // MCP_SETTINGS_H
