@@ -16,6 +16,7 @@ void th(bool t){
 
 int main(void){ 
     settingsserver.register_mcp_settings(&mcpsettings);
+    mcp.register_mcp_settings(&mcpsettings);
     socketserver.open_socket();
     std::thread t1(th, true);
     mcp.MCP_Init();

@@ -29,6 +29,10 @@ void MCP_Manager::MCP_Init(){
     }
 }
 
+void MCP_Manager::register_mcp_settings(MCP_Settings *mcp_settings_){
+            mcp_settings = mcp_settings_;
+
+        }
 
 bool MCP_Manager::read_input(uint8_t in){
     uint8_t mcp_module = (in-(in%16))/16 ;
@@ -45,9 +49,9 @@ void MCP_Manager::write_output(uint8_t out, bool state){
 void MCP_Manager::scan_io(){
     for(int i = 0; i < 64 ; i++){
         bool value = read_input(i);
-        uint8_t output = mcp_settings.get_io_relation(i);
+        uint8_t output = mcp_settings->get_io_relation(i);
         
-        if(mcp_settings.get_in_alarm_armed(i)){
+        if(mcp_settings->get_in_alarm_armed(i)){
             if(value){
                 alarm_armed = true;
             }
@@ -56,9 +60,9 @@ void MCP_Manager::scan_io(){
             }
         }
         
-        if(mcp_settings.get_out_status(output)){
-            if(!alarm_armed & !mcp_settings.get_out_disable_by_alarm(output)){
-                if(mcp_settings.get_out_bistable(output)){
+        if(mcp_settings->get_out_status(output)){
+            if(!alarm_armed & !mcp_settings->get_out_disable_by_alarm(output)){
+                if(mcp_settings->get_out_bistable(output)){
                     if(out_states[output] & value){
                         out_states[output]= false;
                         write_output(output, false);
