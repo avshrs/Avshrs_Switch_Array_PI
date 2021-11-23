@@ -64,15 +64,19 @@ void MCP_Manager::scan_io(){
             if(!alarm_armed & !mcp_settings->get_out_disable_by_alarm(output)){
                 if(mcp_settings->get_out_bistable(output)){
                     if(out_states[output] & value){
-                        out_states[output]= false;
-                        write_output(output, false);
+                        if(out_states[output] != value){
+                            out_states[output]= false;
+                            write_output(output, false);
+                        }
                     }
                     else if(!out_states[output] & value){
-                        out_states[output]= true;
-                        write_output(output, true);
+                        if(out_states[output] != value){
+                            out_states[output]= true;
+                            write_output(output, true);
+                        }
                     }
                 }
-                if(out_states[output] != value){
+                else if(out_states[output] != value){
                     out_states[output] = value;
                     write_output(output, value);
                     std::cout<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(value)<<std::endl;
