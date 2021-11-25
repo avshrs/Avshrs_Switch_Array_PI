@@ -4,6 +4,7 @@
 #include "MCPdev.h"
 #include "vars.h"
 #include "MCP_Settings.h"
+#include <cmath>       
 class MCP_Manager
 {
     public:

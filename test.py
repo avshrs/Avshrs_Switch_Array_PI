@@ -23,15 +23,17 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1):
         s.send(frame_be)
 
 
+for i in range(65):
+    time.sleep(0.1)
+    send_message(0, 1, i, i)
+    
+for i in range(65):
+    time.sleep(0.1)
+    send_message(2, 1, i, i)
+    
 
-send_message(3, 1, 8, 1)  
+send_message(3, 1, 7, 1)  
         
-# for i in range(64):
-#     send_message(0, 1, i, i)
-    
-# for i in range(64):
-#     send_message(2, 1, i, i)
-    
 # # for i in range(64):
 # #     send_message(1, 0, 0, i)
     
