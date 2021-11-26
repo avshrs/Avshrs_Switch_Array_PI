@@ -24,8 +24,8 @@ class MCP_Settings {
             
         };
 
-        IN_SETTINGS in_settings[65];
-        OUT_SETTINGS out_settings[65];
+        IN_SETTINGS in_settings[64];
+        OUT_SETTINGS out_settings[64];
 
         void set_io_relation(uint8_t in, uint8_t out);
         uint8_t get_io_relation(uint8_t in);
@@ -44,6 +44,12 @@ class MCP_Settings {
 
         void save_settings();
         void read_settings();
+
+        void save_in_settings();
+        void read_in_settings();
+
+        void save_out_settings();
+        void read_out_settings();
 };
 
 #endif // MCP_SETTINGS_H

@@ -42,27 +42,53 @@ bool MCP_Settings::get_out_disable_by_alarm(uint8_t out){
 }
 
 void MCP_Settings::save_settings(){
-    void* buffer = malloc(sizeof (in_settings));
-    int fd = open("in_settings.dat", O_WRONLY | O_CREAT, S_IWUSR | S_IRUSR);
-    if (fd < 0) {
-        printf("Error opening file\n");
-    }
-    memcpy(buffer, &in_settings, sizeof (in_settings));
-    write(fd, buffer, sizeof (in_settings));
-    close(fd);
+    MCP_Settings::save_in_settings();
+    MCP_Settings::save_out_settings();
+}
+void MCP_Settings::read_settings(){
+    MCP_Settings::read_in_settings();
+    MCP_Settings::read_out_settings();
 }
 
-void MCP_Settings::read_settings(){
-    int fd = open("in_settings.dat", O_RDONLY, S_IWUSR | S_IRUSR);
-    if (fd < 0) {
-        printf("Error opening file\n");
+void MCP_Settings::save_out_settings(){
+    std::ofstream file("out_settings.bin", std::ios::out | std::ios::binary);
+    if (!file) { return; }
+    for (int i = 0; i < 64; i++) {
+        
+        file.write(reinterpret_cast<char*>(&out_settings[i].out_enabled), sizeof(bool));
+        file.write(reinterpret_cast<char*>(&out_settings[i].out_bistable), sizeof(bool));
+        file.write(reinterpret_cast<char*>(&out_settings[i].out_disabled_by_alarm), sizeof(bool));
     }
-    char bufferRead[sizeof(in_settings)];
-    
-    read(fd, bufferRead, sizeof(bufferRead));
-    for(int i=0; i<64;i++){
-        *in_settings = *reinterpret_cast<IN_SETTINGS*>(bufferRead);
-    }
-    close(fd);
+    file.close();
+}
 
+void MCP_Settings::read_out_settings(){
+    std::ifstream file;
+    file.open("out_settings.bin", std::ios::binary);
+    for (int i = 0; i < 64; i++) {
+        file.read(reinterpret_cast<char*>(&out_settings[i].out_enabled), sizeof(bool));
+        file.read(reinterpret_cast<char*>(&out_settings[i].out_bistable), sizeof(bool));
+        file.read(reinterpret_cast<char*>(&out_settings[i].out_disabled_by_alarm), sizeof(bool));
+        std::cout << out_settings[i].out_enabled << " " << out_settings[i].out_bistable << " " << out_settings[i].out_disabled_by_alarm << std::endl;
+    }
+}
+
+void MCP_Settings::save_in_settings(){
+    std::ofstream file("in_settings.bin", std::ios::out | std::ios::binary);
+    if (!file) { return; }
+    for (int i = 0; i < 64; i++) {
+        file.write(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
+        file.write(reinterpret_cast<char*>(&in_settings[i].in_alarm_armed), sizeof(bool));
+    }
+    file.close();
+}
+
+void MCP_Settings::read_in_settings(){
+    std::ifstream file;
+    file.open("in_settings.bin", std::ios::binary);
+    for (int i = 0; i < 64; i++) {
+        file.read(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
+        file.read(reinterpret_cast<char*>(&in_settings[i].in_alarm_armed), sizeof(bool));
+        std::cout << unsigned(in_settings[i].related_output) << " " << in_settings[i].in_alarm_armed  << std::endl;
+    }
 }

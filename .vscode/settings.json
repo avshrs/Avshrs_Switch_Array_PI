@@ -51,7 +51,10 @@
         "stdexcept": "cpp",
         "stop_token": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "set": "cpp",
+        "iomanip": "cpp",
+        "sstream": "cpp"
     },
     "stm32-for-vscode.openOCDPath": false,
     "C_Cpp.intelliSenseEngineFallback": "Enabled"

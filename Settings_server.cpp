@@ -4,8 +4,6 @@ void SettingsServer::register_mcp_settings(MCP_Settings *mcp_settings_){
     mcp_settings = mcp_settings_;
 }
 
-
-
 void SettingsServer::analyze_packet(SERIALMCPFRAME frame){
     // std::cout<<std::hex <<frame.INSTRUCTIONS<<", ";
     // std::cout<<std::hex <<frame.CONFIG<<", ";
@@ -41,7 +39,7 @@ void SettingsServer::analyze_packet(SERIALMCPFRAME frame){
     }
     else if(frame.INSTRUCTIONS == 0x04 & frame.CONFIG == 0x01){
         mcp_settings->save_settings();
-        std::cout<<"read_settings: "<<std::endl;
+        std::cout<<"write_settings: "<<std::endl;
     }
     else if(frame.INSTRUCTIONS == 0x04 & frame.CONFIG == 0x00){
         mcp_settings->read_settings();

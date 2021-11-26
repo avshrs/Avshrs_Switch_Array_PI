@@ -78,7 +78,6 @@ void MCP_Manager::scan_io(){
                                 std::cout<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(true)<<std::endl;
                             }
                         }
-                        
                     }
                     else if(out_states[output] != value){
                         out_states[output] = value;
