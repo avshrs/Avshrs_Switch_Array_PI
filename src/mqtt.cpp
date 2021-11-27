@@ -47,7 +47,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
     int payload_size = MAX_PAYLOAD + 1;
     char buf[payload_size];
     
-    if(!strcmp(message->topic, PUBLISH_TOPIC))
+    if(!strcmp(message->topic, "MCP_Array"))
     {
         memset(buf, 0, payload_size * sizeof(char));
 
