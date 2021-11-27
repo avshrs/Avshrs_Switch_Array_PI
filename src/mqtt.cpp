@@ -1,5 +1,5 @@
 #include "mqtt.h"
-#define PUBLISH_TOPIC "MCP_Array"
+#define PUBLISH_TOPIC "MCP_Array_pub"
 
 
 #ifdef DEBUG
