@@ -14,7 +14,7 @@ void MCP_Mosquitto::mos_connect(){
 
 
     iot_client = new mqtt_client(client_id, host, port);
-    iot_client->subscribe(NULL, "switch");
+    iot_client->subscribe(NULL, "MCP_Array");
     
     
     while(1)
