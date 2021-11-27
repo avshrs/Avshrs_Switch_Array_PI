@@ -60,7 +60,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
         #endif
 
         // Examples of messages for M2M communications...
-        if (message_payload.find("STATUS"))
+        if (!message_payload.find("STATUS"))
         {
             snprintf(buf, payload_size, "This is a Status Message...");
             publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
@@ -69,7 +69,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
             #endif
         }
 
-        if (message_payload.find("ON"))
+        if (!message_payload.find("ON"))
         {
             snprintf(buf, payload_size, "Turning on...");
             publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
@@ -78,7 +78,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
             #endif
         }
 
-        if (message_payload.find("OFF"))
+        if (!message_payload.find("OFF"))
         {
             snprintf(buf, payload_size, "Turning off...");
             publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
