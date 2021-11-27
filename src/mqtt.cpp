@@ -37,9 +37,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
     
     int payload_size = MAX_PAYLOAD + 1;
     char buf[payload_size];
-    std::cout << buf << std::endl;
+ 
 
-    if(!strcmp(message->topic, "switch01"))
+    if(!strcmp(message->topic, "switch"))
     {
         memset(buf, 0, payload_size * sizeof(char));
 
