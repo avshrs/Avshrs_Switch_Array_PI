@@ -46,23 +46,20 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
     
     int payload_size = MAX_PAYLOAD + 1;
     char buf[payload_size];
-    std::string message_topic = bufferToString(message->topic, sizeof(message->topic));
-
-    if(message_topic.find(PUBLISH_TOPIC))
+    
+    if(!strcmp(message->topic, PUBLISH_TOPIC))
     {
         memset(buf, 0, payload_size * sizeof(char));
-        std::string message_payload = bufferToString(buf, sizeof(buf)); 
+
         /* Copy N-1 bytes to ensure always 0 terminated. */
         memcpy(buf, message->payload, MAX_PAYLOAD * sizeof(char));
 
         #ifdef DEBUG
-            // std::cout << buf << std::endl;
-            std::cout << message_topic << std::endl;
-            std::cout << message_payload << std::endl;
+            std::cout << buf << std::endl;
         #endif
 
         // Examples of messages for M2M communications...
-        if (!message_payload.find("STATUS"))
+        if (!strcmp(buf, "STATUS"))
         {
             snprintf(buf, payload_size, "This is a Status Message...");
             publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
@@ -70,8 +67,16 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
                 std::cout << "Status Request Recieved." << std::endl;
             #endif
         }
-
-        if (!message_payload.find("ON"))
+        
+        if (!strstr("STATUS", buf))
+        {
+            snprintf(buf, payload_size, "This is a Status Message...");
+            publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
+            #ifdef DEBUG
+                std::cout << "Status Request Recieved." << std::endl;
+            #endif
+        }
+        if (!strcmp(buf, "ON"))
         {
             snprintf(buf, payload_size, "Turning on...");
             publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
@@ -80,7 +85,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
             #endif
         }
 
-        if (!message_payload.find("OFF"))
+        if (!strcmp(buf, "OFF"))
         {
             snprintf(buf, payload_size, "Turning off...");
             publish(NULL, PUBLISH_TOPIC, strlen(buf), buf);
