@@ -4,7 +4,8 @@
 #include "MCP_Settings.h"
 #include <iostream>
 #include <thread>
-
+#include "MCP_Mosquitto.h"
+MCP_Mosquitto mcp_mosq;
 MCP_Manager mcp;
 SettingsServer settingsserver;
 SocketServer socketserver;
@@ -13,6 +14,9 @@ MCP_Settings mcpsettings;
 void th(bool t){
     socketserver.receive_package(&settingsserver);
 }
+void th1(bool t){
+    mcp_mosq.mos_connect();
+}
 
 int main(void){ 
     mcpsettings.read_settings();
@@ -20,6 +24,7 @@ int main(void){
     mcp.register_mcp_settings(&mcpsettings);
     socketserver.open_socket();
     std::thread t1(th, true);
+    std::thread t2(th1, true);
     mcp.MCP_Init();
     
     while(true){
