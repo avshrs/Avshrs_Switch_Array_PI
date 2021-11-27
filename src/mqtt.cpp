@@ -56,7 +56,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
         memcpy(buf, message->payload, MAX_PAYLOAD * sizeof(char));
 
         #ifdef DEBUG
-            std::cout << buf << std::endl;
+            // std::cout << buf << std::endl;
+            std::cout << message_topic << std::endl;
+            std::cout << message_payload << std::endl;
         #endif
 
         // Examples of messages for M2M communications...
