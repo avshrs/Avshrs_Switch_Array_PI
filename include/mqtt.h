@@ -3,6 +3,7 @@
 
 #include <mosquittopp.h>
 #include <cstring>
+#include <string>
 #include <cstdio>
 #define DEBUG
 
