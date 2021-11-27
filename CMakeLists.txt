@@ -17,9 +17,9 @@ set(libs
 /usr/lib/arm-linux-gnueabihf/libpthread.so
 )
 
-find_package(libmosquittopp)
-find_package(libwiringPi)
-find_package(libpthread)
+# find_package(libmosquittopp)
+# find_package(libwiringPi)
+# find_package(libpthread)
 
 set(INCLUDE_HEADER_FILES
 "include/*.h"
