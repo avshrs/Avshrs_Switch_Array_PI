@@ -12,17 +12,13 @@ include_directories(include)
 
 # set(CMAKE_EXE_LINKER_FLAGS "-lwiringPi -lmosquittopp -pthread  ${CMAKE_EXE_LINKER_FLAGS} ")
 set(libs 
-/usr/lib/x86_64-linux-gnu/libmosquittopp.so
-/usr/lib/x86_64-linux-gnu/libmosquittopp.so.1
-/usr/lib/x86_64-linux-gnu/libmosquittopp.so.2.0.10
+/usr/lib/arm-linux-gnueabihf/libmosquittopp.so
 /usr/lib/libwiringPi.so
-
-/usr/lib/x86_64-linux-gnu/libpthread.so
-/usr/lib/x86_64-linux-gnu/libpthread.so.0
-
+/usr/lib/arm-linux-gnueabihf/libpthread.so
 )
+
 find_package(libmosquittopp)
-find_package(libwiringPi.so)
+find_package(libwiringPi)
 find_package(libpthread)
 
 set(INCLUDE_HEADER_FILES
