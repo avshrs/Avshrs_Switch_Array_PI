@@ -165,8 +165,14 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 
                 char pub[13] = "MCP_OUT_P_";
                 char msg[7] = "00_OFF";
-                pub[10] = buf[0];
-                pub[11] = buf[1];
+             char comp[2] = "0" ;
+                if (buf[0] == comp[0]){
+                    pub[10] = buf[1];
+                }
+                else {
+                    pub[10] = buf[0];
+                    pub[11] = buf[1];
+                }
                 msg[0] = buf[0];
                 msg[1] = buf[1];
 
