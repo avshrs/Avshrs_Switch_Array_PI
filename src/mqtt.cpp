@@ -51,6 +51,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
     char buf[payload_size];
     // MCP_OUT_S_XX
     // MCP_OUT_P_XX
+    #ifdef DEBUG
+        std::cout << message->topic << std::endl;
+    #endif
     if(strstr(message->topic, "MCP_OUT_S_"))
     // if(!strcmp(message->topic, "MCP_Array"))
     {
