@@ -93,9 +93,10 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 char msg[7];
                 char pub[13] = "MCP_OUT_P_";
                 if (mcp_manager->read_output(nr))
-                    std::strcpy("00_ON",msg);
+                    std::strcpy(msg, "00_ON");
                 else
-                    std::strcpy("00_OFF",msg);
+                    std::strcpy(msg,"00_OFF");
+                    
                 pub[10] = buf[0];
                 pub[11] = buf[1];
                 msg[0] = buf[0];
