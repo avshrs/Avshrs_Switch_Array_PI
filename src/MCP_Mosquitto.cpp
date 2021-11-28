@@ -16,7 +16,7 @@ void MCP_Mosquitto::mos_connect(){
     iot_client = new mqtt_client(client_id, host, port);
     iot_client->register_mcp_manager(mcp_manager);
     iot_client->subscribe(NULL, "MCP_Array");  // Main device topic - Online 
-    iot_client->publish(NULL, "MCP_Array");  // Main device topic - Online 
+    //iot_client->publish(NULL, "MCP_Array");  // Main device topic - Online 
 
     for(int i = 0; i<64; i++){
         char pub[13];
