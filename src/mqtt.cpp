@@ -96,9 +96,14 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::strcpy(msg, "00_ON");
                 else
                     std::strcpy(msg,"00_OFF");
-                    
-                pub[10] = buf[0];
-                pub[11] = buf[1];
+                 char comp[2] = "0" ;
+                if (buf[0] == comp[0]){
+                    pub[10] = buf[1];
+                }
+                else {
+                    pub[10] = buf[0];
+                    pub[11] = buf[1];
+                }
                 msg[0] = buf[0];
                 msg[1] = buf[1];
             
@@ -106,7 +111,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 snprintf(buf, payload_size, msg);
                 publish(NULL, pub, strlen(buf), buf);
                 #ifdef DEBUG
-                    std::cout << "Request to turn on." << std::endl;
+                    std::cout << "Request for output state" << std::endl;
                 #endif
             }
             catch(...) {
