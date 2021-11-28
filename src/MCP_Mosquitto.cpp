@@ -20,7 +20,7 @@ void MCP_Mosquitto::mos_connect(){
     for(int i = 0; i<64; i++){
         char pub[12];
         char sub[12];
-        std::sprintf(pub, "MCP_OUT_S_%d", i);
+        std::sprintf(sub, "MCP_OUT_S_%d", i);
         std::sprintf(pub, "MCP_OUT_P_%d", i);
         iot_client->publish(NULL, pub);
         iot_client->subscribe(NULL, sub);
@@ -29,7 +29,7 @@ void MCP_Mosquitto::mos_connect(){
     while(1)
     {
         rc = iot_client->loop();
-        
+
     }
 
     mosqpp::lib_cleanup();
