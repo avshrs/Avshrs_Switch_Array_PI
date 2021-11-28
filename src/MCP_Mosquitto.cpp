@@ -15,8 +15,8 @@ void MCP_Mosquitto::mos_connect(){
 
     iot_client = new mqtt_client(client_id, host, port);
     iot_client->register_mcp_manager(mcp_manager);
-    iot_client->publish(NULL, "MCP_Array_Status");
-    iot_client->subscribe(NULL, "MCP_Array_Status");
+    iot_client->publish(NULL, "MCP_Array_Status");  // Main device topic - Online 
+
     for(int i = 0; i<64; i++){
         char pub[12];
         char sub[12];
@@ -26,12 +26,10 @@ void MCP_Mosquitto::mos_connect(){
         iot_client->subscribe(NULL, sub);
         usleep(10000);
     }
-    
-    
-    
     while(1)
     {
         rc = iot_client->loop();
+        
     }
 
     mosqpp::lib_cleanup();
