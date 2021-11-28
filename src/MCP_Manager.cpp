@@ -42,10 +42,15 @@ bool MCP_Manager::read_input(uint8_t in){
     return mcpc_in[mcp_module]->read_io(mcp_gpio);
 
 }
+bool MCP_Manager::read_output(uint8_t out){
+    return out_states_real[out];
+}   
+
 void MCP_Manager::write_output(uint8_t out, bool state){
     uint8_t mcp_module = (out-(out%16))/16 ;
     uint8_t mcp_gpio = out - (mcp_module*16);
     mcp_gpio =  std::abs(mcp_gpio - 15);
+    out_states_real[out] = state;
     mcpc_out[mcp_module]->write_io(mcp_gpio, state);
 }
 

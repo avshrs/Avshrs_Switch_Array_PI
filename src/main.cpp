@@ -19,6 +19,7 @@ void th1(bool t){
 }
 
 int main(void){ 
+    mcp_mosq.register_mcp_manager(&mcp);
     mcpsettings.read_settings();
     settingsserver.register_mcp_settings(&mcpsettings);
     mcp.register_mcp_settings(&mcpsettings);

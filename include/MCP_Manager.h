@@ -24,13 +24,15 @@ class MCP_Manager
         
         
         bool in_states[64] = {false};
+        bool out_states_real[64] = {false};
         bool out_states[64] = {false};
         bool alarm_armed = false;
-
+        
         void MCP_Init();
         void register_mcp_settings(MCP_Settings *mcp_settings_);
         bool read_input(uint8_t in);
         void write_output(uint8_t out, bool state);
+        bool read_output(uint8_t out);
         void scan_io();
 };
 
