@@ -18,8 +18,8 @@ void MCP_Mosquitto::mos_connect(){
     iot_client->publish(NULL, "MCP_Array_Status");  // Main device topic - Online 
 
     for(int i = 0; i<64; i++){
-        char pub[12];
-        char sub[12];
+        char pub[13];
+        char sub[13];
         std::sprintf(sub, "MCP_OUT_S_%d", i);
         std::sprintf(pub, "MCP_OUT_P_%d", i);
         iot_client->publish(NULL, pub);
