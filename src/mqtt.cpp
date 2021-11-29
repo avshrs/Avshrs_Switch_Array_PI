@@ -92,7 +92,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             msg[0] = buf[0];
             msg[1] = buf[1];
 
-            
+            std::cout << pub << " " <<msg<<std::endl;
             snprintf(buf, payload_size, msg);
             publish(NULL, pub, strlen(buf), buf);
             #ifdef DEBUG
@@ -113,7 +113,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 pub.push_back(nr_str[1]);
             }
             msg.insert(0,nr_str);
-           
+            std::cout << pub << " " <<msg<<std::endl;
             snprintf(buf, payload_size, msg.c_str());
             publish(NULL, pub.c_str(), strlen(buf), buf);
         
