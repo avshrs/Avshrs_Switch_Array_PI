@@ -54,7 +54,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     std::string message_topic(message->topic);
     std::string message_payload(static_cast<char*>(message->payload),MAX_PAYLOAD * sizeof(char));
     
-    if(message_topic.find("MCP_Array") != std::string::npos){
+    if(!message_payload.empty() & message_topic.find("MCP_Array") != std::string::npos){
         #ifdef DEBUG
             std::cout << buf << std::endl;
         #endif
@@ -66,7 +66,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             #endif
         }
     }
-    else if(message_topic.find("MCP_OUT_S_") != std::string::npos){
+    else if(!message_payload.empty() & message_topic.find("MCP_OUT_S_") != std::string::npos){
         #ifdef DEBUG
             std::cout << buf << std::endl;
         #endif
