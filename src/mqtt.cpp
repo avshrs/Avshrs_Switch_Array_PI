@@ -132,7 +132,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 }
                 int nr = std::stoi(nr_str);
                 std::string pub = "MCP_OUT_P_";
-                std::string msg = "ON";
+                std::string msg = "OFF";
                 pub += nr_str;
 
                 std::cout << pub << " " <<msg<<std::endl;
