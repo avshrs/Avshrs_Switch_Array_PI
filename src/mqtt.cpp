@@ -40,9 +40,10 @@ void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
 }
 
 void mqtt_client::on_message(const struct mosquitto_message *message){
-    std::string message_topic(message->topic);
-    std::string message_payload;
+
     try{
+        std::string message_topic(message->topic);
+        std::string message_payload;
         message_payload = static_cast<char*>(message->payload);
         
         
@@ -58,7 +59,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         }
         else if(!message_payload.empty() & message_topic.find("MCP_OUT_S_") != std::string::npos){
             if(message_payload == "STATE"){
-            std::string nr_str;
+                std::string nr_str;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);
                 }
@@ -97,7 +98,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #ifdef DEBUG
                     std::cout << "Request to turn on." << std::endl;
                 #endif
-                }
+            }
 
             else if(message_payload == "OFF"){
                 std::string nr_str;
