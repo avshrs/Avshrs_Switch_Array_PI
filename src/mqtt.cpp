@@ -72,10 +72,12 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         #endif
         if(message_payload.find("STATE") != std::string::npos){
            std::string nr_str;
-            if (message_topic.substr(message_topic.length() - 2, message_topic.length() - 1 ) == "_")
-                nr_str = message_topic.substr( message_topic.length() - 1 );
-            else
-                nr_str = message_topic.substr( message_topic.length() - 2 );
+            if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
+                nr_str = message_topic.substr(message_topic.length() - 2);
+            }
+            else{
+                nr_str = message_topic.substr(message_topic.length() - 1);
+            }
             int nr = std::stoi(nr_str);
             std::string pub = "MCP_OUT_P_";
             std::string msg;
@@ -96,13 +98,11 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         }
         else if(message_payload.find("ON") != std::string::npos){
             std::string nr_str;
-            if (message_topic.substr(message_topic.length() - 2, message_topic.length() - 1 ) == "_"){
-                nr_str = message_topic.substr( message_topic.length() - 1 );
-                std::cout << "-2,-1" << nr_str<<std::endl;
+            if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
+                nr_str = message_topic.substr(message_topic.length() - 2);
             }
             else{
-                nr_str = message_topic.substr( message_topic.length() - 2 );
-                std::cout << "-1" << nr_str<<std::endl;
+                nr_str = message_topic.substr(message_topic.length() - 1);
             }
             std::cout << nr_str<<std::endl;
 
@@ -124,10 +124,12 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
 
         else if(message_payload.find("OFF") != std::string::npos){
             std::string nr_str;
-            if (message_topic.substr(message_topic.length() - 2, message_topic.length() - 1 ) == "_")
-                nr_str = message_topic.substr( message_topic.length() - 1 );
-            else
-                nr_str = message_topic.substr( message_topic.length() - 2 );
+            if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
+                nr_str = message_topic.substr(message_topic.length() - 2);
+            }
+            else{
+                nr_str = message_topic.substr(message_topic.length() - 1);
+            }
             int nr = std::stoi(nr_str);
             std::string pub = "MCP_OUT_P_";
             std::string msg = "ON";
