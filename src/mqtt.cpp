@@ -43,10 +43,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
 
     try{
         std::string message_topic(message->topic);
-        std::string message_payload;
-        message_payload = static_cast<char*>(message->payload);
-        
-        
+        std::string message_payload(static_cast<char*>(message->payload));
         if(!message_payload.empty() & message_topic == "MCP_Array"){
 
             if(message_payload == "STATUS"){
@@ -120,5 +117,5 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             }
         }
     }
-    catch(...){}
+    catch(...){std::cout << "Received Empty Payload" << std:: endl;}
 }
