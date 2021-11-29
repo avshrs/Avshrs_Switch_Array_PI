@@ -50,7 +50,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     #ifdef DEBUG
         
     #endif
-    try{
+    // try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload),MAX_PAYLOAD * sizeof(char));
         
@@ -58,7 +58,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             #ifdef DEBUG
                 std::cout << buf << std::endl;
             #endif
-            if(message_payload.find("STATUS") != std::string::npos){
+            if(message_payload == "STATUS"){
                 snprintf(buf, payload_size, "Online");
                 publish(NULL, "MCP_Array", strlen(buf), buf);
                 #ifdef DEBUG
@@ -70,7 +70,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             #ifdef DEBUG
                 std::cout << buf << std::endl;
             #endif
-            if(message_payload.find("STATE") != std::string::npos){
+            if(message_payload == "STATE"){
             std::string nr_str;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);
@@ -95,7 +95,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
                     
             }
-            else if(message_payload.find("ON") != std::string::npos){
+            else if(message_payload == "ON"){
                 std::string nr_str;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);
@@ -118,7 +118,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 }
         
 
-            else if(message_payload.find("OFF") != std::string::npos){
+            else if(message_payload == "OFF"){
                 std::string nr_str;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);
@@ -139,6 +139,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
         }
-    }
-    catch(...){}
+    // }
+    // catch(...){}
 }
