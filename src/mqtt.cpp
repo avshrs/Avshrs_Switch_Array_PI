@@ -40,15 +40,14 @@ void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
 }
 
 void mqtt_client::on_message(const struct mosquitto_message *message){
-        std::string message_topic(message->topic);
-        std::string message_payload;
-        try{
-            message_payload = static_cast<char*>(message->payload);
-        }
-        catch(...){}
+    std::string message_topic(message->topic);
+    std::string message_payload;
+    try{
+        message_payload = static_cast<char*>(message->payload);
+        
         
         if(!message_payload.empty() & message_topic == "MCP_Array"){
-            
+
             if(message_payload == "STATUS"){
                 std::string msg = "Online";
                 publish(NULL, "MCP_Array", msg.length(), msg.c_str());
@@ -119,6 +118,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
         }
-    // }
-    // catch(...){}
+    }
+    catch(...){}
 }
