@@ -30,12 +30,9 @@ void MCP_Mosquitto::mos_connect(){
     while(1)
     {
         rc = iot_client->loop();
-
     }
 
     mosqpp::lib_cleanup();
-
-    
 }
 
 void MCP_Mosquitto::register_mcp_manager(MCP_Manager *mcp_manager_){

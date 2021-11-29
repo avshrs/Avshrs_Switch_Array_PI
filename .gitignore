@@ -1,6 +1,7 @@
-copy_and_compile.sh
+*copy_and_compile.sh
 .vscode
 CMakeFiles
 cmake_install.cmake
 CMakeCache.txt
 Makefile
+MCI_swich_array

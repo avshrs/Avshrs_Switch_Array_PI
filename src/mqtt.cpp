@@ -51,18 +51,14 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     #ifdef DEBUG
         std::cout << message->topic << std::endl;
     #endif
-
-    if(!strcmp(message->topic, "MCP_Array"))
-    {
-        memset(buf, 0, payload_size * sizeof(char));
-
-        memcpy(buf, message->payload, MAX_PAYLOAD * sizeof(char));
-
+    std::string message_topic(message->topic);
+    std::string message_payload(static_cast<char*>(message->payload),MAX_PAYLOAD * sizeof(char));
+    
+    if(message_topic.find("MCP_Array") != std::string::npos){
         #ifdef DEBUG
             std::cout << buf << std::endl;
         #endif
-
-        if (!strcmp(buf, "STATUS")){   
+        if(message_payload.find("STATUS") != std::string::npos){
             snprintf(buf, payload_size, "Online");
             publish(NULL, "MCP_Array", strlen(buf), buf);
             #ifdef DEBUG
@@ -70,124 +66,96 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             #endif
         }
     }
-    else if(strstr(message->topic, "MCP_OUT_S_"))
-    // if(!strcmp(message->topic, "MCP_Array"))
-    {
-        memset(buf, 0, payload_size * sizeof(char));
-
-        /* Copy N-1 bytes to ensure always 0 terminated. */
-        memcpy(buf, message->payload, MAX_PAYLOAD * sizeof(char));
-
+    else if(message_topic.find("MCP_OUT_S_") != std::string::npos){
         #ifdef DEBUG
             std::cout << buf << std::endl;
         #endif
-
-        // Examples of messages for M2M communications...
-        
-        if (strstr(buf, "_STATE")){   
-            try{
-                std::string str_nr;
-                str_nr.push_back(buf[0]);
-                str_nr.push_back(buf[1]);
-                int nr = std::stoi( str_nr );
-                char msg[7];
-                char pub[13] = "MCP_OUT_P_";
-                if (mcp_manager->read_output(nr))
-                    std::strcpy(msg, "00_ON");
-                else
-                    std::strcpy(msg,"00_OFF");
-                 char comp[2] = "0" ;
-                if (buf[0] == comp[0]){
-                    pub[10] = buf[1];
-                }
-                else {
-                    pub[10] = buf[0];
-                    pub[11] = buf[1];
-                }
-                msg[0] = buf[0];
-                msg[1] = buf[1];
-            
-                
-                snprintf(buf, payload_size, msg);
-                publish(NULL, pub, strlen(buf), buf);
-                #ifdef DEBUG
-                    std::cout << "Request for output state" << std::endl;
-                #endif
-            }
-            catch(...) {
-                std::cout << "wrong mesage" << std::endl;
-            }
-        }
-        else if (strstr(buf, "ON"))
-        {   try{
-                std::string str_nr;
-                str_nr.push_back(buf[0]);
-                str_nr.push_back(buf[1]);
-                int nr = std::stoi( str_nr );
-                
-                char pub[13] = "MCP_OUT_P_";
-                char msg[6] = "00_ON";
+        if(message_payload.find("_STATE") != std::string::npos){
+            std::string str_nr;
+            str_nr.push_back(buf[0]);
+            str_nr.push_back(buf[1]);
+            int nr = std::stoi( str_nr );
+            char msg[7];
+            char pub[13] = "MCP_OUT_P_";
+            if (mcp_manager->read_output(nr))
+                std::strcpy(msg, "00_ON");
+            else
+                std::strcpy(msg,"00_OFF");
                 char comp[2] = "0" ;
-                if (buf[0] == comp[0]){
-                    pub[10] = buf[1];
-                }
-                else {
-                    pub[10] = buf[0];
-                    pub[11] = buf[1];
-                }
-                        
+            if (buf[0] == comp[0]){
+                pub[10] = buf[1];
+            }
+            else {
+                pub[10] = buf[0];
+                pub[11] = buf[1];
+            }
+            msg[0] = buf[0];
+            msg[1] = buf[1];
 
-                msg[0] = buf[0];
-                msg[1] = buf[1];
-
-                snprintf(buf, payload_size, msg);
-                publish(NULL, pub, strlen(buf), buf);
             
-                mcp_manager->write_output(nr, true);
-
-                #ifdef DEBUG
-                    std::cout << "Request to turn on." << std::endl;
-                #endif
-            }
-            catch(...) {
-                std::cout << "wrong mesage" << std::endl;
-            }
-        }
-   
-
-        else if (strstr(buf, "OFF"))
-        {   
-            try{
-                std::string str_nr;
-                str_nr.push_back(buf[0]);
-                str_nr.push_back(buf[1]);
-                int nr = std::stoi( str_nr );
+            snprintf(buf, payload_size, msg);
+            publish(NULL, pub, strlen(buf), buf);
+            #ifdef DEBUG
+                std::cout << "Request for output state" << std::endl;
+            #endif
                 
-                char pub[13] = "MCP_OUT_P_";
-                char msg[7] = "00_OFF";
-             char comp[2] = "0" ;
-                if (buf[0] == comp[0]){
-                    pub[10] = buf[1];
-                }
-                else {
-                    pub[10] = buf[0];
-                    pub[11] = buf[1];
-                }
-                msg[0] = buf[0];
-                msg[1] = buf[1];
-
-                snprintf(buf, payload_size, msg);
-                publish(NULL, pub, strlen(buf), buf);
+        }
+        else if(message_payload.find("_ON") != std::string::npos){
+            std::string str_nr;
+            str_nr.push_back(buf[0]);
+            str_nr.push_back(buf[1]);
+            int nr = std::stoi( str_nr );
             
-                mcp_manager->write_output(nr, false);
-
-                #ifdef DEBUG
-                    std::cout << "Request to turn off." << std:: endl;
-                #endif
+            char pub[13] = "MCP_OUT_P_";
+            char msg[6] = "00_ON";
+            char comp[2] = "0" ;
+            if (buf[0] == comp[0]){
+                pub[10] = buf[1];
             }
-            catch(...) {
-                std::cout << "wrong mesage" << std::endl;
-            }            
+            else {
+                pub[10] = buf[0];
+                pub[11] = buf[1];
+            }
+            msg[0] = buf[0];
+            msg[1] = buf[1];
+
+            snprintf(buf, payload_size, msg);
+            publish(NULL, pub, strlen(buf), buf);
+        
+            mcp_manager->write_output(nr, true);
+            #ifdef DEBUG
+                std::cout << "Request to turn on." << std::endl;
+            #endif
+            }
+    
+
+        else if(message_payload.find("_OFF") != std::string::npos){
+            std::string str_nr;
+            str_nr.push_back(buf[0]);
+            str_nr.push_back(buf[1]);
+            int nr = std::stoi( str_nr );
+            
+            char pub[13] = "MCP_OUT_P_";
+            char msg[7] = "00_OFF";
+            char comp[2] = "0" ;
+            if (buf[0] == comp[0]){
+                pub[10] = buf[1];
+            }
+            else {
+                pub[10] = buf[0];
+                pub[11] = buf[1];
+            }
+            msg[0] = buf[0];
+            msg[1] = buf[1];
+
+            snprintf(buf, payload_size, msg);
+            publish(NULL, pub, strlen(buf), buf);
+        
+            mcp_manager->write_output(nr, false);
+
+            #ifdef DEBUG
+                std::cout << "Request to turn off." << std:: endl;
+            #endif
         }
     }
 }

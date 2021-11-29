@@ -1,2 +1,0 @@
-scp -r /home/seba/Documents/RPI_Zero_mcp pi@192.168.1.21:/home/pi/ 
-ssh pi@192.168.1.21 "cd /home/pi/RPI_Zero_mcp; killall a.out; g++ -pthread -lmosquittopp -lwiringPi -Iinclude/. -Linclude/. src/main.cpp  src/MCP_Mosquitto.cpp src/mqtt.cpp src/MCPdev.cpp src/MCP_Settings.cpp src/MCP_Manager.cpp src/socket_server.cpp src/Settings_server.cpp && ./a.out"
