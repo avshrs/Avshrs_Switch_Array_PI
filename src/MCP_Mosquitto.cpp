@@ -31,7 +31,7 @@ void MCP_Mosquitto::mos_connect(){
     std::string mcp_array_msg ="Online";
     while(1)
     {
-        rc = iot_client->loop(50);
+        rc = iot_client->loop(50000);
         iot_client->send_ack(mcp_array ,mcp_array_msg);
         for(int i = 0; i<64; i++){
             std::string pub = "MCP_OUT_P_";
