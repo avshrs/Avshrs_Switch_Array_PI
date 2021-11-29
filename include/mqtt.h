@@ -18,6 +18,7 @@ public:
     mqtt_client (const char *id, const char *host, int port);
     ~mqtt_client();
     MCP_Manager *mcp_manager;
+    void send_ack(std::string pub, std::string msg);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
     void on_connect(int rc);
     void on_message(const struct mosquitto_message *message);

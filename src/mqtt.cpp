@@ -9,7 +9,7 @@
 
 mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
 {
-    int keepalive = DEFAULT_KEEP_ALIVE;
+    int keepalive = 50;
     connect(host, port, keepalive);
 }
 
@@ -37,6 +37,10 @@ void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
 
 void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
     mcp_manager = mcp_manager_;
+}
+
+void mqtt_client::send_ack(std::string pub, std::string msg ){
+    publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
 
 void mqtt_client::on_message(const struct mosquitto_message *message){

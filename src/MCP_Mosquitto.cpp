@@ -19,19 +19,27 @@ void MCP_Mosquitto::mos_connect(){
     //iot_client->publish(NULL, "MCP_Array");  // Main device topic - Online 
 
     for(int i = 0; i<64; i++){
-        char pub[13];
-        char sub[13];
-        std::sprintf(sub, "MCP_OUT_S_%d", i);
-        std::sprintf(pub, "MCP_OUT_P_%d", i);
-        iot_client->publish(NULL, pub);
-        iot_client->subscribe(NULL, sub);
+        std::string pub = "MCP_OUT_P_";
+        std::string sub = "MCP_OUT_S_";
+        sub += std::to_string(i);
+        pub += std::to_string(i);
+        iot_client->publish(NULL, pub.c_str());
+        iot_client->subscribe(NULL, sub.c_str());
         usleep(10000);
     }
+    std::string mcp_array ="MCP_Array";
+    std::string mcp_array_msg ="Online";
     while(1)
     {
-        rc = iot_client->loop();
+        rc = iot_client->loop(50);
+        iot_client->send_ack(mcp_array ,mcp_array_msg);
+        for(int i = 0; i<64; i++){
+            std::string pub = "MCP_OUT_P_";
+            std::string msg = "ok";
+            pub += std::to_string(i);
+            iot_client->send_ack(pub ,msg);
+        }
     }
-
     mosqpp::lib_cleanup();
 }
 
