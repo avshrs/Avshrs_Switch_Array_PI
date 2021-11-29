@@ -50,7 +50,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     #ifdef DEBUG
         
     #endif
-    // try{
+
         std::string message_topic(message->topic);
         std::string message_payload;
         try{
@@ -71,9 +71,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             }
         }
         else if(!message_payload.empty() & message_topic.find("MCP_OUT_S_") != std::string::npos){
-            #ifdef DEBUG
-                std::cout << buf << std::endl;
-            #endif
             if(message_payload == "STATE"){
             std::string nr_str;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
@@ -91,9 +88,8 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     msg = "ON";
                 else
                     msg = "OFF";
-                std::cout << pub << " " <<msg<<std::endl;
-                snprintf(buf, payload_size, msg.c_str());
-                publish(NULL, pub.c_str(), strlen(buf), buf);
+                // snprintf(buf, payload_size, msg.c_str());
+                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 #ifdef DEBUG
                     std::cout << "Request for output state" << std::endl;
                 #endif
