@@ -47,7 +47,8 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         }
         catch(...){}
         
-        if(!message_payload.empty() & message_topic.find("MCP_Array") != std::string::npos){
+        if(!message_payload.empty() & message_topic == "MCP_Array"){
+            
             if(message_payload == "STATUS"){
                 std::string msg = "Online";
                 publish(NULL, "MCP_Array", msg.length(), msg.c_str());
