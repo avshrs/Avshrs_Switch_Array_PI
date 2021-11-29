@@ -51,7 +51,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     #ifdef DEBUG
         std::cout << message->topic << std::endl;
     #endif
-    if (strlen(static_cast<char*>(message->payload)) != 0){
+    if (*static_cast<char*>(message->payload) != 0){
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload),MAX_PAYLOAD * sizeof(char));
         
