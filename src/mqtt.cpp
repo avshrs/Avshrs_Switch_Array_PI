@@ -96,10 +96,14 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         }
         else if(message_payload.find("ON") != std::string::npos){
             std::string nr_str;
-            if (message_topic.substr(message_topic.length() - 2, message_topic.length() - 1 ) == "_")
+            if (message_topic.substr(message_topic.length() - 2, message_topic.length() - 1 ) == "_"){
                 nr_str = message_topic.substr( message_topic.length() - 1 );
-            else
+                std::cout << "-2,-1" << nr_str<<std::endl;
+            }
+            else{
                 nr_str = message_topic.substr( message_topic.length() - 2 );
+                std::cout << "-1" << nr_str<<std::endl;
+            }
             std::cout << nr_str<<std::endl;
 
             int nr = std::stoi(nr_str);
