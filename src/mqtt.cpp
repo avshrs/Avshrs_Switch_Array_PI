@@ -47,11 +47,10 @@ void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
 void mqtt_client::on_message(const struct mosquitto_message *message){
     int payload_size = MAX_PAYLOAD + 1;
     char buf[payload_size];
-    memcpy(buf, message->payload, MAX_PAYLOAD * sizeof(char));
     #ifdef DEBUG
         
     #endif
-    if (*buf != 0){
+    try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload),MAX_PAYLOAD * sizeof(char));
         
@@ -149,4 +148,5 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             }
         }
     }
+    catch(...){}
 }
