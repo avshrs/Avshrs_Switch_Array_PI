@@ -34,23 +34,12 @@ void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
     #endif
 }
 
-std::string bufferToString(char* buffer, int bufflen)
-{
-    std::string ret(buffer, bufflen);
 
-    return ret;
-}
 void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
     mcp_manager = mcp_manager_;
 }
 
 void mqtt_client::on_message(const struct mosquitto_message *message){
-    int payload_size = MAX_PAYLOAD + 1;
-    char buf[payload_size];
-    #ifdef DEBUG
-        
-    #endif
-
         std::string message_topic(message->topic);
         std::string message_payload;
         try{
@@ -59,12 +48,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         catch(...){}
         
         if(!message_payload.empty() & message_topic.find("MCP_Array") != std::string::npos){
-            #ifdef DEBUG
-                std::cout << buf << std::endl;
-            #endif
             if(message_payload == "STATUS"){
-                snprintf(buf, payload_size, "Online");
-                publish(NULL, "MCP_Array", strlen(buf), buf);
+                std::string msg = "Online";
+                publish(NULL, "MCP_Array", msg.length(), msg.c_str());
                 #ifdef DEBUG
                     std::cout << "Status Request Recieved." << std::endl;
                 #endif
@@ -88,7 +74,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     msg = "ON";
                 else
                     msg = "OFF";
-                // snprintf(buf, payload_size, msg.c_str());
                 publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 #ifdef DEBUG
                     std::cout << "Request for output state" << std::endl;
@@ -103,20 +88,16 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 else{
                     nr_str = message_topic.substr(message_topic.length() - 1);
                 }
-                std::cout << nr_str<<std::endl;
                 int nr = std::stoi(nr_str);
                 std::string pub = "MCP_OUT_P_";
                 std::string msg = "ON";
                 pub += nr_str;
-                std::cout << pub << " " <<msg<<std::endl;
-                snprintf(buf, payload_size, msg.c_str());
-                publish(NULL, pub.c_str(), strlen(buf), buf);
+                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 mcp_manager->write_output(nr, true);
                 #ifdef DEBUG
                     std::cout << "Request to turn on." << std::endl;
                 #endif
                 }
-        
 
             else if(message_payload == "OFF"){
                 std::string nr_str;
@@ -130,9 +111,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::string pub = "MCP_OUT_P_";
                 std::string msg = "OFF";
                 pub += nr_str;
-                std::cout << pub << " " <<msg<<std::endl;
-                snprintf(buf, payload_size, msg.c_str());
-                publish(NULL, pub.c_str(), strlen(buf), buf);
+                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 mcp_manager->write_output(nr, false);
                 #ifdef DEBUG
                     std::cout << "Request to turn off." << std:: endl;
