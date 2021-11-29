@@ -87,7 +87,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     msg = "ON";
                 else
                     msg = "OFF";
-
                 std::cout << pub << " " <<msg<<std::endl;
                 snprintf(buf, payload_size, msg.c_str());
                 publish(NULL, pub.c_str(), strlen(buf), buf);
@@ -105,16 +104,13 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     nr_str = message_topic.substr(message_topic.length() - 1);
                 }
                 std::cout << nr_str<<std::endl;
-
                 int nr = std::stoi(nr_str);
                 std::string pub = "MCP_OUT_P_";
                 std::string msg = "ON";
                 pub += nr_str;
-
                 std::cout << pub << " " <<msg<<std::endl;
                 snprintf(buf, payload_size, msg.c_str());
                 publish(NULL, pub.c_str(), strlen(buf), buf);
-            
                 mcp_manager->write_output(nr, true);
                 #ifdef DEBUG
                     std::cout << "Request to turn on." << std::endl;
@@ -134,14 +130,10 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::string pub = "MCP_OUT_P_";
                 std::string msg = "OFF";
                 pub += nr_str;
-
                 std::cout << pub << " " <<msg<<std::endl;
                 snprintf(buf, payload_size, msg.c_str());
                 publish(NULL, pub.c_str(), strlen(buf), buf);
-                
                 mcp_manager->write_output(nr, false);
-
-
                 #ifdef DEBUG
                     std::cout << "Request to turn off." << std:: endl;
                 #endif
