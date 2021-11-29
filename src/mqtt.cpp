@@ -101,26 +101,21 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 
         }
         else if(message_payload.find("_ON") != std::string::npos){
-            std::string str_nr;
-            str_nr.push_back(buf[0]);
-            str_nr.push_back(buf[1]);
-            int nr = std::stoi( str_nr );
-            
-            char pub[13] = "MCP_OUT_P_";
-            char msg[6] = "00_ON";
-            char comp[2] = "0" ;
-            if (buf[0] == comp[0]){
-                pub[10] = buf[1];
+            std::string nr_str = message_payload.substr(0, 2);
+            int nr = std::stoi(message_payload.substr(0, 2));
+            std::string pub = "MCP_OUT_P_";
+            std::string msg = "_ON";
+            if (message_payload.substr(0, 1) == "0"){
+                pub.push_back(nr_str[1]);
             }
             else {
-                pub[10] = buf[0];
-                pub[11] = buf[1];
+                pub.push_back(nr_str[0]);
+                pub.push_back(nr_str[1]);
             }
-            msg[0] = buf[0];
-            msg[1] = buf[1];
-
-            snprintf(buf, payload_size, msg);
-            publish(NULL, pub, strlen(buf), buf);
+            msg.insert(0,nr_str);
+           
+            snprintf(buf, payload_size, msg.c_str());
+            publish(NULL, pub.c_str(), strlen(buf), buf);
         
             mcp_manager->write_output(nr, true);
             #ifdef DEBUG
@@ -130,26 +125,21 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     
 
         else if(message_payload.find("_OFF") != std::string::npos){
-            std::string str_nr;
-            str_nr.push_back(buf[0]);
-            str_nr.push_back(buf[1]);
-            int nr = std::stoi( str_nr );
-            
-            char pub[13] = "MCP_OUT_P_";
-            char msg[7] = "00_OFF";
-            char comp[2] = "0" ;
-            if (buf[0] == comp[0]){
-                pub[10] = buf[1];
+            std::string nr_str = message_payload.substr(0, 2);
+            int nr = std::stoi(message_payload.substr(0, 2));
+            std::string pub = "MCP_OUT_P_";
+            std::string msg = "_OFF";
+            if (message_payload.substr(0, 1) == "0"){
+                pub.push_back(nr_str[1]);
             }
             else {
-                pub[10] = buf[0];
-                pub[11] = buf[1];
+                pub.push_back(nr_str[0]);
+                pub.push_back(nr_str[1]);
             }
-            msg[0] = buf[0];
-            msg[1] = buf[1];
-
-            snprintf(buf, payload_size, msg);
-            publish(NULL, pub, strlen(buf), buf);
+            msg.insert(0,nr_str);
+           
+            snprintf(buf, payload_size, msg.c_str());
+            publish(NULL, pub.c_str(), strlen(buf), buf);
         
             mcp_manager->write_output(nr, false);
 
