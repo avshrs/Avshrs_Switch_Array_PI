@@ -89,5 +89,17 @@ struct MCP_values
 }; 
 
 
+struct SetSettings{
+    uint8_t INSTRUCTIONS = 0;          
+    uint8_t CONFIG = 0; 
+    uint8_t IONUMBER = 0;
+    uint8_t VALUE = 0;
+};
+struct Register_listener{
+    uint8_t LISTENER = 0;          
+    uint8_t ADDRESS = 0; 
+    int PORT = 0;
+    uint8_t VALUE = 0;
+};
 
 #endif //VARS_h

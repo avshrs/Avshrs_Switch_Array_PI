@@ -1,4 +1,6 @@
 #include "socket_server.h"
+#include <array>
+#include <variant>
 
 
 void SocketServer::open_socket(int port_){
@@ -12,7 +14,7 @@ void SocketServer::open_socket(int port_){
     std::cout<<"Socket server Configured"<<std::endl;
 }
 
-void SocketServer::receive_packages(){
+void SocketServer::receive_packets(){
     std::cout<<"Packets Listener Start"<<std::endl;
     int server_address_len = sizeof(server_address);
     std::array<char, 500> buffer;
@@ -27,19 +29,17 @@ void SocketServer::receive_packages(){
     }
 }
 
-void SocketServer::send_package(char* buffer[500], sockaddr_in address){
+void SocketServer::send_packet(std::array<char, 500> buffer, sockaddr_in address){
     cliend_fd = socket(AF_INET, SOCK_STREAM, 0) ;
-    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
-
+    setsockopt(cliend_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+    new_socket = accept(cliend_fd, (struct sockaddr *)&address, (socklen_t*) & sizeof(address));
     bind(server_fd, (struct sockaddr *)&address, sizeof(address));
 
-    send(new_socket , buffer , sizeof(buffer) , 0 );
+    send(new_socket , buffer.data() , sizeof(buffer) , 0 );
 }
 
 
 void SocketServer::analyze_packet(std::array<char, 500> buffer){
-   
-    }
-    
+    std::variant 
 
 }

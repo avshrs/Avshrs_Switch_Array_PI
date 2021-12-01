@@ -21,12 +21,12 @@ class SocketServer{
         int valread;
         struct sockaddr_in server_address;
         int opt = 1;
-        int addrlen = sizeof(address);
+        
         
         void open_socket(int port_);
-        void receive_packages();
-        void send_packlage(char* buffer[500], sockaddr_in address);
-        void analyze_packet(char* buffer);
+        void receive_packets();
+        void send_packet(std::array<char, 500> buffer, sockaddr_in address);
+        void analyze_packet(std::array<char, 500> buffer);
 };
 
 #endif //SSERVER_H
