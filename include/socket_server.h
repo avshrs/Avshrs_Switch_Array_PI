@@ -9,7 +9,7 @@
 #include <string.h>
 #include <iostream>
 #include "Settings_server.h"
-
+#include <cstring>
 
 
 class SocketServer{

@@ -33,8 +33,9 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1):
     
 
 # send_message(3, 1, 7, 1)  
-send_message(2, 1, 0, 1)
-send_message(4, 1, 7, 1)  
+send_message(0, 1, 2, 0)
+send_message(0, 1, 0, 2)
+send_message(4, 1, 0, 0)  
 
 # send_message(4, 0, 7, 1)  
         
