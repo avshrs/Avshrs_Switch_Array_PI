@@ -15,11 +15,11 @@ void SocketServer::open_socket(int port_){
 void SocketServer::receive_packages(){
     std::cout<<"Packets Listener Start"<<std::endl;
     int server_address_len = sizeof(server_address);
+    std::array<char, 500> buffer;
     while(true){
-        char buffer[500] = {0};
-        
+        buffer.fill(0);
         new_socket = accept(server_fd, (struct sockaddr *)&server_address, (socklen_t*)&sizeof(server_address));
-        int n = read(new_socket , buffer, 500);
+        int n = read(new_socket , buffer.data(), 500);
         if (n<0) {
             std::cout<<"error reading"<<std::endl;
         }
@@ -27,7 +27,7 @@ void SocketServer::receive_packages(){
     }
 }
 
-void SocketServer::send_packlage(char* buffer[500], sockaddr_in address){
+void SocketServer::send_package(char* buffer[500], sockaddr_in address){
     cliend_fd = socket(AF_INET, SOCK_STREAM, 0) ;
     setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
 
@@ -37,6 +37,9 @@ void SocketServer::send_packlage(char* buffer[500], sockaddr_in address){
 }
 
 
-void SocketServer::analyze_packet(char* buffer){
+void SocketServer::analyze_packet(std::array<char, 500> buffer){
+   
+    }
+    
 
 }
