@@ -14,20 +14,19 @@
 
 class SocketServer{
     public:
-        int port=5656;
+
         int server_fd;
+        int cliend_fd;
         int new_socket;
         int valread;
-        struct sockaddr_in address;
+        struct sockaddr_in server_address;
         int opt = 1;
         int addrlen = sizeof(address);
-        SettingsServer *settingsserver_;
-        void set_port(int port_);
-        void open_socket();
-        void register_listener(SettingsServer *settingsserver_);
-        void receive_package(SettingsServer *settingsserver_);
-        void send_packlage(SERIALMCPFRAME data);
-   
+        
+        void open_socket(int port_);
+        void receive_packages();
+        void send_packlage(char* buffer[500], sockaddr_in address);
+        void analyze_packet(char* buffer);
 };
 
 #endif //SSERVER_H
