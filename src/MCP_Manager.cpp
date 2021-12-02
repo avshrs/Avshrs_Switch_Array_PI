@@ -58,6 +58,7 @@ void MCP_Manager::scan_io(){
     for(int i = 0; i < 64 ; i++){
         if (mcp_settings->get_in_status(i)){
             bool value = read_input(i);
+            std::cout<<"read - "<<unsigned(i)<<" - "<<unsigned(value)<<std::endl;
             if (in_states[i] != value){
                 in_states[i] = value;
                 uint8_t output = mcp_settings->get_io_relation(i);
@@ -67,19 +68,19 @@ void MCP_Manager::scan_io(){
                             if(out_states[output] > 0){
                                 out_states[output] = false;
                                 write_output(output, false);
-                                std::cout<<"BI - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(false)<<std::endl;
+                                // std::cout<<"BI - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(false)<<std::endl;
                             }
                             else{
                                 out_states[output] = true;
                                 write_output(output, true);
-                                std::cout<<"BI - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(true)<<std::endl;
+                                // std::cout<<"BI - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(true)<<std::endl;
                             }
                         }
                     }
                     else if(out_states[output] != value){
                         out_states[output] = value;
                         write_output(output, value);
-                        std::cout<<"MO - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(value)<<std::endl;
+                        // std::cout<<"MO - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(value)<<std::endl;
                     }
                 }
             }
