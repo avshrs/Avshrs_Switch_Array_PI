@@ -13,14 +13,14 @@ class MCP_Settings {
         struct IN_SETTINGS{
             uint8_t related_output=0;
             bool in_enabled=false;
-            char in_name[30] = "null";
+            char in_name[30] = "output";
         };
         
         struct OUT_SETTINGS{
             bool out_enabled=true;
             bool out_bistable=false; 
             bool out_disabled_by_alarm=false;
-            char out_name[30];
+            char out_name[30] = "output";
 
         };
 
