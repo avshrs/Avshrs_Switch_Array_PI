@@ -10,7 +10,6 @@ uint8_t MCP_Settings::get_io_relation(uint8_t in){
 }
 
 void MCP_Settings::set_in_name(uint8_t in, std::string name){
-    std::cout<<"set_in_name name value: " << name << std::endl;
     strcpy(in_settings[in].in_name, name.c_str());
 }
 
@@ -76,7 +75,6 @@ void MCP_Settings::save_out_settings(){
         file.write(reinterpret_cast<char*>(&out_settings[i].out_bistable), sizeof(bool));
         file.write(reinterpret_cast<char*>(&out_settings[i].out_disabled_by_alarm), sizeof(bool));
         file.write(reinterpret_cast<char*>(&out_settings[i].out_name), sizeof(char)*30);
-        std::cout <<"save in settings: in:"<< i <<" - "<< out_settings[i].out_name <<std::endl;
     }
     file.close();
 }
@@ -102,8 +100,7 @@ void MCP_Settings::save_in_settings(){
         file.write(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
         file.write(reinterpret_cast<char*>(&in_settings[i].in_enabled), sizeof(bool));
         file.write(reinterpret_cast<char*>(&in_settings[i].in_name), sizeof(char)*30);
-    
-       std::cout <<"save in settings: in:"<< i <<" - "<< in_settings[i].in_name <<std::endl;
+        
     }
     file.close();
 }
