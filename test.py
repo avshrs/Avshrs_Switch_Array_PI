@@ -8,7 +8,7 @@ import struct
 
 
 def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1):
-    TCP_IP = "192.168.1.21"
+    TCP_IP = "192.168.1."
     TCP_PORT = 5656
     INSTRUCTIONS_ = '{:08b}'.format(INSTRUCTIONS)
     CONFIG_ = '{:08b}'.format(CONFIG)
@@ -35,6 +35,9 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1):
 # send_message(3, 1, 7, 1)  
 send_message(0, 1, 2, 0)
 send_message(0, 1, 0, 2)
+send_message(0, 1, 1, 1)
+send_message(1, 1, 0, 1)
+send_message(1, 1, 2, 1)
 send_message(4, 1, 0, 0)  
 
 # send_message(4, 0, 7, 1)  

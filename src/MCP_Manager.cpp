@@ -55,13 +55,15 @@ void MCP_Manager::write_output(uint8_t out, bool state){
 }
 
 void MCP_Manager::scan_io(){
+    bool value = false; 
+    uint8_t output = o;
     for(int i = 0; i < 64 ; i++){
         if (mcp_settings->get_in_status(i)){
-            bool value = read_input(i);
+            value = read_input(i);
             std::cout<<"read - "<<unsigned(i)<<" - "<<unsigned(value)<<std::endl;
             if (in_states[i] != value){
                 in_states[i] = value;
-                uint8_t output = mcp_settings->get_io_relation(i);
+                output = mcp_settings->get_io_relation(i);
                 if(mcp_settings->get_out_status(output)){
                     if(mcp_settings->get_out_bistable(output)){
                         if (value > 0){
