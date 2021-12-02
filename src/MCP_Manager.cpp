@@ -56,7 +56,7 @@ void MCP_Manager::write_output(uint8_t out, bool state){
 
 void MCP_Manager::scan_io(){
     bool value = false; 
-    uint8_t output = o;
+    uint8_t output = 0;
     for(int i = 0; i < 64 ; i++){
         if (mcp_settings->get_in_status(i)){
             value = read_input(i);
