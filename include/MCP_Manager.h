@@ -33,7 +33,8 @@ class MCP_Manager
         bool read_input(uint8_t in);
         void write_output(uint8_t out, bool state);
         bool read_output(uint8_t out);
-        void scan_io();
+        void scan_all_io();
+        void scan_in_and_set_out(int in);
 };
 
 #endif // MCP_MANAGER_h
