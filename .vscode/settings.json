@@ -54,7 +54,12 @@
         "typeinfo": "cpp",
         "set": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "condition_variable": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "mutex": "cpp",
+        "variant": "cpp"
     },
     "stm32-for-vscode.openOCDPath": false,
     "C_Cpp.intelliSenseEngineFallback": "Enabled"

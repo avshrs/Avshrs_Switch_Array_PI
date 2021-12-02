@@ -32,18 +32,25 @@ void MCP_Manager::register_mcp_settings(MCP_Settings *mcp_settings_){
     mcp_settings = mcp_settings_;
 }
 
-bool MCP_Manager::read_input(uint8_t in){
+
+bool MCP_Manager::read_input(uint8_t in)
+{
     uint8_t mcp_module = (in-(in%16))/16 ;
     uint8_t mcp_gpio = in - (mcp_module*16);
     mcp_gpio =  std::abs(mcp_gpio - 15);
-    return mcpc_in[mcp_module]->read_io(mcp_gpio);
 
+    return mcpc_in[mcp_module]->read_io(mcp_gpio);
 }
-bool MCP_Manager::read_output(uint8_t out){
+
+
+bool MCP_Manager::read_output(uint8_t out)
+{
     return out_states_real[out];
 }   
 
-void MCP_Manager::write_output(uint8_t out, bool state){
+
+void MCP_Manager::write_output(uint8_t out, bool state)
+{
     uint8_t mcp_module = (out-(out%16))/16 ;
     uint8_t mcp_gpio = out - (mcp_module*16);
     mcp_gpio =  std::abs(mcp_gpio - 15);
@@ -58,38 +65,37 @@ void MCP_Manager::scan_all_io(){
     }
 }
 
-
 void MCP_Manager::scan_in_and_set_out(int in){
     bool value = false; 
     uint8_t output = 255;
+
     if (mcp_settings->get_in_status(in)){
-            value = read_input(in);
-            // std::cout<<"read - "<<unsigned(in)<<" - "<<unsigned(value)<<std::endl;
-            if (in_states[in] != value){
-                in_states[in] = value;
-                output = mcp_settings->get_io_relation(in);
-                if(mcp_settings->get_out_status(output)){
-                    if(mcp_settings->get_out_bistable(output)){
-                        if (value > 0){
-                            if(out_states[output] > 0){
-                                out_states[output] = false;
-                                write_output(output, false);
-                                std::cout<<"BI - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
-                            }
-                            else{
-                                out_states[output] = true;
-                                write_output(output, true);
-                                std::cout<<"BI - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
-                            }
-                        }
+        value = read_input(in);
+        if (in_states[in] != value){
+            in_states[in] = value;
+            output = mcp_settings->get_io_relation(in);
+
+            if (mcp_settings->get_out_status(output)){
+                if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
+                    out_states[output] = value;
+                    write_output(output, value);
+                    std::cout<<"MO - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
+                }
+                else {
+                    if (out_states[output] > 0 && value > 0){
+                        out_states[output] = false;
+                        write_output(output, false);
+                        std::cout<<"BI - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
                     }
-                    else if(out_states[output] != value){
-                        out_states[output] = value;
-                        write_output(output, value);
-                        std::cout<<"MO - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
+                    else if (value > 0){
+                        out_states[output] = true;
+                        write_output(output, true);
+                        std::cout<<"BI - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
                     }
                 }
             }
         }
+    }
 }
+
 
