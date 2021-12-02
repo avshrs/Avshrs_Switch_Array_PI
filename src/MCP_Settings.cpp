@@ -69,7 +69,7 @@ void MCP_Settings::read_out_settings(){
         file.read(reinterpret_cast<char*>(&out_settings[i].out_enabled), sizeof(bool));
         file.read(reinterpret_cast<char*>(&out_settings[i].out_bistable), sizeof(bool));
         file.read(reinterpret_cast<char*>(&out_settings[i].out_disabled_by_alarm), sizeof(bool));
-        std::cout << out_settings[i].out_enabled << " " << out_settings[i].out_bistable << " " << out_settings[i].out_disabled_by_alarm << std::endl;
+        std::cout <<"Read out settings: " << out_settings[i].out_enabled << " " << out_settings[i].out_bistable << " " << out_settings[i].out_disabled_by_alarm << std::endl;
     }
 }
 
@@ -89,6 +89,6 @@ void MCP_Settings::read_in_settings(){
     for (int i = 0; i < 64; i++) {
         file.read(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
         file.read(reinterpret_cast<char*>(&in_settings[i].in_alarm_armed), sizeof(bool));
-        std::cout << unsigned(in_settings[i].related_output) << " " << in_settings[i].in_alarm_armed  << std::endl;
+        std::cout <<"Read in settings: " << unsigned(in_settings[i].related_output) << " " << in_settings[i].in_alarm_armed  << std::endl;
     }
 }
