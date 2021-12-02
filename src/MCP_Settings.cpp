@@ -9,6 +9,22 @@ uint8_t MCP_Settings::get_io_relation(uint8_t in){
     return in_settings[in].related_output;
 }
 
+void MCP_Settings::set_in_name(uint8_t in, std::string name){
+    strcpy(in_settings[in].in_name, name.c_str());
+}
+
+std::string MCP_Settings::get_in_name(uint8_t in){
+    return std::string(in_settings[in].in_name);
+}
+
+void MCP_Settings::set_out_name(uint8_t out, std::string name){
+    strcpy(out_settings[out].out_name, name.c_str());
+}
+
+std::string MCP_Settings::get_out_name(uint8_t out){
+    return std::string(out_settings[out].out_name);
+}
+
 void MCP_Settings::set_in_status(uint8_t in, bool status){
     in_settings[in].in_enabled = status;
 }
@@ -58,6 +74,7 @@ void MCP_Settings::save_out_settings(){
         file.write(reinterpret_cast<char*>(&out_settings[i].out_enabled), sizeof(bool));
         file.write(reinterpret_cast<char*>(&out_settings[i].out_bistable), sizeof(bool));
         file.write(reinterpret_cast<char*>(&out_settings[i].out_disabled_by_alarm), sizeof(bool));
+        file.write(reinterpret_cast<char*>(&out_settings[i].out_name), sizeof(char)*30);
     }
     file.close();
 }
@@ -69,7 +86,8 @@ void MCP_Settings::read_out_settings(){
         file.read(reinterpret_cast<char*>(&out_settings[i].out_enabled), sizeof(bool));
         file.read(reinterpret_cast<char*>(&out_settings[i].out_bistable), sizeof(bool));
         file.read(reinterpret_cast<char*>(&out_settings[i].out_disabled_by_alarm), sizeof(bool));
-        std::cout <<"Read out settings: " << out_settings[i].out_enabled << " " << out_settings[i].out_bistable << " " << out_settings[i].out_disabled_by_alarm << std::endl;
+        file.read(reinterpret_cast<char*>(&out_settings[i].out_name), sizeof(char)*30);
+        std::cout <<"Read out settings: "<<out_settings[i].out_name<<" - " << out_settings[i].out_enabled << " " << out_settings[i].out_bistable << " " << out_settings[i].out_disabled_by_alarm << std::endl;
     }
 }
 
@@ -79,6 +97,7 @@ void MCP_Settings::save_in_settings(){
     for (int i = 0; i < 64; i++) {
         file.write(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
         file.write(reinterpret_cast<char*>(&in_settings[i].in_enabled), sizeof(bool));
+        file.write(reinterpret_cast<char*>(&in_settings[i].in_name), sizeof(char)*30);
     }
     file.close();
 }
@@ -89,6 +108,7 @@ void MCP_Settings::read_in_settings(){
     for (int i = 0; i < 64; i++) {
         file.read(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
         file.read(reinterpret_cast<char*>(&in_settings[i].in_enabled), sizeof(bool));
-        std::cout <<"Read in settings: " << unsigned(in_settings[i].related_output) << " " << in_settings[i].in_enabled  << std::endl;
+        file.read(reinterpret_cast<char*>(&in_settings[i].in_name), sizeof(char)*30);
+        std::cout <<"Read in settings: " << in_settings[i].in_name << " - "<< unsigned(in_settings[i].related_output) << " " << in_settings[i].in_enabled  << std::endl;
     }
 }

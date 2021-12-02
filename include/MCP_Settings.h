@@ -13,14 +13,15 @@ class MCP_Settings {
         struct IN_SETTINGS{
             uint8_t related_output=0;
             bool in_enabled=false;
-            
-            
+            char in_name[30] = "null";
         };
         
         struct OUT_SETTINGS{
             bool out_enabled=true;
             bool out_bistable=false; 
             bool out_disabled_by_alarm=false;
+            char out_name[30];
+
         };
 
         IN_SETTINGS in_settings[IN_RANGE];
@@ -29,6 +30,12 @@ class MCP_Settings {
         void set_io_relation(uint8_t in, uint8_t out);
         uint8_t get_io_relation(uint8_t in);
         
+        void set_in_name(uint8_t in, std::string name);
+        std::string get_in_name(uint8_t in);
+
+        void set_out_name(uint8_t out, std::string name);
+        std::string get_out_name(uint8_t out);
+
         void set_in_status(uint8_t in, bool flag);
         bool get_in_status(uint8_t in);
 

@@ -63,6 +63,7 @@ struct SERIALMCPFRAME{
     uint8_t CONFIG = 0; 
     uint8_t IONUMBER = 0;
     uint8_t VALUE = 0;
+    char NAME[30] ;
   
 };
 struct IO_ADDRESS{

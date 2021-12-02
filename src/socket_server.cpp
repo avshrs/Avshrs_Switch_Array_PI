@@ -43,6 +43,8 @@ void SocketServer::analyze_packet(std::array<char, 500> buffer){
         frame.CONFIG = buffer.at(1);
         frame.IONUMBER = buffer.at(2);
         frame.VALUE = buffer.at(3);
+        for( int i =4 ; i < 34; i++)
+            frame.NAME[i-4] = buffer.at(i);
         settingsserver->analyze_packet(frame);    
     
 
