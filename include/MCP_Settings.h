@@ -21,12 +21,10 @@ class MCP_Settings {
             bool out_enabled=true;
             bool out_bistable=false; 
             bool out_disabled_by_alarm=false;
-
-            
         };
 
-        IN_SETTINGS in_settings[64];
-        OUT_SETTINGS out_settings[64];
+        IN_SETTINGS in_settings[IN_RANGE];
+        OUT_SETTINGS out_settings[OUT_RANGE];
 
         void set_io_relation(uint8_t in, uint8_t out);
         uint8_t get_io_relation(uint8_t in);

@@ -23,9 +23,9 @@ class MCP_Manager
         MCP_Settings *mcp_settings;
         
         
-        bool in_states[64] = {false};
-        bool out_states_real[64] = {false};
-        bool out_states[64] = {false};
+        bool in_states[IN_RANGE] = {false};
+        bool out_states_real[OUT_RANGE] = {false};
+        bool out_states[OUT_RANGE] = {false};
         bool alarm_armed = false;
         
         void MCP_Init();
