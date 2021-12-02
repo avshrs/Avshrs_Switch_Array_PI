@@ -12,7 +12,8 @@ class MCP_Settings {
     public: 
         struct IN_SETTINGS{
             uint8_t related_output=0;
-            bool in_alarm_armed=false;
+            bool in_enable=false;
+            
             
         };
         
@@ -30,8 +31,8 @@ class MCP_Settings {
         void set_io_relation(uint8_t in, uint8_t out);
         uint8_t get_io_relation(uint8_t in);
         
-        void set_in_alarm_armed(uint8_t in, bool flag);
-        bool get_in_alarm_armed(uint8_t in);
+        void set_in_status(uint8_t in, bool flag);
+        bool get_in_status(uint8_t in);
 
         void set_out_status(uint8_t out, bool status);
         bool get_out_status(uint8_t out);

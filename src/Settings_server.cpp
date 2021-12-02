@@ -17,11 +17,11 @@ void SettingsServer::analyze_packet(SERIALMCPFRAME frame){
         std::cout<<"get_io_relation: "<<unsigned(frame.IONUMBER)<<" - "<<unsigned(mcp_settings->get_io_relation(frame.IONUMBER))<<std::endl;
     }
     else if(frame.INSTRUCTIONS == 0x01 & frame.CONFIG == 0x01){
-        mcp_settings->set_in_alarm_armed(frame.IONUMBER, frame.VALUE);
-        std::cout<<"alarm armed input set: "<<unsigned(frame.IONUMBER)<<" - "<<unsigned(mcp_settings->get_in_alarm_armed(frame.IONUMBER))<<std::endl;
+        mcp_settings->set_in_status(frame.IONUMBER, frame.VALUE);
+        std::cout<<"set_in_status: "<<unsigned(frame.IONUMBER)<<" - "<<unsigned(mcp_settings->get_in_status(frame.IONUMBER))<<std::endl;
     }
     else if(frame.INSTRUCTIONS == 0x01 & frame.CONFIG == 0x00){
-        std::cout<<"alarm armed input get: "<<unsigned(frame.IONUMBER)<<" - "<<unsigned(mcp_settings->get_in_alarm_armed(frame.IONUMBER))<<std::endl;
+        std::cout<<"get_in_status: "<<unsigned(frame.IONUMBER)<<" - "<<unsigned(mcp_settings->get_in_status(frame.IONUMBER))<<std::endl;
     }
     else if(frame.INSTRUCTIONS == 0x02 & frame.CONFIG == 0x01){
         mcp_settings->set_out_status(frame.IONUMBER, frame.VALUE);

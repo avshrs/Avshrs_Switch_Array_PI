@@ -17,6 +17,14 @@ bool MCP_Settings::get_in_alarm_armed(uint8_t in){
     return in_settings[in].in_alarm_armed;
 }
 
+void MCP_Settings::set_in_status(uint8_t in, bool status){
+    in_settings[in].in_enabled = status;
+}
+
+bool MCP_Settings::get_in_status(uint8_t out){
+    return in_settings[in].in_enabled;
+}
+
 void MCP_Settings::set_out_status(uint8_t out, bool status){
     out_settings[out].out_enabled = status;
 }
