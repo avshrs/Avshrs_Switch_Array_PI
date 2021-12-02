@@ -79,18 +79,18 @@ void MCP_Manager::scan_in_and_set_out(int in){
                 if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
                     out_states[output] = value;
                     write_output(output, value);
-                    std::cout<<"MO - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
+                    std::cout<<"MO -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
                 }
                 else {
                     if (out_states[output] > 0 && value > 0){
                         out_states[output] = false;
                         write_output(output, false);
-                        std::cout<<"BI - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
+                        std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
                     }
                     else if (value > 0){
                         out_states[output] = true;
                         write_output(output, true);
-                        std::cout<<"BI - in:"<<unsigned(in)<<" - out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
+                        std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
                     }
                 }
             }
