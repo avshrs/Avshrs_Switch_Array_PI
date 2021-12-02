@@ -10,7 +10,7 @@
 #include <iostream>
 #include "Settings_server.h"
 #include <cstring>
-
+#include <array>
 
 class SocketServer{
     public:
@@ -19,14 +19,15 @@ class SocketServer{
         int cliend_fd;
         int new_socket;
         int valread;
+        SettingsServer *settingsserver;
         struct sockaddr_in server_address;
         int opt = 1;
-        int addrlen = sizeof(address);
-        
+        int addrlen = sizeof(server_address);
+        void register_settingsserver(SettingsServer *settingsserver_);
         void open_socket(int port_);
-        void receive_packages();
-        void send_packlage(char* buffer[500], sockaddr_in address);
-        void analyze_packet(char* buffer);
+        void receive_packets();
+        void send_packets(char* buffer[500], sockaddr_in address);
+        void analyze_packet(std::array<char, 500> buffer);
 };
 
 #endif //SSERVER_H
