@@ -24,7 +24,9 @@ void MCP_Manager::MCP_Init(){
     uint8_t mcp_io[4][16];
     bool in = false;
     for(int i=0; i<IN_RANGE;i++){
+        
         in = MCP_Manager::read_input(i);
+        std::cout<<"init read from input - in:"<<unsigned(i)<<" - out:"<<unsigned(i)<<" - val:"<<unsigned(in)<<std::endl;
         MCP_Manager::write_output(i, in);
         in_states[i] = in;
         out_states[i] = in;
@@ -51,6 +53,7 @@ void MCP_Manager::write_output(uint8_t out, bool state){
     uint8_t mcp_gpio = out - (mcp_module*16);
     mcp_gpio =  std::abs(mcp_gpio - 15);
     out_states_real[out] = state;
+    
     mcpc_out[mcp_module]->write_io(mcp_gpio, state);
 }
 
