@@ -2,6 +2,9 @@
 #define VARS_h
 #include <cstdint>
 
+#define    IN_RANGE     (64) 
+#define    OUT_RANGE    (64) 
+
 #define    FORCE        (0xFF) 
 #define    NFORCE       (0x00) 
 

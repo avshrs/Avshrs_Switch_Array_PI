@@ -9,19 +9,11 @@ uint8_t MCP_Settings::get_io_relation(uint8_t in){
     return in_settings[in].related_output;
 }
 
-void MCP_Settings::set_in_alarm_armed(uint8_t in, bool flag){
-    in_settings[in].in_alarm_armed = flag;
-}
-
-bool MCP_Settings::get_in_alarm_armed(uint8_t in){
-    return in_settings[in].in_alarm_armed;
-}
-
 void MCP_Settings::set_in_status(uint8_t in, bool status){
     in_settings[in].in_enabled = status;
 }
 
-bool MCP_Settings::get_in_status(uint8_t out){
+bool MCP_Settings::get_in_status(uint8_t in){
     return in_settings[in].in_enabled;
 }
 
@@ -86,7 +78,7 @@ void MCP_Settings::save_in_settings(){
     if (!file) { return; }
     for (int i = 0; i < 64; i++) {
         file.write(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
-        file.write(reinterpret_cast<char*>(&in_settings[i].in_alarm_armed), sizeof(bool));
+        file.write(reinterpret_cast<char*>(&in_settings[i].in_enabled), sizeof(bool));
     }
     file.close();
 }
@@ -96,7 +88,7 @@ void MCP_Settings::read_in_settings(){
     file.open("in_settings.bin", std::ios::binary);
     for (int i = 0; i < 64; i++) {
         file.read(reinterpret_cast<char*>(&in_settings[i].related_output), sizeof(uint8_t));
-        file.read(reinterpret_cast<char*>(&in_settings[i].in_alarm_armed), sizeof(bool));
-        std::cout <<"Read in settings: " << unsigned(in_settings[i].related_output) << " " << in_settings[i].in_alarm_armed  << std::endl;
+        file.read(reinterpret_cast<char*>(&in_settings[i].in_enabled), sizeof(bool));
+        std::cout <<"Read in settings: " << unsigned(in_settings[i].related_output) << " " << in_settings[i].in_enabled  << std::endl;
     }
 }

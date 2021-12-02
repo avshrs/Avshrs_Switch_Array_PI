@@ -56,41 +56,35 @@ void MCP_Manager::write_output(uint8_t out, bool state){
 
 void MCP_Manager::scan_io(){
     for(int i = 0; i < 64 ; i++){
-        bool value = read_input(i);
-        if (in_states[i] != value){
-            in_states[i] = value;
-            uint8_t output = mcp_settings->get_io_relation(i);
-            if(mcp_settings->get_in_alarm_armed(i)){
-                if(value){
-                    alarm_armed = true;
-                }
-                else{
-                    alarm_armed = false;
-                }
-            }
-            if(mcp_settings->get_out_status(output)){
-                if(!alarm_armed & !mcp_settings->get_out_disable_by_alarm(output)){
+        if (mcp_settings->get_in_status(i)){
+            bool value = read_input(i);
+            if (in_states[i] != value){
+                in_states[i] = value;
+                uint8_t output = mcp_settings->get_io_relation(i);
+                if(mcp_settings->get_out_status(output)){
                     if(mcp_settings->get_out_bistable(output)){
                         if (value > 0){
                             if(out_states[output] > 0){
                                 out_states[output] = false;
                                 write_output(output, false);
-                                std::cout<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(false)<<std::endl;
+                                std::cout<<"BI - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(false)<<std::endl;
                             }
                             else{
                                 out_states[output] = true;
                                 write_output(output, true);
-                                std::cout<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(true)<<std::endl;
+                                std::cout<<"BI - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(true)<<std::endl;
                             }
                         }
                     }
                     else if(out_states[output] != value){
                         out_states[output] = value;
                         write_output(output, value);
-                        std::cout<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(value)<<std::endl;
+                        std::cout<<"MO - "<<unsigned(i)<<" - "<<unsigned(output)<<" - "<<unsigned(value)<<std::endl;
                     }
                 }
             }
         }
     }
 }
+
+

@@ -12,7 +12,7 @@ class MCP_Settings {
     public: 
         struct IN_SETTINGS{
             uint8_t related_output=0;
-            bool in_enable=false;
+            bool in_enabled=false;
             
             
         };
