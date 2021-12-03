@@ -53,7 +53,7 @@ void MCP::write_io(uint8_t io_number, bool state){
         side = GPIOA;
     }
     else{
-        side = GPIOA;
+        side = GPIOB;
         io_number = io_number - 8;
     }
     uint8_t mask = (1 << io_number);
