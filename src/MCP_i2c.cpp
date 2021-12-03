@@ -28,7 +28,7 @@ uint8_t MCP_i2c::readByte(){
     else {
             printf("Data read: %s\n", buffer);
     }
-    return (uint8_t)buffer;
+    return (uint8_t)atoi(buffer);
 }
 
 void MCP_i2c::writeBytes(char * buffer){
