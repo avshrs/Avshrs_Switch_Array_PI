@@ -6,42 +6,32 @@ void MCP::MCP_Init(uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, ui
     mcpAddress = MCPADDRSS;
     mcp_i2c.i2c_init("/dev/i2c-1", mcpAddress);
 
-    mcp_i2c.writeByte(MCPADDRSS);  // expander has I2C address 0x20
-    mcp_i2c.writeByte(IODIRA);   // register 0 is the I/O direction register for Port A
-    mcp_i2c.writeByte(GIPOA_TYPE);   //  0x00 for all pins to output mode, 0xFF for all pins to input mode
+            
+    mcp_i2c.writeByte(IODIRA, GIPOA_TYPE);   // register 0 is the I/O direction register for Port A
+    
 
     if (GIPOA_PULL == 0xFF && GIPOA_TYPE == 0xFF){
-        mcp_i2c.writeByte(MCPADDRSS);  // expander has I2C address 0x20
-        mcp_i2c.writeByte(GPPUA);   // register 0 is the I/O direction register for Port A
-        mcp_i2c.writeByte(0xFF);   //  0x00 for all pins to output mode, 0xFF for all pins to input mode
+        mcp_i2c.writeByte(GPPUA, 0xFF);   // register 0 is the I/O direction register for Port A
     }
 
-    mcp_i2c.writeByte(MCPADDRSS);  // expander has I2C address 0x20
-    mcp_i2c.writeByte(IODIRB);   // register 0 is the I/O direction register for Port A
-    mcp_i2c.writeByte(GIPOB_TYPE);   //  0x00 for all pins to output mode, 0xFF for all pins to input mode
+
+    mcp_i2c.writeByte(IODIRB, GIPOB_TYPE);   // register 0 is the I/O direction register for Port A
+    
 
     if (GIPOB_PULL == 0xFF && GIPOB_TYPE == 0xFF){
-        mcp_i2c.writeByte(MCPADDRSS);  // expander has I2C address 0x20
-        mcp_i2c.writeByte(GPPUB);   // register 0 is the I/O direction register for Port A
-        mcp_i2c.writeByte(0xFF);   //  0x00 for all pins to output mode, 0xFF for all pins to input mode
+        mcp_i2c.writeByte(GPPUB, 0xFF);   // register 0 is the I/O direction register for Port A
         
     }
 }
 
 uint8_t MCP::readRaw(uint8_t side){
-    uint8_t r_value = 0; 
-    mcp_i2c.writeByte(mcpAddress); 
-    mcp_i2c.writeByte(side);
-    uint8_t v = mcp_i2c.readByte();
+    uint8_t v = mcp_i2c.readByte(side);
     // print(v);
     return ~v;
 }
 
 void MCP::writeRaw(uint8_t side, uint8_t memory){
-    mcp_i2c.writeByte(mcpAddress);
-    mcp_i2c.writeByte(side);  
-    mcp_i2c.writeByte(convert_bits(memory));   
-    
+    mcp_i2c.writeByte(side, convert_bits(memory));   
 }
 
 bool MCP::read_io(uint8_t io_number){
@@ -72,9 +62,7 @@ void MCP::write_io(uint8_t io_number, bool state){
         value &= ~mask;
 
     }
-    mcp_i2c.writeByte(mcpAddress); 
-    mcp_i2c.writeByte(side);
-    mcp_i2c.writeByte(value);
+    writeRaw(side, value); 
 }
 
 uint8_t MCP::convert_bits(uint8_t bits){
