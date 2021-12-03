@@ -15,7 +15,6 @@ class MCP_i2c{
         uint8_t address;
         char *filename;
 
-        void writeBytes(char * buffer);
         void writeByte(uint8_t buffer_);
         void print(uint8_t v);
         uint8_t readByte();
