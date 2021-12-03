@@ -1,5 +1,6 @@
 #include "MCPdev.h"
 #include "MCP_i2c.h"
+#include <iostream>
 
 void MCP::MCP_Init(uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL){
     mcpAddress = MCPADDRSS;
@@ -32,7 +33,7 @@ uint8_t MCP::readRaw(uint8_t side){
     mcp_i2c.writeByte(mcpAddress); 
     mcp_i2c.writeByte(side);
     uint8_t v = mcp_i2c.readByte();
-    print(v);
+    // print(v);
     return ~v;
 }
 
@@ -45,7 +46,6 @@ void MCP::writeRaw(uint8_t side, uint8_t memory){
 
 bool MCP::read_io(uint8_t io_number){
     uint16_t value =  uint16_t(readRaw(GPIOA)) << 8 | uint16_t(readRaw(GPIOB));
-    
     uint16_t mask = 1 << io_number;
     if((value & mask) > 0)
         return true;
@@ -91,10 +91,10 @@ uint8_t MCP::convert_bits(uint8_t bits){
 void MCP::print(uint8_t v){
 for (uint8_t i = 0 ; i < (sizeof(v)*8) ; ++i){
        if ((v & (1 << i )) > 0) 
-           printf("1");
+           std::cout<<("1");
        else
-           printf("0"); 
+           std::cout<<("0");
            
     }
-    printf("\n"); 
+    std::cout<<std::endl;
 }
