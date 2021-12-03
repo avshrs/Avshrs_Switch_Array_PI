@@ -22,6 +22,6 @@ set(INCLUDE_HEADER_FILES
 )
 file(GLOB SOURCES  "src/*.cpp")
  
-add_executable(project ${SOURCES})
+add_executable(MCI_swich_array ${SOURCES})
 
-target_link_libraries(project  ${libs})
+target_link_libraries(MCI_swich_array  ${libs})
