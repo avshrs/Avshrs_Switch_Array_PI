@@ -31,7 +31,7 @@ uint8_t MCP::readRaw(uint8_t side){
 }
 
 void MCP::writeRaw(uint8_t side, uint8_t memory){
-    mcp_i2c.writeByte(side, convert_bits(memory));   
+    mcp_i2c.writeByte(side, memory);   
 }
 
 bool MCP::read_io(uint8_t io_number){
