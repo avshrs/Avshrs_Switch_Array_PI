@@ -2,7 +2,6 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
-#include <string>
 #include "MCP_i2c.h"
 
 void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
@@ -13,8 +12,7 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
             return;
     }
 
-    int addr = 0x5a;
-    if (ioctl(file_i2c, I2C_SLAVE, addr) < 0) {
+    if (ioctl(file_i2c, I2C_SLAVE, address) < 0) {
             printf("Failed to acquire bus access and/or talk to slave.\n");
             return;
     }
