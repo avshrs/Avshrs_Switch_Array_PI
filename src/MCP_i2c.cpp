@@ -34,7 +34,7 @@ void MCP_i2c::writeByte(uint8_t buffer_){
     write(file_i2c, &buffer, sizeof(buffer));
 }
 
-void print(uint8_t v){
+void MCP_i2c::print(uint8_t v){
  for (uint8_t i = 0 ; i < (sizeof(v)*8) ; ++i){
        if ((v & (1 << i )) > 0) 
            printf("1");
