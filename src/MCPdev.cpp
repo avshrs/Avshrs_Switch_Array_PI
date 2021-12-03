@@ -33,7 +33,7 @@ uint8_t MCP::readRaw(uint8_t side){
     mcp_i2c.writeByte(mcpAddress); 
     mcp_i2c.writeByte(side);
     uint8_t v = mcp_i2c.readByte();
-    print(v);
+    // print(v);
     return ~v;
 }
 
