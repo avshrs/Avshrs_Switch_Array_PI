@@ -18,9 +18,9 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
     }
 }
 
-uint8_t MCP_i2c::readByte(uint8_t reg){
-    int res;
-
+uint8_t MCP_i2c::readByte(uint8_t reg_){
+    __s32 res;
+    unsigned char reg = static_cast<uint8_t>(reg_);
     res = i2c_smbus_read_word_data(file_i2c, reg);
     if (res<0){
         printf("Failed to read from the i2c bus.\n");
