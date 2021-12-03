@@ -20,23 +20,14 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
 
 uint8_t MCP_i2c::readByte(){
     char buffer[1];
-    if (read(file_i2c, buffer, sizeof(buffer)) != sizeof(buffer)){
-            printf("Failed to read from the i2c bus.\n");
-    }
-    else {
-            printf("Data read: %s\n", buffer);
-    }
+    read(file_i2c, buffer, sizeof(buffer));
     return (uint8_t)atoi(buffer);
 }
 
 void MCP_i2c::writeBytes(char * buffer){
-    if (write(file_i2c, buffer, sizeof(buffer)) != sizeof(buffer)) {
-            printf("2c bus.\n");
-    }
+    write(file_i2c, buffer, sizeof(buffer));
 }
 void MCP_i2c::writeByte(uint8_t buffer_){
     char buffer = (char)buffer_;
-    if (write(file_i2c, &buffer, sizeof(buffer)) != sizeof(buffer)) {
-            printf("Failed to write to the i2c bus.\n");
-    }    
+    write(file_i2c, &buffer, sizeof(buffer));
 }
