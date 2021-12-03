@@ -15,11 +15,8 @@ set(libs
 /usr/lib/arm-linux-gnueabihf/libmosquittopp.so
 /usr/lib/arm-linux-gnueabihf/libpthread.so
 /usr/lib/arm-linux-gnueabihf/libi2c.so
+libi2c
 )
-
-# find_package(libmosquittopp)
-# find_package(libwiringPi)
-# find_package(libpthread)
 
 set(INCLUDE_HEADER_FILES
 "include/*.h"
