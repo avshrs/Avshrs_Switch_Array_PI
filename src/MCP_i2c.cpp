@@ -20,7 +20,7 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
 }
 
 uint8_t MCP_i2c::readByte(){
-    char buffer[1];
+    char *buffer;
     if (read(file_i2c, buffer, sizeof(buffer)) != sizeof(buffer)){
             printf("Failed to read from the i2c bus.\n");
     }
