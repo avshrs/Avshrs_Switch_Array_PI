@@ -38,7 +38,7 @@ void MCP::writeRaw(uint8_t side, uint8_t memory){
 }
 
 bool MCP::read_io(uint8_t io_number){
-    uint16_t value =  uint16_t(readRaw(GPIOA)) << 8 | uint16_t(readRaw(GPIOB));
+    uint16_t value =  uint16_t(readRaw(GPIOB)) << 8 | uint16_t(readRaw(GPIOA));
     uint16_t mask = 1 << io_number;
     if((value & mask) > 0)
         return true;
