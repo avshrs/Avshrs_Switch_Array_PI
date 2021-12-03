@@ -1,6 +1,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
+#include <i2c/smbus.h>
 #include "MCP_i2c.h"
 #include <stdlib.h>
 extern "C" {
