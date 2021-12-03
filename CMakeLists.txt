@@ -8,9 +8,9 @@ include_directories(include)
 #Can manually add the sources using the set command as follows:
 #set(SOURCES src/mainapp.cpp src/Student.cpp)
 
-# set(CMAKE_CXX_FLAGS "-lwiringPi -lmosquittopp -pthread  ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-li2c ${CMAKE_CXX_FLAGS}")
 
-# set(CMAKE_EXE_LINKER_FLAGS "-lwiringPi -lmosquittopp -pthread  ${CMAKE_EXE_LINKER_FLAGS} ")
+set(CMAKE_EXE_LINKER_FLAGS "-li2c ${CMAKE_EXE_LINKER_FLAGS} ")
 set(libs 
 /usr/lib/arm-linux-gnueabihf/libmosquittopp.so
 /usr/lib/arm-linux-gnueabihf/libpthread.so
@@ -22,6 +22,6 @@ set(INCLUDE_HEADER_FILES
 )
 file(GLOB SOURCES  "src/*.cpp")
  
-add_executable(MCI_swich_array ${SOURCES})
+add_executable(project ${SOURCES})
 
-target_link_libraries(MCI_swich_array  ${libs})
+target_link_libraries(project  ${libs})

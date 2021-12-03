@@ -1,7 +1,4 @@
-#include <unistd.h>
-#include <fcntl.h>
-#include "MCP_i2c.h"
-#include <stdlib.h>
+
 
 extern "C" {
     #include <linux/i2c.h>
@@ -9,6 +6,10 @@ extern "C" {
     #include <i2c/smbus.h>
     #include <sys/ioctl.h>
 }
+#include <unistd.h>
+#include <fcntl.h>
+#include "MCP_i2c.h"
+#include <stdlib.h>
 
 void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
     address = address_;
