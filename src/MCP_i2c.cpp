@@ -19,14 +19,15 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
 }
 
 uint8_t MCP_i2c::readByte(uint8_t reg){
-    int8_t res;
+    int res;
+
     res = i2c_smbus_read_word_data(file_i2c, reg);
     if (res<0){
         printf("Failed to read from the i2c bus.\n");
         return 0;
     }
     else {
-        uint8_t d = abs(res);
+        uint8_t d = static_cast<int>(abs(res));
         return d;
     }
  
@@ -34,7 +35,7 @@ uint8_t MCP_i2c::readByte(uint8_t reg){
 
 
 void MCP_i2c::writeByte(uint8_t side, uint8_t buffer_){
-    char buffer = (char)buffer_;
+    unsigned short buffer = static_cast<uint8_t>(buffer_);
     i2c_smbus_write_word_data(file_i2c, side, buffer_);
     
 }

@@ -5,7 +5,7 @@
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
 #include <string>
-
+#include <i2c/smbus.h>
 
 class MCP_i2c{
     public:
