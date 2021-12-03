@@ -21,6 +21,7 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
 uint8_t MCP_i2c::readByte(){
     char buffer[1];
     read(file_i2c, buffer, sizeof(buffer));
+    print((uint8_t)atoi(buffer));
     return (uint8_t)atoi(buffer);
 }
 
@@ -29,5 +30,16 @@ void MCP_i2c::writeBytes(char * buffer){
 }
 void MCP_i2c::writeByte(uint8_t buffer_){
     char buffer = (char)buffer_;
+    print(buffer_);
     write(file_i2c, &buffer, sizeof(buffer));
+}
+
+void print(uint8_t v){
+ for (uint8_t i = 0 ; i < (sizeof(v)*8) ; ++i){
+       if ((v & (1 << i )) > 0) 
+           printf("1");
+       else
+           printf("0"); 
+    }
+    printf("\n");
 }
