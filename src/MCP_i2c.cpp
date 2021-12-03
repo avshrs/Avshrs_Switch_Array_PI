@@ -5,7 +5,7 @@
 #include "MCP_i2c.h"
 
 void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
-    address = address_ <<1;
+    address = address_;
     filename = i2c_file;
     if ((file_i2c = open(filename, O_RDWR)) < 0) {
             printf("Failed to open the i2c bus");
