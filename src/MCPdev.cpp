@@ -31,7 +31,9 @@ uint8_t MCP::readRaw(uint8_t side){
     uint8_t r_value = 0; 
     mcp_i2c.writeByte(mcpAddress); 
     mcp_i2c.writeByte(side);
-    return ~mcp_i2c.readByte();
+    uint8_t v = mcp_i2c.readByte();
+    print(v);
+    return ~v;
 }
 
 void MCP::writeRaw(uint8_t side, uint8_t memory){
@@ -43,6 +45,7 @@ void MCP::writeRaw(uint8_t side, uint8_t memory){
 
 bool MCP::read_io(uint8_t io_number){
     uint16_t value =  uint16_t(readRaw(GPIOA)) << 8 | uint16_t(readRaw(GPIOB));
+    
     uint16_t mask = 1 << io_number;
     if((value & mask) > 0)
         return true;
@@ -85,4 +88,13 @@ uint8_t MCP::convert_bits(uint8_t bits){
     tmp <<= s;
     return tmp;
 }
-
+void MCP::print(uint8_t v){
+for (uint8_t i = 0 ; i < (sizeof(v)*8) ; ++i){
+       if ((v & (1 << i )) > 0) 
+           printf("1");
+       else
+           printf("0"); 
+           
+    }
+    printf("\n"); 
+}

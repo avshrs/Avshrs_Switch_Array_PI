@@ -24,9 +24,7 @@ uint8_t MCP_i2c::readByte(){
     if (read(file_i2c, buffer, sizeof(buffer)) != sizeof(buffer)){
             printf("Failed to read from the i2c bus.\n");
     }
-    else {
-            printf("Data read: %s\n", buffer);
-    }
+
     return (uint8_t)atoi(buffer);
 }
 

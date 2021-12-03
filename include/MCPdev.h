@@ -53,5 +53,6 @@ class MCP {
         bool read_io(uint8_t io_number);
         void write_io(uint8_t io_number, bool state);
         uint8_t convert_bits(uint8_t bits);
+        void print(uint8_t v);
 };
 #endif //MCPDEV_H
