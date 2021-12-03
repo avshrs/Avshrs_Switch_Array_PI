@@ -80,7 +80,7 @@ void MCP_Manager::scan_in_and_set_out(int in){
                     out_states[output] = value;
                     write_output(output, value);
                     std::cout<<"get_in_status:"<<unsigned(mcp_settings->get_in_status(in))<< " - ";
-                    std::cout<<"read_input(in):"<<unsigned(read_input(in))<< " - ";
+                    std::cout<<"read_input(in):"<<unsigned(read_input(in))<< " - value:"<<value<< " - ";
                     std::cout<<"get_io_relation:"<<unsigned(mcp_settings->get_io_relation(in))<< " - ";
                     std::cout<<"get_out_status:"<<unsigned(mcp_settings->get_out_status(output))<< " - ";
                     std::cout<<" - val:"<<unsigned(value)<<std::endl;
