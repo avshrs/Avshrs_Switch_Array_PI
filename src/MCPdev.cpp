@@ -26,8 +26,8 @@ void MCP::MCP_Init(uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, ui
 
 uint8_t MCP::readRaw(uint8_t side){
     uint8_t v = mcp_i2c.readByte(side);
-    std::cout<<"read:";
-    print(~v);
+    // std::cout<<"read:";
+    // print(~v);
     return ~v;
 }
 
