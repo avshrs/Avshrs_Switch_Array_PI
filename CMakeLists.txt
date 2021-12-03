@@ -15,6 +15,7 @@ set(libs
 /usr/lib/arm-linux-gnueabihf/libmosquittopp.so
 /usr/lib/libwiringPi.so
 /usr/lib/arm-linux-gnueabihf/libpthread.so
+/usr/lib/arm-linux-gnueabihf/libi2c.so
 )
 
 # find_package(libmosquittopp)
