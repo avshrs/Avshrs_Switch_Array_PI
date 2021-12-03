@@ -113,6 +113,6 @@ void MCP_Settings::read_in_settings(){
         file.read(reinterpret_cast<char*>(&in_settings[i].in_enabled), sizeof(bool));
         file.read(reinterpret_cast<char*>(&in_settings[i].in_name), sizeof(char)*30);
 
-        std::cout <<"Read in settings: in:"<< i << " out:"<<unsigned(in_settings[i].related_output) << " enabled:" << in_settings[i].in_enabled  << " - name:" << in_settings[i].in_name << std::endl;
+        std::cout <<"Read in settings: in:"<< i << " ou:"<<unsigned(in_settings[i].related_output) << " enabled:" << in_settings[i].in_enabled  << " - name:" << in_settings[i].in_name << std::endl;
     }
 }

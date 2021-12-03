@@ -4,8 +4,7 @@
 #include "vars.h"
 #include <stdio.h>
 #include <unistd.h>
-#include <wiringPi.h>
-#include <mcp23017.h>
+#include "MCP_i2c.h"
 
 #define    IODIRA    (0x00)      // MCP23x17 I/O Direction Register
 #define    IODIRB    (0x01)      // 1 = Input (default), 0 = Output
@@ -43,12 +42,16 @@
 
 class MCP {
     public:
-        void MCP_Init(uint8_t MCPADDRSS, uint8_t nr, uint8_t GIPO_TYPE, uint8_t GIPO_PULL);
-        int nr=0;
         uint8_t mcpAddress;
+        MCP_i2c mcp_i2c;
+        void MCP_Init(uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL);
+        int nr=0;
         
+        
+        uint8_t readRaw(uint8_t side);
+        void writeRaw(uint8_t side, uint8_t memory);
         bool read_io(uint8_t io_number);
         void write_io(uint8_t io_number, bool state);
-        // uint8_t convert_bits(uint8_t bits);
+        uint8_t convert_bits(uint8_t bits);
 };
 #endif //MCPDEV_H
