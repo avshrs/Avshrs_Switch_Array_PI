@@ -15,7 +15,7 @@ set(libs
 /usr/lib/arm-linux-gnueabihf/libmosquittopp.so
 /usr/lib/arm-linux-gnueabihf/libpthread.so
 /usr/lib/arm-linux-gnueabihf/libi2c.so
-libi2c
+i2c
 )
 
 set(INCLUDE_HEADER_FILES
