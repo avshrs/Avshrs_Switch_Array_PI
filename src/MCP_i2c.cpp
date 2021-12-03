@@ -37,7 +37,7 @@ void MCP_i2c::writeBytes(char * buffer){
     }
 }
 void MCP_i2c::writeByte(uint8_t buffer_){
-    char *buffer = &buffer_;
+    char buffer = (char)buffer_;
     if (write(file_i2c, &buffer, sizeof(buffer)) != sizeof(buffer)) {
             printf("Failed to write to the i2c bus.\n");
     }    
