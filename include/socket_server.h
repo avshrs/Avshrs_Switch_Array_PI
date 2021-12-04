@@ -23,6 +23,8 @@ class SocketServer{
         struct sockaddr_in server_address;
         int opt = 1;
         int addrlen = sizeof(server_address);
+
+    public:
         void register_settingsserver(SettingsServer *settingsserver_);
         void open_socket(int port_);
         void receive_packets();
