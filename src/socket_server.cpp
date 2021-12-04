@@ -21,7 +21,7 @@ void SocketServer::receive_packets(){
     while(true){
         buffer.fill(0);
         new_socket = accept(server_fd, (struct sockaddr *)&server_address, (socklen_t*)&server_address_len);
-        int n = read(new_socket , buffer.data(), 500);
+        int n = read(new_socket , buffer.data(), buffer.size());
         if (n<0) {
             std::cout<<"error reading"<<std::endl;
         }
