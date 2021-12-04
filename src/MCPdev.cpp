@@ -31,10 +31,19 @@ uint8_t MCP::readRaw(uint8_t side){
     return ~v;
 }
 
-void MCP::writeRaw(uint8_t side, uint8_t memory){
-    std::cout<<"write:";
-    print(readRaw(side));
-    mcp_i2c.writeByte(side, memory);   
+void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
+    // std::cout<<"write:";
+    uint8_t value = ~readRaw(side);
+    uint8_t mask = (1 << io_number);
+
+    if (state && (value & mask) == 0){
+            value |= mask;
+    }
+    else if ((value & mask) > 0){
+        value &= ~mask;
+
+    }
+    mcp_i2c.writeByte(side, value);   
 }
 
 bool MCP::read_io(uint8_t io_number){
@@ -56,16 +65,8 @@ void MCP::write_io(uint8_t io_number, bool state){
         side = GPIOA;
         io_number = io_number - 8;
     }
-    uint8_t mask = (1 << io_number);
-    uint8_t value = readRaw(side);
-    if (state && (value & mask) == 0){
-            value |= mask;
-    }
-    else if ((value & mask) > 0){
-        value &= ~mask;
 
-    }
-    writeRaw(side, value); 
+    writeRaw(side, io_number,  state); 
 }
 
 uint8_t MCP::convert_bits(uint8_t bits){

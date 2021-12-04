@@ -49,7 +49,7 @@ class MCP {
         
         
         uint8_t readRaw(uint8_t side);
-        void writeRaw(uint8_t side, uint8_t memory);
+        void writeRaw(uint8_t side, uint8_t pin, bool stat);
         bool read_io(uint8_t io_number);
         void write_io(uint8_t io_number, bool state);
         uint8_t convert_bits(uint8_t bits);
