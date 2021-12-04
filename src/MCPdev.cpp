@@ -45,7 +45,7 @@ void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
     }
     std::cout<<"\nWrite to out:";
     print(value);
-    mcp_i2c.writeByte(side, value);   
+    mcp_i2c.writeByte(side, ~value);   
 }
 
 bool MCP::read_io(uint8_t io_number){
@@ -61,10 +61,10 @@ bool MCP::read_io(uint8_t io_number){
 void MCP::write_io(uint8_t io_number, bool state){
     uint8_t side;
     if(io_number < 8){
-        side = GPIOB;
+        side = GPIOA;
     }
     else{
-        side = GPIOA;
+        side = GPIOB;
         io_number = io_number - 8;
     }
 
