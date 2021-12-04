@@ -12,6 +12,8 @@
 #include <cstring>
 #include <array>
 
+using Buffer = std::array<char, 500>;
+
 class SocketServer{
     public:
 
@@ -28,8 +30,8 @@ class SocketServer{
         void register_settingsserver(SettingsServer *settingsserver_);
         void open_socket(int port_);
         void receive_packets();
-        void send_packets(char* buffer[500], sockaddr_in address);
-        void analyze_packet(std::array<char, 500> buffer);
+        void send_packets(Buffer buffer, sockaddr_in address);
+        void analyze_packet(Buffer buffer);
 };
 
 #endif //SSERVER_H

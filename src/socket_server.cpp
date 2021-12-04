@@ -1,6 +1,7 @@
 #include "socket_server.h"
 #include <array>
 
+
 void SocketServer::open_socket(int port_){
     server_fd = socket(AF_INET, SOCK_STREAM, 0) ;
     setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
@@ -15,7 +16,7 @@ void SocketServer::open_socket(int port_){
 void SocketServer::receive_packets(){
     std::cout<<"Packets Listener Start"<<std::endl;
     int server_address_len = sizeof(server_address);
-    std::array<char, 500> buffer;
+    Buffer buffer;
     while(true){
         buffer.fill(0);
         new_socket = accept(server_fd, (struct sockaddr *)&server_address, (socklen_t*)&server_address_len);
@@ -27,17 +28,17 @@ void SocketServer::receive_packets(){
     }
 }
 
-void SocketServer::send_packets(char* buffer[500], sockaddr_in address){
+void SocketServer::send_packets(Buffer buffer, sockaddr_in address){
     cliend_fd = socket(AF_INET, SOCK_STREAM, 0) ;
     setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
 
     bind(server_fd, (struct sockaddr *)&address, sizeof(address));
 
-    send(new_socket , buffer , sizeof(buffer) , 0 );
+    send(new_socket , buffer.data() , buffer.size() , 0 );
 }
 
 
-void SocketServer::analyze_packet(std::array<char, 500> buffer){
+void SocketServer::analyze_packet(Buffer buffer){
         SERIALMCPFRAME frame;
         frame.INSTRUCTIONS = buffer.at(0);
         frame.CONFIG = buffer.at(1);
