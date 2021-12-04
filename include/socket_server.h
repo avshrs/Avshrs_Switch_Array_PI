@@ -16,14 +16,12 @@ using Buffer = std::array<char, 500>;
 
 class SocketServer{
     public:
-
         int server_fd;
         int cliend_fd;
         int new_socket;
         int valread;
         SettingsServer *settingsserver;
         struct sockaddr_in server_address;
-        int opt = 1;
         int addrlen = sizeof(server_address);
 
     public:
@@ -32,6 +30,9 @@ class SocketServer{
         void receive_packets();
         void send_packets(Buffer buffer, sockaddr_in address);
         void analyze_packet(Buffer buffer);
+
+    private:
+        void set_socket_options(int socket) const;
 };
 
 #endif //SSERVER_H

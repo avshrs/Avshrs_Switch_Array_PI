@@ -4,7 +4,8 @@
 
 void SocketServer::open_socket(int port_){
     server_fd = socket(AF_INET, SOCK_STREAM, 0) ;
-    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+    set_socket_options(server_fd);
+
     server_address.sin_family = AF_INET;
     server_address.sin_addr.s_addr = INADDR_ANY;
     server_address.sin_port = htons( port_ );
@@ -30,7 +31,8 @@ void SocketServer::receive_packets(){
 
 void SocketServer::send_packets(Buffer buffer, sockaddr_in address){
     cliend_fd = socket(AF_INET, SOCK_STREAM, 0) ;
-    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+
+    set_socket_options(server_fd);
 
     bind(server_fd, (struct sockaddr *)&address, sizeof(address));
 
@@ -54,4 +56,10 @@ void SocketServer::analyze_packet(Buffer buffer){
 void SocketServer::register_settingsserver(SettingsServer *settingsserver_){
     settingsserver = settingsserver_;
 
+}
+
+void SocketServer::set_socket_options(int socket) const
+{
+    int opt = 1;
+    setsockopt(socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
 }
