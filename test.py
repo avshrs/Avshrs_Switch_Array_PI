@@ -37,21 +37,24 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1, NAME="none"):
     
 
 # send_message(3, 1, 7, 1)  
-send_message(0, 1, 2, 0)
-send_message(0, 1, 0, 2)
-send_message(0, 1, 1, 1)
+send_message(0, 1, 2, 1)
+send_message(0, 1, 1, 2)
+send_message(0, 1, 0, 0)
+
 send_message(1, 1, 0, 1)
 send_message(1, 1, 2, 1)
 send_message(1, 1, 1, 1)
+
 send_message(2, 1, 0, 1)
 send_message(2, 1, 1, 1)
 send_message(2, 1, 2, 1)
-send_message(4, 1, 2, 0,"Switch_Dzienny")  
-send_message(4, 1, 1, 0,"Switch_Dzieciakow")  
-send_message(4, 1, 0, 0,"Switch_Goscinny")  
+
+send_message(4, 1, 2, 0,"Switch_Dzieciakow")  
+send_message(4, 1, 1, 0,"Switch_Goscinny")  
+send_message(4, 1, 0, 0,"Switch_Dzienny")  
 send_message(5, 1, 0, 0,"Light_Dzienny")  
-send_message(5, 1, 1, 0,"Light_Dzieciakow")  
-send_message(5, 1, 2, 0,"Light_Goscinny")  
+send_message(5, 1, 1, 0,"Light_Goscinny")  
+send_message(5, 1, 2, 0,"Light_Dzieciakow")  
 send_message(255, 1, 2, 1)
 # send_message(4, 0, 7, 1)  
         

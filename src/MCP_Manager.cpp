@@ -65,7 +65,7 @@ void MCP_Manager::write_output(uint8_t out, bool state)
 void MCP_Manager::scan_all_io(){
     for(int i = 0; i < IN_RANGE ; i++){
         scan_in_and_set_out(i);
-        usleep(1000);
+        usleep(100);
     }
 }
 
