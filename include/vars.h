@@ -1,5 +1,4 @@
-#ifndef VARS_h
-#define VARS_h
+#pragma once
 #include <cstdint>
 
 #define    IN_RANGE     (64) 
@@ -93,5 +92,3 @@ struct MCP_values
 }; 
 
 
-
-#endif //VARS_h

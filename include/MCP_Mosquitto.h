@@ -1,5 +1,4 @@
-#ifndef MCP_MOSQUITTO_H
-#define MCP_MOSQUITTO_H
+#pragma once
 
 #include <stdio.h>
 #include "mqtt.h"
@@ -19,7 +18,4 @@ class MCP_Mosquitto{
 
 
 };
-
-#endif // MCP_SETTINGS_H
-
 

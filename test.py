@@ -4,9 +4,6 @@ import serial
 from ctypes import *
 import struct
 
-
-
-
 def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1, NAME="none"):
     TCP_IP = "192.168.1.169"
     TCP_PORT = 5656

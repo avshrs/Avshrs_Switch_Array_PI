@@ -1,5 +1,4 @@
-#ifndef SETTINGSSERVER_H
-#define SETTINGSSERVER_H
+#pragma once
 #include "vars.h"
 #include <iostream>
 #include "MCP_Settings.h"
@@ -11,5 +10,3 @@ class SettingsServer{
         void analyze_packet(SERIALMCPFRAME frame);
 
 };
-
-#endif //SETTINGSSERVER_H

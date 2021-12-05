@@ -1,27 +1,23 @@
-#ifndef MCPi2c_H
-#define MCPi2c_H
+#pragma once
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <string>
 
+
 class MCP_i2c{
-    public:
+    private:
         int file_i2c;
-        unsigned char buffer[60];
         int length=2;
-        uint8_t address;
-        char *filename;
-
-        void writeByte(uint8_t side, uint8_t buffer_);
+    
+    private:
         void print(uint8_t v);
+    
+    public:
+        void i2c_init(std::string filename, uint8_t address_);
         uint8_t readByte(uint8_t reg);
-        void i2c_init(char * i2c_file, uint8_t address_);
+        void writeByte(uint8_t side, uint8_t buffer_);
+        
 };
-
-
-
-#endif //MCPi2c_H
-
-
 

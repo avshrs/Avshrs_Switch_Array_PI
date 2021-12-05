@@ -1,5 +1,4 @@
-#ifndef MCP_SETTINGS_H
-#define MCP_SETTINGS_H
+#pragma once
 
 #include "vars.h"
 #include <iostream>
@@ -57,5 +56,3 @@ class MCP_Settings {
         void save_out_settings();
         void read_out_settings();
 };
-
-#endif // MCP_SETTINGS_H

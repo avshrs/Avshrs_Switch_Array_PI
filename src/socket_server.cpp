@@ -15,7 +15,7 @@ void SocketServer::open_socket(int port_){
 void SocketServer::receive_packets(){
     std::cout<<"Packets Listener Start"<<std::endl;
     int server_address_len = sizeof(server_address);
-    std::array<char, 500> buffer;
+    std::array<char, 500> buffer; // max 1200 
     while(true){
         buffer.fill(0);
         new_socket = accept(server_fd, (struct sockaddr *)&server_address, (socklen_t*)&server_address_len);
@@ -29,7 +29,7 @@ void SocketServer::receive_packets(){
 
 void SocketServer::send_packets(char* buffer[500], sockaddr_in address){
     cliend_fd = socket(AF_INET, SOCK_STREAM, 0) ;
-    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+    setsockopt(cliend_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
 
     bind(server_fd, (struct sockaddr *)&address, sizeof(address));
 
@@ -46,8 +46,6 @@ void SocketServer::analyze_packet(std::array<char, 500> buffer){
         for( int i =4 ; i < 34; i++)
             frame.NAME[i-4] = buffer.at(i);
         settingsserver->analyze_packet(frame);    
-    
-
 }
 
 void SocketServer::register_settingsserver(SettingsServer *settingsserver_){

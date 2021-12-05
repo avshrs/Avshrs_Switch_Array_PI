@@ -1,5 +1,4 @@
-#ifndef MCPDEV_H
-#define MCPDEV_H
+#pragma once
 
 #include "vars.h"
 #include <stdio.h>
@@ -44,10 +43,8 @@ class MCP {
     public:
         uint8_t mcpAddress;
         MCP_i2c mcp_i2c;
-        void MCP_Init(uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL);
-        int nr=0;
-        
-        
+        void MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL);
+
         uint8_t readRaw(uint8_t side);
         void writeRaw(uint8_t side, uint8_t pin, bool stat);
         bool read_io(uint8_t io_number);
@@ -55,4 +52,3 @@ class MCP {
         uint8_t convert_bits(uint8_t bits);
         void print(uint8_t v);
 };
-#endif //MCPDEV_H
