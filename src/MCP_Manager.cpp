@@ -3,7 +3,7 @@
 
 void MCP_Manager::MCP_Init(){
     std::string i2c_path = "/dev/i2c-1";
-    std::string i2c_path2 = "/dev/i2c-4";
+    // std::string i2c_path2 = "/dev/i2c-4";
     mcpc_in_0.MCP_Init(i2c_path, MCP5_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in_1.MCP_Init(i2c_path, MCP6_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in_2.MCP_Init(i2c_path, MCP7_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
@@ -14,10 +14,10 @@ void MCP_Manager::MCP_Init(){
     mcpc_in[2]= &mcpc_in_2;
     mcpc_in[3]= &mcpc_in_3;
     
-    mcpc_out_0.MCP_Init(i2c_path2, MCP1_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
-    mcpc_out_1.MCP_Init(i2c_path2, MCP2_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
-    mcpc_out_2.MCP_Init(i2c_path2, MCP3_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);    
-    mcpc_out_3.MCP_Init(i2c_path2, MCP4_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP); 
+    mcpc_out_0.MCP_Init(i2c_path, MCP1_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
+    mcpc_out_1.MCP_Init(i2c_path, MCP2_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
+    mcpc_out_2.MCP_Init(i2c_path, MCP3_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);    
+    mcpc_out_3.MCP_Init(i2c_path, MCP4_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP); 
     
     mcpc_out[0] = &mcpc_out_0;
     mcpc_out[1] = &mcpc_out_1;
