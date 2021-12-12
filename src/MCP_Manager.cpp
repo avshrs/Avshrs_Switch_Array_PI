@@ -70,14 +70,13 @@ void MCP_Manager::scan_all_io(){
 }
 
 void MCP_Manager::scan_in_and_set_out(int in){
-    bool value = false; 
-    uint8_t output = 255;
-
     if (mcp_settings->get_in_status(in)){
-        value = read_input(in);
+        bool value = read_input(in);
+
         if (in_states[in] != value){
             in_states[in] = value;
-            output = mcp_settings->get_io_relation(in);
+            
+            uint8_t output = mcp_settings->get_io_relation(in);
 
             if (mcp_settings->get_out_status(output)){
                 if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
