@@ -34,8 +34,8 @@ uint8_t MCP::readRaw(uint8_t side){
 void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
     uint8_t value = ~(readRaw(side));
     uint8_t mask = (1 << io_number);
-    // std::cout<<"\nread from out:";
-    // print(value);
+    std::cout<<"\nRead from out:";
+    print(value);
     if (state && (value & mask) == 0){
             value |= mask;
     }
@@ -43,8 +43,8 @@ void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
         value &= ~mask;
 
     }
-    // std::cout<<"\nWrite to out:";
-    // print(value);
+    std::cout<<"\nWrite to out:";
+    print(value);
     mcp_i2c.writeByte(side, value);   
 }
 
