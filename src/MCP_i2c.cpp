@@ -11,10 +11,9 @@ extern "C" {
 #include "MCP_i2c.h"
 #include <stdlib.h>
 
-void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
-    address = address_;
-    filename = i2c_file;
-    file_i2c = open(filename, O_RDWR);
+
+void MCP_i2c::i2c_init(std::string filename, uint8_t address){
+    file_i2c = open(filename.c_str(), O_RDWR);
     if (file_i2c < 0 ) {
             printf("Failed to open the i2c bus");
     }
@@ -23,24 +22,20 @@ void MCP_i2c::i2c_init(char * i2c_file, uint8_t address_){//"/dev/i2c-1"
     }
 }
 
-uint8_t MCP_i2c::readByte(uint8_t reg_){
-    __s32 res;
-    unsigned char reg = static_cast<uint8_t>(reg_);
-    res = i2c_smbus_read_word_data(file_i2c, reg);
+uint8_t MCP_i2c::readByte(uint8_t reg){
+    auto res = i2c_smbus_read_word_data(file_i2c, reg);
     if (res<0){
         printf("Failed to read from the i2c bus.\n");
         return 0;
     }
     else {
-        uint8_t d = static_cast<int>(abs(res));
+        uint8_t d = static_cast<uint8_t>(res);
         return d;
     }
- 
 }
 
 
 void MCP_i2c::writeByte(uint8_t side, uint8_t buffer_){
     unsigned short buffer = static_cast<uint8_t>(buffer_);
     i2c_smbus_write_word_data(file_i2c, side, buffer_);
-    
 }

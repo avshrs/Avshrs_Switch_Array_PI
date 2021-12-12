@@ -1,5 +1,4 @@
-#ifndef SSERVER_H
-#define SSERVER_H
+#pragma once
 #include <vars.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -30,4 +29,3 @@ class SocketServer{
         void analyze_packet(std::array<char, 500> buffer);
 };
 
-#endif //SSERVER_H

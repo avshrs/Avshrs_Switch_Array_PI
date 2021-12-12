@@ -1,5 +1,4 @@
-#ifndef MCP_MANAGER_h
-#define MCP_MANAGER_h
+#pragma once
 
 #include "MCPdev.h"
 #include "vars.h"
@@ -36,4 +35,3 @@ class MCP_Manager
         void scan_in_and_set_out(int in);
 };
 
-#endif // MCP_MANAGER_h

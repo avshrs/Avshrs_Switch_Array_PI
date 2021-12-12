@@ -1,5 +1,4 @@
-#ifndef SIMPLECLIENT_MQTT_H
-#define SIMPLECLIENT_MQTT_H
+#pragma once
 
 #include <mosquittopp.h>
 #include <cstring>
@@ -24,5 +23,3 @@ public:
     void on_message(const struct mosquitto_message *message);
     void on_subscribe(int mid, int qos_count, const int *granted_qos);
 };
-
-#endif //SIMPLECLIENT_MQTT_H
