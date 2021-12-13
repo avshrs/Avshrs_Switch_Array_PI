@@ -36,13 +36,9 @@ void MCP_Manager::register_mcp_settings(MCP_Settings *mcp_settings_){
 }
 
 
-bool MCP_Manager::read_input(uint8_t in)
-{
-    uint8_t mcp_module = (in-(in%16))/16 ;
-    uint8_t mcp_gpio = in - (mcp_module*16);
-    mcp_gpio =  std::abs(mcp_gpio - 15);
-
-    return mcpc_in[mcp_module]->read_io(mcp_gpio);
+bool MCP_Manager::read_input(uint8_t in){
+    MCP_Data mcp_data = get_address(in);
+    return mcpc_in[mcp_data.chipset]->readRaw(mcp_data.side, mcp_data.io);
 }
 
 
@@ -52,14 +48,10 @@ bool MCP_Manager::read_output(uint8_t out)
 }   
 
 
-void MCP_Manager::write_output(uint8_t out, bool state)
-{
-    uint8_t mcp_module = (out-(out%16))/16 ;
-    uint8_t mcp_gpio = out - (mcp_module*16);
-    mcp_gpio =  std::abs(mcp_gpio - 15);
+void MCP_Manager::write_output(uint8_t out, bool state){
+    MCP_Data mcp_data = get_address(out);
     out_states_real[out] = state;
-    
-    mcpc_out[mcp_module]->write_io(mcp_gpio, state);
+    mcpc_out[mcp_data.chipset]->writeRaw(mcp_data.side, mcp_data.io, state);
 }
 
 void MCP_Manager::scan_all_io(){
@@ -67,6 +59,16 @@ void MCP_Manager::scan_all_io(){
         scan_in_and_set_out(i);
         usleep(100);
     }
+}
+
+MCP_Data MCP_Manager::get_address(uint8_t io){
+    mcp_data.chipset = (io-(io%16))/16;
+    if(io-(mcp_data.chipset*16)>7)
+        mcp_data.side = 0x13;
+    else
+        mcp_data.side = 0x12;
+    mcp_data.io = (io - (mcp_data.chipset * 16)) % 8;
+    return mcp_data;
 }
 
 void MCP_Manager::scan_in_and_set_out(int in){

@@ -5,7 +5,7 @@ from ctypes import *
 import struct
 
 def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1, NAME="none"):
-    TCP_IP = "192.168.1.169"
+    TCP_IP = "192.168.1.168"
     TCP_PORT = 5656
     INSTRUCTIONS_= '{:08b}'.format(INSTRUCTIONS)
     CONFIG_ = '{:08b}'.format(CONFIG)
@@ -27,36 +27,40 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1, NAME="none"):
         s.send(my_bytes)
 
 
-# for i in range(65):
-#     time.sleep(0.1)
-#     send_message(0, 1, i, i)
+for i in range(32):
+    time.sleep(0.1)
+    send_message(1, 1, i, 255)
     
-# for i in range(65):
-#     time.sleep(0.1)
-#     send_message(2, 1, i, 1)
+for i in range(32):
+    time.sleep(0.1)
+    send_message(2, 1, i, 255)
     
 
-# send_message(3, 1, 7, 1)  
-send_message(0, 1, 2, 1)
-send_message(0, 1, 1, 2)
-send_message(0, 1, 0, 0)
+#send_message(0, 1, 10, 9)  
+#send_message(3, 1, 9, 255)
 
-send_message(1, 1, 0, 1)
-send_message(1, 1, 2, 1)
-send_message(1, 1, 1, 1)
+# send_message(4, 1, 0, 0,"Switch_Dzienny")  
+# send_message(5, 1, 0, 0,"Light_Dzienny")  
 
-send_message(2, 1, 0, 1)
-send_message(2, 1, 1, 1)
-send_message(2, 1, 2, 1)
 
-send_message(4, 1, 2, 0,"Switch_Dzieciakow")  
-send_message(4, 1, 1, 0,"Switch_Goscinny")  
-send_message(4, 1, 0, 0,"Switch_Dzienny")  
-send_message(5, 1, 0, 0,"Light_Dzienny")  
-send_message(5, 1, 1, 0,"Light_Goscinny")  
-send_message(5, 1, 2, 0,"Light_Dzieciakow")  
-send_message(255, 1, 2, 1)
-# send_message(4, 0, 7, 1)  
+# send_message(0, 1, 1, 0)
+# send_message(4, 1, 1, 0,"Switch_Dzieciakow")
+# send_message(5, 1, 1, 0,"Light_Dzieciakow")  
+
+# send_message(0, 1, 2, 1)
+# send_message(4, 1, 1, 0,"Switch_Goscinny")  
+# send_message(5, 1, 1, 0,"Light_Goscinny")  
+
+# send_message(1, 1, 0, 1)
+# send_message(1, 1, 2, 1)
+# send_message(1, 1, 1, 1)
+
+# send_message(2, 1, 0, 1)
+# send_message(2, 1, 1, 1)
+# send_message(2, 1, 2, 1)
+
+# send_message(255, 1, 2, 1)
+# # send_message(4, 0, 7, 1)  
         
 # # for i in range(64):
 # #     send_message(1, 0, 0, i)

@@ -20,6 +20,7 @@ class MCP_Manager
         MCP mcpc_out_3;
 
         MCP_Settings *mcp_settings;
+        MCP_Data mcp_data;
 
         bool in_states[IN_RANGE] = {true};
         bool out_states_real[OUT_RANGE] = {false};
@@ -33,5 +34,7 @@ class MCP_Manager
         bool read_output(uint8_t out);
         void scan_all_io();
         void scan_in_and_set_out(int in);
+        MCP_Data get_address(uint8_t io);
+
 };
 

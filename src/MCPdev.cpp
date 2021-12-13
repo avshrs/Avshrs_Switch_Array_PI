@@ -20,23 +20,19 @@ void MCP::MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, 
     }
 }
 
-uint8_t MCP::readRaw(uint8_t side){
-    uint8_t v = mcp_i2c.readByte(side);
-    std::cout<<"address:";
-    print(mcpAddress);
-    std::cout<<" side:";
-    print(side);
-    std::cout<<" read:";
-    print(~v);
-    std::cout<<std::endl;
-    return ~v;
+bool MCP::readRaw(uint8_t side, uint8_t io_number){
+    uint8_t mask = (1 << io_number);
+    uint8_t v = ~mcp_i2c.readByte(side);
+    if ((v & mask) == 0)
+        return false;
+    else
+        return true;
 }
 
 void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
-    uint8_t value = ~(readRaw(side));
+    uint8_t value = ~mcp_i2c.readByte(side);
     uint8_t mask = (1 << io_number);
-    // std::cout<<"\nRead from out:";
-    // print(value);
+
     if (state && (value & mask) == 0){
             value |= mask;
     }
@@ -44,33 +40,10 @@ void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
         value &= ~mask;
 
     }
-    // std::cout<<"\nWrite to out:";
-    // print(value);
     mcp_i2c.writeByte(side, value);   
 }
 
-bool MCP::read_io(uint8_t io_number){
-    uint16_t value =  uint16_t(readRaw(GPIOB)) << 8 | uint16_t(readRaw(GPIOB));
-    uint16_t mask = 1 << io_number;
-    if((value & mask) > 0)
-        return true;
-    else        
-        return false;
-}
 
-
-void MCP::write_io(uint8_t io_number, bool state){
-    uint8_t side;
-    if(io_number < 8){
-        side = GPIOA;
-    }
-    else{
-        side = GPIOB;
-        io_number = io_number - 8;
-    }
-
-    writeRaw(side, io_number,  state); 
-}
 
 uint8_t MCP::convert_bits(uint8_t bits){
     uint8_t tmp = bits;

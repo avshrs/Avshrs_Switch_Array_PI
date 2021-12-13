@@ -43,12 +43,13 @@ class MCP {
     public:
         uint8_t mcpAddress;
         MCP_i2c mcp_i2c;
+
+        MCP_Data mcp_data;
         void MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL);
 
-        uint8_t readRaw(uint8_t side);
+        bool readRaw(uint8_t side, uint8_t io_number);
         void writeRaw(uint8_t side, uint8_t pin, bool stat);
-        bool read_io(uint8_t io_number);
-        void write_io(uint8_t io_number, bool state);
+        MCP_Data get_address(uint8_t io);
         uint8_t convert_bits(uint8_t bits);
         void print(uint8_t v);
 };

@@ -75,7 +75,7 @@ struct MCP_Data
 {
     uint8_t chipset;
     uint8_t side;
-    uint8_t output;
+    uint8_t io;
 }; 
 
 
