@@ -29,9 +29,6 @@ void MCP_Manager::MCP_Init(){
         write_output(i, false);
     }
     
-    for(int i=0; i<IN_RANGE;i++){
-        scan_in_and_set_out(i);
-    }
 }   
 
 void MCP_Manager::register_mcp_settings(MCP_Settings *mcp_settings_){
