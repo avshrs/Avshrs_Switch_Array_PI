@@ -22,7 +22,7 @@ void MCP::MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, 
 
 bool MCP::readRaw(uint8_t side, uint8_t io_number){
     uint8_t mask = (1 << io_number);
-    uint8_t v = ~(mcp_i2c.readByte(side));
+    uint8_t v = ~(convert_bits(mcp_i2c.readByte(side)));
     if ((v & mask) > 0)
         return true;
     else
@@ -39,7 +39,7 @@ void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
         output[side] &= ~mask;
 
     }
-    mcp_i2c.writeByte(side, output[side]);   
+    mcp_i2c.writeByte(side, convert_bits(output[side]));   
 }
 
 
