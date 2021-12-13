@@ -97,7 +97,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 mcp_manager->write_output(nr, true);
                 #ifdef DEBUG
-                    std::cout << "Request to turn on." << std::endl;
+                    std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
 
@@ -116,7 +116,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 mcp_manager->write_output(nr, false);
                 #ifdef DEBUG
-                    std::cout << "Request to turn off." << std:: endl;
+                    std::cout << "Request to turn off output nr:" << nr<<std::endl;
                 #endif
             }
         }
