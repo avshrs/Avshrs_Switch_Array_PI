@@ -43,7 +43,7 @@ class MCP {
     public:
         uint8_t mcpAddress;
         MCP_i2c mcp_i2c;
-
+        uint8_t output[32] = {0x00};
         MCP_Data mcp_data;
         void MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL);
 
