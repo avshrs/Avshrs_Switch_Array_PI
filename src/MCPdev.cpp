@@ -22,7 +22,11 @@ void MCP::MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, 
 
 uint8_t MCP::readRaw(uint8_t side){
     uint8_t v = mcp_i2c.readByte(side);
-    std::cout<<"read:";
+    std::cout<<"address:";
+    print(mcpAddress);
+    std::cout<<" side:";
+    print(side);
+    std::cout<<" read:";
     print(~v);
     std::cout<<std::endl;
     return ~v;
@@ -88,5 +92,5 @@ void MCP::print(uint8_t v){
             std::cout<<("0");
             
     }
-    std::cout<<std::endl;
+    // std::cout<<std::endl;
 }
