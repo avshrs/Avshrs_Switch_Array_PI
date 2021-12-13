@@ -64,9 +64,9 @@ void MCP_Manager::scan_all_io(){
 MCP_Data MCP_Manager::get_address(uint8_t io){
     mcp_data.chipset = (io-(io%16))/16;
     if(io-(mcp_data.chipset*16)>7)
-        mcp_data.side = 0x12;
-    else
         mcp_data.side = 0x13;
+    else
+        mcp_data.side = 0x12;
     mcp_data.io = (io - (mcp_data.chipset * 16)) % 8;
     return mcp_data;
 }
