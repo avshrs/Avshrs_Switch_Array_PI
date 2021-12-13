@@ -27,17 +27,17 @@ def send_message(INSTRUCTIONS, CONFIG, VALUE, VALUE1, NAME="none"):
         s.send(my_bytes)
 
 
-for i in range(32):
-    time.sleep(0.1)
-    send_message(1, 1, i, 255)
+# for i in range(32):
+#     time.sleep(0.1)
+#     send_message(1, 1, i, 255)
     
-for i in range(32):
-    time.sleep(0.1)
-    send_message(2, 1, i, 255)
+# for i in range(32):
+#     time.sleep(0.1)
+#     send_message(2, 1, i, 255)
     
 
-#send_message(0, 1, 10, 9)  
-#send_message(3, 1, 9, 255)
+send_message(0, 1, 10, 9)  
+send_message(3, 1, 9, 255)
 
 # send_message(4, 1, 0, 0,"Switch_Dzienny")  
 # send_message(5, 1, 0, 0,"Light_Dzienny")  
@@ -59,7 +59,7 @@ for i in range(32):
 # send_message(2, 1, 1, 1)
 # send_message(2, 1, 2, 1)
 
-# send_message(255, 1, 2, 1)
+send_message(255, 1, 2, 1)
 # # send_message(4, 0, 7, 1)  
         
 # # for i in range(64):

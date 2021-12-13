@@ -41,9 +41,9 @@ void MCP::writeRaw(uint8_t side, uint8_t io_number, bool state){
     }
     std::cout<< "side: ";
     print(side);
-    std::cout<< "value n: ";
+    std::cout<< " value n: ";
     print(output[side]);
-    std::cout<< "value i: ";
+    std::cout<< " value i: ";
     print(convert_bits(output[side]));
     std::cout<<std::endl;
     mcp_i2c.writeByte(side, convert_bits(output[side]));   
