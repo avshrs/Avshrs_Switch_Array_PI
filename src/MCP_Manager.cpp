@@ -1,5 +1,8 @@
 #include "MCP_Manager.h"
 #include <string>
+#include <iostream>
+#include <iomanip>
+#include <ctime>
 
 void MCP_Manager::MCP_Init(){
     std::string i2c_path = "/dev/i2c-1";
@@ -55,17 +58,26 @@ void MCP_Manager::scan_in_and_set_out(int in){
                 if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
                     out_states[output] = value;
                     write_output(output, value);
+                    auto t = std::time(nullptr);
+                    auto tm = *std::localtime(&t);
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
                     std::cout<<"MO -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
                 }
                 else {
                     if (out_states[output] > 0 && value > 0){
                         out_states[output] = false;
                         write_output(output, false);
+                        auto t = std::time(nullptr);
+                        auto tm = *std::localtime(&t);
+                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
                         std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
                     }
                     else if (value > 0){
                         out_states[output] = true;
                         write_output(output, true);
+                        auto t = std::time(nullptr);
+                        auto tm = *std::localtime(&t);
+                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
                         std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
                     }
                 }
