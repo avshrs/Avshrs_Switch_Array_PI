@@ -10,14 +10,24 @@ extern "C" {
 #include <fcntl.h>
 #include "MCP_i2c.h"
 #include <stdlib.h>
+#include <iostream>
+
+#include <iomanip>
+#include <ctime>
 
 
 void MCP_i2c::i2c_init(std::string filename, uint8_t address){
     file_i2c = open(filename.c_str(), O_RDWR);
     if (file_i2c < 0 ) {
-            printf("Failed to open the i2c bus");
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+            printf("Failed to open the i2c bus \n");
     }
     if (ioctl(file_i2c, I2C_SLAVE, address) < 0) {
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
             printf("Failed to acquire bus access and/or talk to slave.\n");
     }
 }
@@ -25,6 +35,9 @@ void MCP_i2c::i2c_init(std::string filename, uint8_t address){
 uint8_t MCP_i2c::readByte(uint8_t reg){
     auto res = i2c_smbus_read_byte_data(file_i2c, reg);
     if (res<0){
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
         printf("Failed to read from the i2c bus.\n");
         return 0;
     }
