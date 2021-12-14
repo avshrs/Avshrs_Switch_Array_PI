@@ -29,7 +29,7 @@ void MCP_Manager::MCP_Init(){
     
     
     for(int i=0; i<IN_RANGE;i++){
-        write_output(i, false);
+        write_output_direct(i, false);
     }
     
 }   
@@ -53,7 +53,7 @@ void MCP_Manager::scan_all_inputs(){
 }
 
 
-void MCP_Manager::write_output(int output, bool value, int in=999){
+void MCP_Manager::write_output(int output, bool value, int in = 999){
     if (mcp_settings->get_out_status(output)){
         if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
             out_states[output] = value;
