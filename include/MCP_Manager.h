@@ -33,7 +33,7 @@ class MCP_Manager
         void write_output_direct(uint8_t out, bool state);
         bool read_output_buffer(uint8_t out);
         void scan_all_inputs();
-        void write_output(int output, bool value, int in=999);
+        void write_output(int output, bool value, int in);
         MCP_Data get_address(uint8_t io);
 
 };
