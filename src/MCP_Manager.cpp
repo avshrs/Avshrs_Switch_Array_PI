@@ -60,7 +60,7 @@ void MCP_Manager::scan_in_and_set_out(int in){
                     write_output(output, value);
                     auto t = std::time(nullptr);
                     auto tm = *std::localtime(&t);
-                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                     std::cout<<"MO -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
                 }
                 else {
@@ -69,7 +69,7 @@ void MCP_Manager::scan_in_and_set_out(int in){
                         write_output(output, false);
                         auto t = std::time(nullptr);
                         auto tm = *std::localtime(&t);
-                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                         std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
                     }
                     else if (value > 0){
@@ -77,7 +77,7 @@ void MCP_Manager::scan_in_and_set_out(int in){
                         write_output(output, true);
                         auto t = std::time(nullptr);
                         auto tm = *std::localtime(&t);
-                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                         std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
                     }
                 }

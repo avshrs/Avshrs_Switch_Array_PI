@@ -21,13 +21,13 @@ void MCP_i2c::i2c_init(std::string filename, uint8_t address){
     if (file_i2c < 0 ) {
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
-            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
             printf("Failed to open the i2c bus \n");
     }
     if (ioctl(file_i2c, I2C_SLAVE, address) < 0) {
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
-            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
             printf("Failed to acquire bus access and/or talk to slave.\n");
     }
 }
@@ -37,7 +37,7 @@ uint8_t MCP_i2c::readByte(uint8_t reg){
     if (res<0){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
-        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         printf("Failed to read from the i2c bus.\n");
         return 0;
     }
