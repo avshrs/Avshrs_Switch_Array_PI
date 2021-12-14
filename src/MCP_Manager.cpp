@@ -38,65 +38,65 @@ void MCP_Manager::register_mcp_settings(MCP_Settings *mcp_settings_){
     mcp_settings = mcp_settings_; 
 }
 
-void MCP_Manager::scan_all_io(){
-    for(int i = 0; i < IN_RANGE ; i++){
-        scan_in_and_set_out(i);
+void MCP_Manager::scan_all_inputs(){
+    for(int in = 0; in < IN_RANGE ; in++){
+        if (mcp_settings->get_in_status(in)){
+            bool value = read_input_direct(in);
+            if (in_states[in] != value){
+                in_states[in] = value;
+                uint8_t output = mcp_settings->get_io_relation(in);
+                write_output(output, value, in);
+            }
+        }
         usleep(100);
     }
 }
 
-void MCP_Manager::scan_in_and_set_out(int in){
-    if (mcp_settings->get_in_status(in)){
-        bool value = read_input(in);
 
-        if (in_states[in] != value){
-            in_states[in] = value;
-            
-            uint8_t output = mcp_settings->get_io_relation(in);
-
-            if (mcp_settings->get_out_status(output)){
-                if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
-                    out_states[output] = value;
-                    write_output(output, value);
-                    auto t = std::time(nullptr);
-                    auto tm = *std::localtime(&t);
-                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                    std::cout<<"MO -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
-                }
-                else {
-                    if (out_states[output] > 0 && value > 0){
-                        out_states[output] = false;
-                        write_output(output, false);
-                        auto t = std::time(nullptr);
-                        auto tm = *std::localtime(&t);
-                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                        std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
-                    }
-                    else if (value > 0){
-                        out_states[output] = true;
-                        write_output(output, true);
-                        auto t = std::time(nullptr);
-                        auto tm = *std::localtime(&t);
-                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                        std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
-                    }
-                }
+void MCP_Manager::write_output(int output, bool value, int in=999){
+    if (mcp_settings->get_out_status(output)){
+        if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
+            out_states[output] = value;
+            write_output_direct(output, value);
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+            std::cout<<"MO -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
+        }
+        else {
+            if (out_states[output] > 0 && value > 0){
+                out_states[output] = false;
+                write_output_direct(output, false);
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
+            }
+            else if (value > 0){
+                out_states[output] = true;
+                write_output_direct(output, true);
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout<<"BI -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
             }
         }
     }
 }
 
-bool MCP_Manager::read_input(uint8_t in){
+
+
+bool MCP_Manager::read_input_direct(uint8_t in){
     MCP_Data mcp_data = get_address(in);
     return mcpc_in[mcp_data.chipset]->readRaw(mcp_data.side, mcp_data.io);
 }
 
-bool MCP_Manager::read_output(uint8_t out)
+bool MCP_Manager::read_output_buffer(uint8_t out)
 {
     return out_states_real[out];
 }   
 
-void MCP_Manager::write_output(uint8_t out, bool state){
+void MCP_Manager::write_output_direct(uint8_t out, bool state){
     MCP_Data mcp_data = get_address(out);
     out_states_real[out] = state;
     mcpc_out[mcp_data.chipset]->writeRaw(mcp_data.side, mcp_data.io, state);

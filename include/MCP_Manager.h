@@ -29,11 +29,11 @@ class MCP_Manager
 
         void MCP_Init();
         void register_mcp_settings(MCP_Settings *mcp_settings_);
-        bool read_input(uint8_t in);
-        void write_output(uint8_t out, bool state);
-        bool read_output(uint8_t out);
-        void scan_all_io();
-        void scan_in_and_set_out(int in);
+        bool read_input_direct(uint8_t in);
+        void write_output_direct(uint8_t out, bool state);
+        bool read_output_buffer(uint8_t out);
+        void scan_all_inputs();
+        void write_output(int output, bool value, int in=999);
         MCP_Data get_address(uint8_t io);
 
 };

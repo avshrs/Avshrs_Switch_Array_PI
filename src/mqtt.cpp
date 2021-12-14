@@ -72,7 +72,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::string msg;
                 pub += nr_str;
 
-                if (mcp_manager->read_output(nr))
+                if (mcp_manager->read_output_buffer(nr))
                     msg = "ON";
                 else
                     msg = "OFF";

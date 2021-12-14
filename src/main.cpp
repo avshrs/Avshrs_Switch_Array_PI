@@ -30,7 +30,7 @@ int main(void){
     mcp.MCP_Init();
     
     while(true){
-        mcp.scan_all_io();
+        mcp.scan_all_inputs();
     }
             
 } 
