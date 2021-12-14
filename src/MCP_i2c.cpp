@@ -37,7 +37,7 @@ uint8_t MCP_i2c::readByte(uint8_t reg){
     if (res<0){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
-        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ") << std::hex << reg << " | " << "i2c-error: " << std::dec <<res;
         printf("Failed to read from the i2c bus.\n");
         return 0;
     }
