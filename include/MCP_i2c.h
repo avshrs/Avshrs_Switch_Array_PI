@@ -10,6 +10,8 @@ class MCP_i2c{
     private:
         int file_i2c;
         int length=2;
+        std::string filename;
+        uint8_t address;
     
     private:
         void print(uint8_t v);

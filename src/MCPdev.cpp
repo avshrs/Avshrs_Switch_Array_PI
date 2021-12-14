@@ -2,8 +2,8 @@
 #include "MCP_i2c.h"
 #include <iostream>
 
-void MCP::MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL){
-    mcpAddress = MCPADDRSS;
+void MCP::MCP_Init(std::string i2c_path, uint8_t MCPADDRESS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL){
+    mcpAddress = MCPADDRESS;
     mcp_i2c.i2c_init(i2c_path, mcpAddress);
 
     mcp_i2c.writeByte(IODIRA, GIPOA_TYPE);   // register 0 is the I/O direction register for Port A
