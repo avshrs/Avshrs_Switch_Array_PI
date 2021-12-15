@@ -40,15 +40,18 @@
 
 
 class MCP {
-    public:
+    private:
         uint8_t mcpAddress;
         MCP_i2c mcp_i2c;
         uint8_t output[32] = {0x00};
         MCP_Data mcp_data;
+   
+    public:
         void MCP_Init(std::string i2c_path, uint8_t MCPADDRSS, uint8_t GIPOA_TYPE, uint8_t GIPOA_PULL, uint8_t GIPOB_TYPE, uint8_t GIPOB_PULL);
-
         bool readRaw(uint8_t side, uint8_t io_number);
         void writeRaw(uint8_t side, uint8_t pin, bool stat);
+    
+    private:
         MCP_Data get_address(uint8_t io);
         uint8_t convert_bits(uint8_t bits);
         void print(uint8_t v);

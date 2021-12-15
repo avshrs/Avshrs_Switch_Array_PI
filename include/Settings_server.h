@@ -4,8 +4,9 @@
 #include "MCP_Settings.h"
 
 class SettingsServer{
-    public:
+    private:
         MCP_Settings *mcp_settings;
+    public:
         void register_mcp_settings(MCP_Settings *mcp_settings_);
         void analyze_packet(SERIALMCPFRAME frame);
 

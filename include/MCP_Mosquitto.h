@@ -10,10 +10,11 @@
 #define MQTT_TOPIC "switch"
 
 class MCP_Mosquitto{
-    public:
+    private:
         int rc;
         void mos_connect();
         MCP_Manager *mcp_manager;
+    public:        
         void register_mcp_manager(MCP_Manager *mcp_manager_);
 
 

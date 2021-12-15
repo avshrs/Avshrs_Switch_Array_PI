@@ -6,7 +6,8 @@
 #include <cmath>       
 class MCP_Manager
 {
-    public:
+    
+    private:
         MCP *mcpc_in[4];
         MCP mcpc_in_0;
         MCP mcpc_in_1;
@@ -26,7 +27,8 @@ class MCP_Manager
         bool out_states_real[OUT_RANGE] = {false};
         bool out_states[OUT_RANGE] = {false};
         bool alarm_armed = false;
-
+        
+    public:
         void MCP_Init();
         void register_mcp_settings(MCP_Settings *mcp_settings_);
         bool read_input_direct(uint8_t in);
@@ -34,6 +36,8 @@ class MCP_Manager
         bool read_output_buffer(uint8_t out);
         void scan_all_inputs();
         void write_output(int output, bool value, int in);
+    
+    private:
         MCP_Data get_address(uint8_t io);
 
 };

@@ -12,8 +12,7 @@
 #include <array>
 
 class SocketServer{
-    public:
-
+    private:
         int server_fd;
         int cliend_fd;
         int new_socket;
@@ -22,10 +21,12 @@ class SocketServer{
         struct sockaddr_in server_address;
         int opt = 1;
         int addrlen = sizeof(server_address);
+    public:
         void register_settingsserver(SettingsServer *settingsserver_);
         void open_socket(int port_);
         void receive_packets();
         void send_packets(char* buffer[500], sockaddr_in address);
+    private:
         void analyze_packet(std::array<char, 500> buffer);
 };
 

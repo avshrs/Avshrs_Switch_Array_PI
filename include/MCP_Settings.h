@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <cstring>
 class MCP_Settings {
-    public: 
+    private:
         struct IN_SETTINGS{
             uint8_t related_output=0;
             bool in_enabled=false;
@@ -25,7 +25,7 @@ class MCP_Settings {
 
         IN_SETTINGS in_settings[IN_RANGE];
         OUT_SETTINGS out_settings[OUT_RANGE];
-
+    public: 
         void set_io_relation(uint8_t in, uint8_t out);
         uint8_t get_io_relation(uint8_t in);
         
