@@ -39,6 +39,5 @@ class MCP_Manager
     
     private:
         MCP_Data get_address(uint8_t io);
-
 };
 

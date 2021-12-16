@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(MCI_swich_array)
+add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+
 
 include_directories(include)
 
