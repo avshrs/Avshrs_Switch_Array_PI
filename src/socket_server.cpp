@@ -33,7 +33,7 @@ void SocketServer::send_packets(char* buffer[500], sockaddr_in address){
 
     bind(server_fd, (struct sockaddr *)&address, sizeof(address));
 
-    send(new_socket , buffer , sizeof(buffer) , 0 );
+    send(new_socket , buffer , sizeof(buffer)*500 , 0 );
 }
 
 
