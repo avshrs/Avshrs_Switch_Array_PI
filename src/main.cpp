@@ -11,10 +11,10 @@ SettingsServer settingsserver;
 SocketServer socketserver;
 MCP_Settings mcpsettings;
 
-void th(){
+void th1(){
     socketserver.receive_packets();
 }
-void th1(){
+void th2(){
     mcp_mosq.mos_connect();
 }
 
@@ -25,8 +25,8 @@ int main(){
     mcp.register_mcp_settings(&mcpsettings);
     socketserver.open_socket(5656);
     socketserver.register_settingsserver(&settingsserver);
-    std::thread t1(th);
-    std::thread t2(th);
+    std::thread t1(th1);
+    std::thread t2(th2);
     mcp.MCP_Init();
     
     while(true){
