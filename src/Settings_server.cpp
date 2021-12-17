@@ -58,7 +58,7 @@ void SettingsServer::analyze_packet(SERIALMCPFRAME frame){
         mcp_settings->set_out_name(frame.IONUMBER, std::string(frame.NAME));
         std::cout<<"set_in_name: "<<unsigned(frame.IONUMBER)<<" - "<<mcp_settings->get_out_name(frame.IONUMBER)<<std::endl;
     }
-    else if(frame.INSTRUCTIONS == 0x05 & frame.CONFIG == 0x00){
+    else if(frame.INSTRUCTIONS == 0x05 && frame.CONFIG == 0x00){
         std::cout<<"get_in_name: "<<unsigned(frame.IONUMBER)<<" - "<<mcp_settings->get_out_name(frame.IONUMBER)<<std::endl;
     }
 
