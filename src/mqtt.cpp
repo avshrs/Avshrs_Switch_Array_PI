@@ -29,8 +29,9 @@ void mqtt_client::on_connect(int rc)
 
 void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
 {
+
     #ifdef DEBUG
-        std::cout << "Subscription succeeded." << std::endl;
+        std::cout << "Subscription succeeded. " << " mid: " << mid << " qos_count: "<< qos_count << " qos_granted: "<< granted_qos << std::endl;
     #endif
 }
 
@@ -48,7 +49,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
-        if(!message_payload.empty() & message_topic == "MCP_Array"){
+        if(!message_payload.empty() && message_topic == "MCP_Array"){
 
             if(message_payload == "STATUS"){
                 std::string msg = "Online";
@@ -58,7 +59,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
         }
-        else if(!message_payload.empty() & message_topic.find("MCP_OUT_S_") != std::string::npos){
+        else if(!message_payload.empty() && message_topic.find("MCP_OUT_S_") != std::string::npos){
             if(message_payload == "STATE"){
                 std::string nr_str;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
