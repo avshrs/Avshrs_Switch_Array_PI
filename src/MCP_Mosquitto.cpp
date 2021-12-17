@@ -3,9 +3,6 @@
 
 
 void MCP_Mosquitto::mos_connect(){
-    
-    int rc;
-
     char client_id[] = CLIENT_ID;
     char host[] = BROKER_ADDRESS;
     int port = MQTT_PORT;
