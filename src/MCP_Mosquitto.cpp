@@ -6,8 +6,10 @@ void MCP_Mosquitto::mos_connect(){
     int port = MQTT_PORT;
 
     mosqpp::lib_init();
-
+    
+    
     mqtt_client iot_client(client_id, host, port);
+    iot_client.reconnect_delay_set(10, 100, true);
     iot_client.register_mcp_manager(mcp_manager);
     iot_client.subscribe(NULL, "MCP_Array");  // Main device topic - Online 
 
@@ -22,11 +24,7 @@ void MCP_Mosquitto::mos_connect(){
     }
     std::string mcp_array ="MCP_Array";
     std::string mcp_array_msg ="Online";
-    while(1)
-    {
-        rc = iot_client.loop();
-       
-    }
+    rc = iot_client.loop_forever();
     std::cout<<"loop exited"<< std::endl;
     mosqpp::lib_cleanup();
 }
