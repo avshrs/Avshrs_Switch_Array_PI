@@ -32,6 +32,15 @@ void mqtt_client::on_connect(int rc)
     }
 }
 
+void mqtt_client::on_disconnect(int rc)
+{
+    if (!rc)
+    {
+        #ifdef DEBUG
+            std::cout << "disconnected - code " << rc << std::endl;
+        #endif
+    }
+}
 void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
 {
 
