@@ -24,11 +24,12 @@ void MCP_Mosquitto::mos_connect(){
     }
     std::string mcp_array ="MCP_Array";
     std::string mcp_array_msg ="Online";
-    while(1)
+    while(iot_client.connect)
     {
         rc = iot_client.loop();
        
     }
+    std::cout<<"loop exited"<< std::endl;
     mosqpp::lib_cleanup();
 }
 
