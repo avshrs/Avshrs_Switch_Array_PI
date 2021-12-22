@@ -17,6 +17,11 @@ mqtt_client::~mqtt_client()
 {
 }
 
+void mqtt_client::on_error() {
+    std::cout<<"onerror"<<std::endl;
+    return;}
+
+
 void mqtt_client::on_connect(int rc)
 {
     if (!rc)
