@@ -27,6 +27,7 @@ void MCP_Mosquitto::mos_connect(){
     while(1)
     {
         rc = iot_client.loop();
+            std::cout<<"loop"<< std::endl;
        
     }
     std::cout<<"loop exited"<< std::endl;
