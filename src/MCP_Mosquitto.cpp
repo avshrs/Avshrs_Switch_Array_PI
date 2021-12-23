@@ -9,7 +9,7 @@ void MCP_Mosquitto::mos_connect(){
 
     mqtt_client iot_client(client_id, host, port);
 
-    iot_client.reconnect_delay_set(10, 100, true);
+    iot_client.reconnect_delay_set(5, 1000000, true);
     iot_client.register_mcp_manager(mcp_manager);
     
     rc = iot_client.loop_forever();
