@@ -5,7 +5,7 @@
 #include <iostream>
 #include <thread>
 #include "MCP_Mosquitto.h"
-MCP_Mosquitto mcp_mosq;
+
 MCP_Manager mcp;
 SettingsServer settingsserver;
 SocketServer socketserver;
@@ -15,11 +15,14 @@ void th1(){
     socketserver.receive_packets();
 }
 void th2(){
-    mcp_mosq.mos_connect();
+    char client_id[] = "SwitchMatrix";
+    char host[] = "192.168.1.96";
+    int port = 1883;
+    mqtt_client mqtt(client_id, host, port, &mcp);
 }
 
 int main(){ 
-    mcp_mosq.register_mcp_manager(&mcp);
+    
     mcpsettings.read_settings();
     settingsserver.register_mcp_settings(&mcpsettings);
     mcp.register_mcp_settings(&mcpsettings);
