@@ -7,7 +7,7 @@
 #include "MCP_Manager.h"
 
 
-// #define DEBUG
+#define DEBUG
 
 #define MAX_PAYLOAD 50
 #define DEFAULT_KEEP_ALIVE 60
