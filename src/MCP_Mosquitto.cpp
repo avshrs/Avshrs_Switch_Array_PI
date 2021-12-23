@@ -1,7 +1,5 @@
 #include "MCP_Mosquitto.h"
 
-
-
 void MCP_Mosquitto::mos_connect(){
     char client_id[] = "SwitchMatrix";
     char host[] = "192.168.1.96";

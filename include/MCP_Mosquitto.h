@@ -7,7 +7,6 @@
 
 class MCP_Mosquitto{
     private:
-        mqtt_client iot_client;
         int rc;
         MCP_Manager *mcp_manager;
     public:        
