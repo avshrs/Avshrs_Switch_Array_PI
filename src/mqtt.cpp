@@ -17,6 +17,21 @@ mqtt_client::~mqtt_client()
 {
 }
 
+
+void mqtt_client::register_subs(){
+    subscribe(NULL, "MCP_Array");  // Main device topic - Online 
+
+    for(int i = 0; i<64; i++){
+        std::string pub = "MCP_OUT_P_";
+        std::string sub = "MCP_OUT_S_";
+        sub += std::to_string(i);
+        pub += std::to_string(i);
+        publish(NULL, pub.c_str());
+        subscribe(NULL, sub.c_str());
+        usleep(10000);
+    }
+}
+
 void mqtt_client::on_error() {
     std::cout<<"onerror"<<std::endl;
     return;}
@@ -26,10 +41,13 @@ void mqtt_client::on_connect(int rc)
 {
     if (!rc)
     {
+
         #ifdef DEBUG
-            std::cout << "Connected - code " << rc << std::endl;
+            std::cout << "Connected with code " << rc << std::endl;
         #endif
+        register_subs();
     }
+    
 }
 
 void mqtt_client::on_disconnect(int rc)

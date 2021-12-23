@@ -4,13 +4,10 @@
 #include "mqtt.h"
 #include "MCP_Manager.h"
 
-#define CLIENT_ID "SwitchMatrix"
-#define BROKER_ADDRESS "192.168.1.96"
-#define MQTT_PORT 1883;
-#define MQTT_TOPIC "switch"
 
 class MCP_Mosquitto{
     private:
+        mqtt_client iot_client;
         int rc;
         MCP_Manager *mcp_manager;
     public:        

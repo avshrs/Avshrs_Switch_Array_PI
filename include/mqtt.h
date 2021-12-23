@@ -19,6 +19,7 @@ public:
     MCP_Manager *mcp_manager;
     void send_ack(std::string pub, std::string msg);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
+    void register_subs();
     void on_connect(int rc);
     void on_error();
     void on_disconnect(int rc);
