@@ -24,19 +24,19 @@ void MCP_i2c::i2c_init(std::string filename_, uint8_t address_){
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
             std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout << "Failed to Open the i2c bus"<< std::endl;
+            std::cout << "Failed to Open the i2c bus - "<< filename_ << std::endl;
     }
     else{
-        std::cout << "i2c bus open correctly"<< std::endl;
+        std::cout << "i2c bus open correctly - "<< filename_ <<  std::endl;
     }
     if (ioctl(file_i2c, I2C_SLAVE, address) < 0) {
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
             std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout << "Failed to acquire bus access and/or talk to slave." << std::endl;
+            std::cout << "Failed to acquire bus access and/or talk to slave. - on address: " << address_  << std::endl;
     }
     else{
-        std::cout << "Acquired bus access and/or talk to slave."<< std::endl;
+        std::cout << "Acquired bus access and/or talk to slave. - on address: " << address_  << std::endl;
     }
 }
 
