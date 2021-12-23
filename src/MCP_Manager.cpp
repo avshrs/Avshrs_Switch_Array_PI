@@ -63,7 +63,7 @@ void MCP_Manager::write_output(int output, bool value, int in = 999){
             std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
             std::cout<<"MO -"<<mcp_settings->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_settings->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
         }
-        else {
+        else if (mcp_settings->get_out_bistable(output)){
             if (out_states[output] > 0 && value > 0){
                 out_states[output] = false;
                 write_output_direct(output, false);

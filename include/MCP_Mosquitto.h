@@ -7,7 +7,7 @@
 #include "MCP_Manager.h"
 
 
-#define DEBUG
+// #define DEBUG
 
 #define MAX_PAYLOAD 50
 #define DEFAULT_KEEP_ALIVE 60
@@ -21,6 +21,7 @@ public:
     void send_ack(std::string pub, std::string msg);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
     void register_subs();
+    void unregister_subs();
     void on_connect(int rc);
     void on_error();
     void on_disconnect(int rc);
