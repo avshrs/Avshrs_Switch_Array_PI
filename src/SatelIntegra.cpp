@@ -73,9 +73,6 @@ SatelIntegra::SatelIntegra(const int ID, const std::string &IPAddress, const uns
 
 	// decode user code from string to BCD
 	if (userCode.empty())CheckAddress();
-ConnectToIntegra();
-GetInfo();
-
 
 	uint64_t result(0);
 	for (unsigned int i = 0; i < 16; ++i)
@@ -107,7 +104,6 @@ ConnectToIntegra();
 GetInfo();
 }
 
-
 bool SatelIntegra::CheckAddress()
 {
 	if (m_IPAddress.empty() || m_IPPort < 1 || m_IPPort > 65535)
@@ -131,7 +127,7 @@ bool SatelIntegra::CheckAddress()
 		hostent *he = gethostbyname(m_IPAddress.c_str());
 		if (he == nullptr)
 		{
-			// //Log(//Log_ERROR, "cannot resolve host name");
+			std::cout << "Cannot resolve host name" << std::endl; 	
 			return false;
 		}
 		std::memcpy(&(m_addr.sin_addr), he->h_addr_list[0], 4);
@@ -147,13 +143,14 @@ bool SatelIntegra::ConnectToIntegra()
 	m_socket = socket(AF_INET, SOCK_STREAM, 0);
 	if (m_socket == INVALID_SOCKET)
 	{
+		std::cout << "Unable to create socket" << std::endl; 
 		// //Log(//Log_ERROR, "Unable to create socket");
 		return false;
 	}
 
 	if (connect(m_socket, (const sockaddr*)&m_addr, sizeof(m_addr)) == SOCKET_ERROR)
 	{
-		// //Log(//Log_ERROR, "Unable to connect to specified IP Address on specified Port (%s:%d)", m_IPAddress.c_str(), m_IPPort);
+		std::cout << "Unable to connect to specified IP Address: " <<  m_IPAddress << std::endl; 
 		DestroySocket();
 		return false;
 	}
@@ -164,9 +161,7 @@ void SatelIntegra::DestroySocket()
 {
 	if (m_socket != INVALID_SOCKET)
 	{
-#ifdef DEBUG_SatelIntegra
-		//Log(//Log_STATUS, "destroy socket");
-#endif
+		std::cout << "Destroy socket" << std::endl; 
 		closesocket(m_socket);
 		m_socket = INVALID_SOCKET;
 	}
@@ -214,24 +209,20 @@ bool SatelIntegra::GetInfo()
 					return true;
 				}
 				std::cout<<"unknown version of ETHM-1"<<std::endl;	
-				// //Log(//Log_ERROR, "unknown version of ETHM-1");
 			}
 			else
 			{
 				std::cout<<"Unknown basic status"<<std::endl;	
-				// //Log(//Log_ERROR, );
 			}
 		}
 		else
 		{	
 			std::cout<<"Unknown model"<<std::endl;	
-			// //Log(//Log_ERROR, "Unknown model '%02x'", buffer[0]);
 		}
 	}
 	else
 	{
 		std::cout<<"Get info about Integra is failed"<<std::endl;
-		// //Log(//Log_ERROR, "Get info about Integra is failed");
 	}
 
 	return false;
@@ -298,7 +289,7 @@ bool SatelIntegra::ReadZonesState(const bool firstTime){
 }
 
 
-bool SatelIntegra::ReadZoneState(unsigned int index){
+void SatelIntegra::ReadZonesStateAll(){
 	unsigned char buffer[33];
 	unsigned char cmd[2];
 	cmd[0] = 0x00; // read zones violation

@@ -35,6 +35,7 @@ class SatelIntegra{
 		std::string out_name[128];
 
     public:
+		void ReadZonesStateAll();
 		bool ReadZonesState(bool firstTime = false);
 		// Reads and reports temperatures
 		bool ReadZoneState(unsigned int input);
