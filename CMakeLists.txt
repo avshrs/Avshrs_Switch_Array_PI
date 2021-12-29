@@ -25,7 +25,7 @@ file(GLOB sSOURCES  "src_satel/SatelIntegra.cpp" "src_satel/MCP_Mosquitto.cpp"
                     )                     
 
 add_executable(MCI_swich_array "src/main.cpp" ${mSOURCES})
-add_executable(MCI_Satel_Listener "src_satel/satelMain.cpp" ${sSOURCES})
-
 target_link_libraries(MCI_swich_array  ${libs})
+
+add_executable(MCI_Satel_Listener "src_satel/satelMain.cpp" ${sSOURCES})
 target_link_libraries(MCI_Satel_Listener  ${libs})
