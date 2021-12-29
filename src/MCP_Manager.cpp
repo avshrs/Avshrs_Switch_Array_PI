@@ -56,19 +56,24 @@ void MCP_Manager::scan_all_inputs(){
 
 
 void MCP_Manager::write_output_timer(int output, unsigned int timeout){
-   std::thread t1(&MCP_Manager::change_state, this, output, timeout);
-
+    try{
+        std::thread t1(&MCP_Manager::change_state, this, output, timeout);
+    }
+    catch (const std::exception& e) { 
+        std::cout << e.what(); 
+    }
 }
 
 void MCP_Manager::change_state(int output, unsigned int timeout){
     write_output(output, true, 999);
     for(unsigned int i = 0; i < timeout+1; i++){
-       usleep(1000000);
+    usleep(1000000);
     }
     uint8_t input = mcp_settings->get_oi_relation(output);
     if (!read_input_buffer(input)){
         write_output(output, false, 999);
     }
+
 }
 
 void MCP_Manager::write_output(int output, bool value, int in = 999){
