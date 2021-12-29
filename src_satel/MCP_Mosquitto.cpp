@@ -105,7 +105,7 @@ void mqtt_client::send_ack(std::string pub, std::string msg ){
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
 
-// void mqtt_client::on_message(const struct mosquitto_message *message){
+void mqtt_client::on_message(const struct mosquitto_message *message){
 
 //     try{
 //         std::string message_topic(message->topic);
@@ -202,4 +202,4 @@ void mqtt_client::send_ack(std::string pub, std::string msg ){
 //         }
 //     }
 //     catch(...){std::cout << "Received Empty Payload" << std:: endl;}
-// }
+}
