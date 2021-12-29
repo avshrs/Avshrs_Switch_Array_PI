@@ -31,13 +31,16 @@ class MCP_Manager
     public:
         void MCP_Init();
         void register_mcp_settings(MCP_Settings *mcp_settings_);
-        bool read_input_direct(uint8_t in);
-        void write_output_direct(uint8_t out, bool state);
-        bool read_output_buffer(uint8_t out);
+        bool read_input_direct(uint8_t input);
+        void write_output_direct(uint8_t output, bool state);
+        bool read_output_buffer(uint8_t output);
+        bool read_input_buffer(uint8_t input);
         void scan_all_inputs();
-        void write_output(int output, bool value, int in);
+        void write_output(int output, bool value, int input);
+        void write_output_timer(int output, unsigned int timeout);
     
     private:
         MCP_Data get_address(uint8_t io);
+        void change_state(int output, unsigned int timeout);
 };
 

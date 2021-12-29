@@ -3,6 +3,8 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
+#include <thread>
+
 
 void MCP_Manager::MCP_Init(){
     std::string i2c_path = "/dev/i2c-1";
@@ -53,6 +55,24 @@ void MCP_Manager::scan_all_inputs(){
 }
 
 
+void MCP_Manager::write_output_timer(int output, unsigned int timeout){
+   std::thread t1(&MCP_Manager::change_state, this, output, timeout);
+
+}
+
+void MCP_Manager::change_state(int output, unsigned int timeout){
+    unsigned int counter = timeout;
+    write_output(output, true, 999);
+    while(counter < 1){
+       usleep(1000000);
+       counter--;
+    }
+    uint8_t input = mcp_settings->get_oi_relation(output);
+    if (!read_input_buffer(input)){
+        write_output(output, false, 999);
+    }
+}
+
 void MCP_Manager::write_output(int output, bool value, int in = 999){
     if (mcp_settings->get_out_status(output)){
         if (!mcp_settings->get_out_bistable(output) && out_states[output] != value){
@@ -91,10 +111,12 @@ bool MCP_Manager::read_input_direct(uint8_t in){
     return mcpc_in[mcp_data.chipset]->readRaw(mcp_data.side, mcp_data.io);
 }
 
-bool MCP_Manager::read_output_buffer(uint8_t out)
-{
+bool MCP_Manager::read_output_buffer(uint8_t out){
     return out_states_real[out];
 }   
+bool MCP_Manager::read_input_buffer(uint8_t input){
+    return in_states[input];
+}
 
 void MCP_Manager::write_output_direct(uint8_t out, bool state){
     MCP_Data mcp_data = get_address(out);

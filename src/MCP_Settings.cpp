@@ -9,6 +9,14 @@ uint8_t MCP_Settings::get_io_relation(uint8_t in){
     return in_settings[in].related_output;
 }
 
+uint8_t MCP_Settings::get_oi_relation(uint8_t out){
+    for(int i = 0 ; i < 64; i++)
+        if(get_io_relation(i) == out){
+            return static_cast<uint8_t>(i);
+        }
+    return 63;
+}
+
 void MCP_Settings::set_in_name(uint8_t in, std::string name){
     strcpy(in_settings[in].in_name, name.c_str());
 }

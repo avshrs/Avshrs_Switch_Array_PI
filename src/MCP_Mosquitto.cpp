@@ -149,6 +149,20 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
+            else if(message_payload == "ON_TIME"){
+                std::string nr_str;
+                if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
+                    nr_str = message_topic.substr(message_topic.length() - 2);
+                }
+                else{
+                    nr_str = message_topic.substr(message_topic.length() - 1);
+                }
+                int nr = std::stoi(nr_str);
+                mcp_manager->write_output_timer(nr, 60);
+                #ifdef DEBUG
+                    std::cout << "Request to turn on output nr:" << nr << "by PIR to 60 seconds" << std::endl;
+                #endif
+            }
 
             else if(message_payload == "OFF"){
                 std::string nr_str;

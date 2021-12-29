@@ -28,6 +28,8 @@ class MCP_Settings {
     public: 
         void set_io_relation(uint8_t in, uint8_t out);
         uint8_t get_io_relation(uint8_t in);
+
+        uint8_t get_oi_relation(uint8_t in);
         
         void set_in_name(uint8_t in, std::string name);
         std::string get_in_name(uint8_t in);
