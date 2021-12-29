@@ -1,6 +1,6 @@
 #include "SatelIntegra.h"
 
-int satel_main(){ 
+int main(){ 
 
 SatelIntegra sa(67, "192.168.1.240", 25197, "1234", 60);
 
