@@ -16,10 +16,11 @@ class mqtt_client : public mosqpp::mosquittopp
 {
 public:
     mqtt_client (const char *id, const char *host, int port, MCP_Manager *mcp_manager_);
-    ~mqtt_client();
+    mqtt_client (const char *id, const char *host, int port);
     MCP_Manager *mcp_manager;
     void send_ack(std::string pub, std::string msg);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
+    void client_loop_forever();
     void register_subs();
     void unregister_subs();
     void on_connect(int rc);

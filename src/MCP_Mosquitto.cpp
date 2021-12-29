@@ -11,13 +11,26 @@ mqtt_client::mqtt_client(const char *id, const char *host, int port, MCP_Manager
     mcp_manager = mcp_manager_;
     int keepalive = 50;
     connect(host, port, keepalive);
-    reconnect_delay_set(5, 1000000, true);
-    loop_forever();
+    
+}
+mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
+{
+    int keepalive = 50;
+    connect(host, port, keepalive);
+    
 }
 
-mqtt_client::~mqtt_client()
-{
+void mqtt_client::client_loop_forever(){
+    if(mcp_manager != NULL){
+        reconnect_delay_set(5, 1000000, true);
+        loop_forever();
+    }
+    else{
+        std::cout << "Wrong class constructor!!!" << std::endl;
+    }
 }
+
+
 
 
 void mqtt_client::register_subs(){
