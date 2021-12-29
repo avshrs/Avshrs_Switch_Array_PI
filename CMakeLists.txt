@@ -19,15 +19,9 @@ set(libs
 set(INCLUDE_HEADER_FILES
 "include/*.h"
 )
-file(GLOB mSOURCES  "src/MCP_i2c.cpp 
-                     src/MCP_Manager.cpp 
-                     src/MCP_Mosquitto.cpp
-                     src/MCP_Settings.cpp
-                     src/MCPdev.cpp
-                     src/Settings_server.cpp
-                     src/socket_server.cpp" )
+file(GLOB mSOURCES  "src/*.cpp" )
  
-file(GLOB sSOURCES  "src/SatelIntegra.cpp" )                     
+file(GLOB sSOURCES  "src_satel/*.cpp" )                     
 
 add_executable(MCI_swich_array "src/main.cpp" ${mSOURCES})
 add_executable(MCI_Satel_Listener "src/satelMain.cpp" ${sSOURCES})
