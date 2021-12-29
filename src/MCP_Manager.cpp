@@ -61,11 +61,9 @@ void MCP_Manager::write_output_timer(int output, unsigned int timeout){
 }
 
 void MCP_Manager::change_state(int output, unsigned int timeout){
-    unsigned int counter = timeout;
     write_output(output, true, 999);
-    while(counter < 1){
+    for(int i = 0; i < timeout+1; i++){
        usleep(1000000);
-       counter--;
     }
     uint8_t input = mcp_settings->get_oi_relation(output);
     if (!read_input_buffer(input)){
