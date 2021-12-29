@@ -21,7 +21,7 @@ set(INCLUDE_HEADER_FILES
 )
 file(GLOB mSOURCES  "src/*.cpp" )
  
-file(GLOB sSOURCES  "src_satel/*.cpp" )                     
+file(GLOB sSOURCES  "src_satel/SatelIntegra.cpp" )                     
 
 add_executable(MCI_swich_array "src/main.cpp" ${mSOURCES})
 add_executable(MCI_Satel_Listener "src/satelMain.cpp" ${sSOURCES})
