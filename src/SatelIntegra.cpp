@@ -34,7 +34,7 @@ constexpr std::array<SatelModel, TOT_MODELS> models{
 		{ 66, "Integra 64 Plus", 64, 64 },	   //
 		{ 67, "Integra 128 Plus", 128, 128 },	   //
 		{ 72, "Integra 256 Plus", 256, 256 },	   //
-	}						   //
+	}						  
 };
 
 #define MAX_LENGTH_OF_ANSWER 63 * 2 + 4 + 1
@@ -106,12 +106,6 @@ GetInfo();
 
 bool SatelIntegra::CheckAddress()
 {
-	if (m_IPAddress.empty() || m_IPPort < 1 || m_IPPort > 65535)
-	{
-		// //Log(//Log_ERROR, "Empty IP Address or bad Port");
-		return false;
-	}
-
 	m_addr.sin_family = AF_INET;
 	m_addr.sin_port = htons(m_IPPort);
 
@@ -175,6 +169,9 @@ bool SatelIntegra::ReadNewData()
 	{
 		return true;
 	}
+	else{
+		return false;
+	}
 }
 bool SatelIntegra::GetInfo()
 {
@@ -228,294 +225,87 @@ bool SatelIntegra::GetInfo()
 	return false;
 }
 
-bool SatelIntegra::ReadZonesState(const bool firstTime){
-	if (m_modelIndex == -1)
-	{
-		return false;
-	}
 
+
+void SatelIntegra::ReadZonesStatesAll(){
 	unsigned char buffer[33];
-
-	unsigned int zonesCount = models[m_modelIndex].zones;
-	if ((zonesCount > 128) && (!m_data32))
-	{
-		zonesCount = 128;
-	}
-
 	unsigned char cmd[2];
 	cmd[0] = 0x00; // read zones violation
 	if (SendCommand(cmd, 1 + m_data32, buffer, 17 + m_data32 * 16) > 0)
 	{
-		bool violate;
 		unsigned int byteNumber;
 		unsigned int bitNumber;
-
-		for (unsigned int index = 0; index < 14; ++index)
-		{
-			if (true)
-			{
-				byteNumber = index / 8;
-				bitNumber = index % 8;
-				violate = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
-				std::cout <<  "Reading " << std::dec << index +1 << " zone name : " <<&buffer[4] << "  violated: " << violate <<std::endl;
-
-				if (firstTime)
-				{
-					unsigned char buffer[21];
-					unsigned char cmd[3];
-					cmd[0] = 0xEE;
-					cmd[1] = 0x05;
-					cmd[2] = (index != 255) ? (index + 1) : 0; // send 0 instead of 256 in INTEGRA 256 PLUS
-					if (SendCommand(cmd, 3, buffer, 21) > 0)
-					{
-						m_isPartitions[buffer[20] - 1] = true;
-						std::cout <<  "Reading " << std::dec << index +1 << " zone name : " <<&buffer[4] << "  violated: " << violate <<std::endl;
-					}
-					else
-					{
-						std::cout<<"Receive info about zone: " <<std::dec << index +1 <<" failed (probably zone is not used)"<<std::endl;
-					}
-				}
-			}
+		for(int i = 0; i < 128; i++){
+			byteNumber = i / 8;
+			bitNumber = i % 8;
+			in_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
 		}
-
 	}
 	else
 	{
-		std::cout<<"Send 'Read Outputs' failed"<<std::endl;
-		return false;
+		std::cout<<"Send Read Inputs failed"<<std::endl;
 	}
-	return true;
 }
-
-
-void SatelIntegra::ReadZonesStateAll(){
-	unsigned char buffer[33];
-	unsigned char cmd[2];
-	cmd[0] = 0x00; // read zones violation
-	if (SendCommand(cmd, 1 + m_data32, buffer, 17 + m_data32 * 16) > 0)
-	{
-		unsigned int byteNumber = index / 8;
-		unsigned int bitNumber = index % 8;
-		bool violate = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
-		std::cout <<  "Reading " << std::dec << index +1 << " zone name : " <<&buffer[4] << "  violated: " << violate <<std::endl;
-		return violate; 
-	}
-	else
-	{
-		std::cout<<"Send 'Read Inputs' failed"<<std::endl;
-		return false;
-	}
-	return false;
-}
-
-
-bool SatelIntegra::ReadTemperatures(const bool firstTime)
-{
-	if (m_modelIndex == -1)
-	{
-		return false;
-	}
-
-	// Read temperatures from ATD100
-#ifdef DEBUG_SatelIntegra
-	//Log(//Log_STATUS, "Read zones temperatures");
-#endif
-
-	unsigned char buffer[33];
-
-	unsigned int zonesCount = models[m_modelIndex].zones;
-	if ((zonesCount > 128) && (!m_data32))
-	{
-		zonesCount = 128;
-	}
-
-	for (unsigned int index = 0; index < zonesCount; ++index)
-		if (m_isTemperature[index])
-		{
-#ifdef DEBUG_SatelIntegra
-			//Log(//Log_STATUS, "Reading zone %d temperature", index + 1);
-#endif
-			unsigned char cmd[2];
-			cmd[0] = 0x7D; // read zone temperature
-			cmd[1] = (index != 255) ? (index + 1) : 0;
-			if (SendCommand(cmd, 2, buffer, 4) > 0)
-			{
-				uint16_t temp = buffer[2] * 256 + buffer[3];
-
-				if (temp != 0 && temp != 65535) // -55oC and undetermined
-				{
-					if (firstTime)
-					{
-
-
-						unsigned char buffer[21];
-#ifdef DEBUG_SatelIntegra
-						//Log(//Log_STATUS, "Reading temperature zone %d name", index + 1);
-#endif
-						unsigned char cmd[3];
-						cmd[0] = 0xEE;
-						cmd[1] = 0x05;
-						cmd[2] = (index != 255) ? (index + 1) : 0; // send 0 instead of 256 in INTEGRA 256 PLUS
-						if (SendCommand(cmd, 3, buffer, 21) > 0)
-						{
-							// ReportTemperature(index + 1, temp);
-							// UpdateTempName(index + 1, &buffer[4], 0);
-						}
-						else
-						{
-							// //Log(//Log_ERROR, "Receive info about zone %d failed", index + 1);
-						}
-					}
-					else
-					{
-						// ReportTemperature(index + 1, temp);
-					}
-				}
-			}
-
-			else
-			{
-				// //Log(//Log_ERROR, "Send 'Read Temperature' failed");
-				return false;
-			}
-		}
-
-	return true;
-}
-
-bool SatelIntegra::ReadOutputsState(const bool firstTime)
-{
-	if (m_modelIndex == -1)
-	{
-		return false;
-	}
+void SatelIntegra::ReadOutputsStatesAll(){
 	unsigned char buffer[33];
 	unsigned char cmd[2];
 	cmd[0] = 0x17; // read outputs state
 	if (SendCommand(cmd, 1 + m_data32, buffer, 17 + m_data32 * 16) > 0)
 	{
-		bool findBlindOutput = false;
-		bool outputState;
 		unsigned int byteNumber;
 		unsigned int bitNumber;
-
-		unsigned int outputsCount = models[m_modelIndex].outputs;
-		if ((outputsCount > 128) && (!m_data32))
-		{
-			outputsCount = 128;
-		}
-
-		for (unsigned int index = 0; index < outputsCount; ++index)
-		{
-			if (true)
-			{
-				byteNumber = index / 8;
-				bitNumber = index % 8;
-				outputState = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
-
-				if (firstTime)
-				{
-#ifdef DEBUG_SatelIntegra
-					//Log(//Log_STATUS, "Reading output %d name", index + 1);
-#endif
-					unsigned char buffer[21];
-					unsigned char cmd[3];
-					cmd[0] = 0xEE;
-					cmd[1] = 0x04;
-					cmd[2] = (index != 255) ? (index + 1) : 0; // send 0 instead of 256 in INTEGRA 256 PLUS
-					if (SendCommand(cmd, 3, buffer, 20) > 0)
-					{
-						if (buffer[3] != 0x00)
-						{
-							if ((buffer[3] == 24) || (buffer[3] == 25) || (buffer[3] == 105) || (buffer[3] == 106) || // switch MONO, switch BI, roller blind up/down
-								((buffer[3] >= 64) && (buffer[3] <= 79)))  // DTMF
-							{
-								m_isOutputSwitch[index] = true;
-							}
-
-							if ((buffer[3] == 105) || (buffer[3] == 106)) // roller blind up and down
-							{
-								if (findBlindOutput == false)
-								{
-									// ReportOutputState(index + 1 + 1024, outputState);
-									// UpdateOutputName(index + 1 + 1024, &buffer[4]);
-								}
-								findBlindOutput = !findBlindOutput;
-							}
-
-							// ReportOutputState(index + 1, outputState);
-						}
-						else
-						{
-#ifdef DEBUG_SatelIntegra
-							//Log(//Log_STATUS, "output %d is not used", index + 1);
-#endif
-						}
-					}
-					else
-					{
-						// //Log(//Log_ERROR, "Receive info about output %d failed", index);
-					}
-				}
-				else if (m_outputsLastState[index] != outputState)
-				{
-					// ReportOutputState(index + 1, outputState);
-				}
-			}
+		for(int i = 0; i < 128; i++){
+			byteNumber = i / 8;
+			bitNumber = i % 8;
+			out_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
 		}
 	}
 	else
 	{
-		// //Log(//Log_ERROR, "Send 'Read outputs' failed");
-		return false;
+		std::cout<<"Send Read Outputs failed"<<std::endl;
 	}
-
-	return true;
 }
 
-bool SatelIntegra::ReadArmState(unsigned int index)
+void SatelIntegra::ReadArmStatesAll()
 {
 	unsigned char buffer[5];
 	unsigned char cmd[1];
 	cmd[0] = 0x0A; // read armed partition
 	if (SendCommand(cmd, 1, buffer, 5) > 0)
-	{
-			unsigned int byteNumber = index / 8;
-			unsigned int bitNumber = index % 8;
-			bool armed = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
-			std::cout << "Arm state for " << index << " is: " << armed << std::endl;
+	{	
+		for(int i = 0; i < 32; i++){
+			unsigned int byteNumber = i / 8;
+			unsigned int bitNumber = i % 8;
+			arm_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
+		}
 	}
 	else
 	{
-		return false;
+		std::cout<<"Send Read Arm State failed"<<std::endl;
 	}
-
-	return false;
 }
 
-bool SatelIntegra::ReadAlarm(unsigned int index)
+void SatelIntegra::ReadAlarm()
 {
 	unsigned char buffer[5];
 	unsigned char cmd[1];
 	cmd[0] = 0x13; // read partitions alarm
 	if (SendCommand(cmd, 1, buffer, 5) > 0)
-	{
-		bool alarm = false;
-		if (buffer[index + 1])
+	{	
+		alarm_state = false;
+		for (unsigned int index = 0; index < 4; ++index)
 		{
-			alarm = true;
-
+			if (buffer[index + 1])
+			{
+				alarm_state = true;
+				break;
+			}
 		}
-
 	}
 	else
 	{
-		// //Log(//Log_ERROR, "Send 'Get Alarm partitions' failed");
-		return false;
+		std::cout<<"Send Get Alarm partitions failed"<<std::endl;
 	}
-
-	return true;
 }
 
 
@@ -589,7 +379,7 @@ std::string SatelIntegra::ISO2UTF8(const std::string &name)
 	for (char i : name)
 	{
 		bool changed = false;
-		for (int j = 0; j < sizeof(cp1250); ++j)
+		for (int j = 0; j < static_cast<int>(sizeof(cp1250)); ++j)
 		{
 			if (i == cp1250[j])
 			{

@@ -36,13 +36,13 @@ void MCP_i2c::i2c_init(std::string filename_, uint8_t address_){
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
             std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout << "Failed to acquire bus access and/or talk to slave. - on address: " << std::hex << address_ << std::endl;
+            std::cout << "Failed to acquire bus access and/or talk to slave. - on address: " << std::hex << (int) address_ << std::endl;
     }
     else{
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-        std::cout << "Acquired bus access and/or talk to slave. - on address: " << std::hex << address_ << std::endl;
+        std::cout << "Acquired bus access and/or talk to slave. - on address: " << std::dec << (int) address_ << std::endl;
     }
 }
 
@@ -52,11 +52,13 @@ uint8_t MCP_i2c::readByte(uint8_t reg){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-        std::cout << std::hex << reg << " | " << "i2c-error: " << std::dec <<res;
-        std::cout << "Failed to Read from the i2c bus."<< std::endl;
+        std::cout << "Read from bus: " << file_i2c;
+        std::cout << ", Read from address: " << std::hex << (int) reg << " | " << "i2c-error: " << std::dec <<res;
+        std::cout << ", Failed to Read from the i2c bus."<< std::endl;
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         std::cout << "Retrying I2C init."<< std::endl;
         i2c_init(filename, address);
+        usleep(100000);
         return 0;
     }
     else {
@@ -71,11 +73,13 @@ uint16_t MCP_i2c::readWord(uint8_t reg){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-        std::cout << std::hex << reg << " | " << "i2c-error: " << std::dec <<res;
-        std::cout << "Failed to Read from the i2c bus." << std::endl;
+        std::cout << "Read from bus: " << file_i2c;
+        std::cout << ", Read from address: " << std::hex << (int) reg << " | " << "i2c-error: " << std::dec <<res;
+        std::cout << ", Failed to Read from the i2c bus." << std::endl;
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         std::cout << "Retrying I2C init."<< std::endl;
         i2c_init(filename, address);
+        usleep(100000);
         return 0;
     }
     else {
@@ -89,11 +93,14 @@ void MCP_i2c::writeByte(uint8_t reg, uint8_t buffer_){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-        std::cout << std::hex << reg << " | " << "i2c-error: " << std::dec <<res;
-        std::cout << "Failed to Write to the i2c bus." << std::endl;
+        std::cout << "Write to bus: " << file_i2c;
+        std::cout << ", Write to address: " << std::hex << (int) reg <<" | " << "i2c-error: " << std::dec <<res;
+        std::cout << ", Failed to Write to the i2c bus." << std::endl;
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         std::cout << "Retrying I2C init."<< std::endl;
         i2c_init(filename, address);
+        usleep(100000);
+        
     }
 }
 
@@ -104,10 +111,12 @@ void MCP_i2c::writeWord(uint8_t reg, uint16_t buffer_){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-        std::cout << std::hex << reg << " | " << "i2c-error: " << std::dec <<res;
-        std::cout << "Failed to Write to the i2c bus." << std::endl;
+        std::cout << "Write to bus: " << file_i2c;
+        std::cout << ", Write to address: "<< std::hex << (int) reg << " | " << "i2c-error: " << std::dec <<res;
+        std::cout << ", Failed to Write to the i2c bus." << std::endl;
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         std::cout << "Retrying I2C init."<< std::endl;
         i2c_init(filename, address);
+        usleep(100000);
     }
 }

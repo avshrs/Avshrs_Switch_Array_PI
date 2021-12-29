@@ -15,8 +15,6 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
-// implememtation for Security System : https://www.satel.pl/en/cat/2#cat15
-// by Fantom (szczukot@poczta.onet.pl)
 #define INVALID_SOCKET (int)(~0)
 #define SOCKET_ERROR   -1
 #define closesocket(s) close(s);
@@ -26,7 +24,7 @@ class SatelIntegra{
 
     public:
 		bool arm_state[32] = {false};
-		bool alarm_state[4] = {false};
+		bool alarm_state = false;
 
 		bool in_state[128] = {false};
 		std::string in_name[128];
@@ -35,43 +33,26 @@ class SatelIntegra{
 		std::string out_name[128];
 
     public:
-		void ReadZonesStateAll();
-		bool ReadZonesState(bool firstTime = false);
-		// Reads and reports temperatures
-		bool ReadZoneState(unsigned int input);
+		void ReadZonesStatesAll();
+		void ReadOutputsStatesAll();
+		void ReadArmStatesAll();
+		void ReadAlarm();
 
-		bool ReadTemperatures(bool firstTime = false);
-		// Reads and reports state of outputs
-		bool ReadOutputsState(bool firstTime = false);
-		// Read state of arming
-		bool ReadArmState(unsigned int index);
-		// Read alarm
-		bool ReadAlarm(unsigned int index);
-		// Read events
+
 		bool ReadEvents();
-		// arms given partitions
 		bool ArmPartitions(int partition, int mode = 0);
-		// disarms given partitions
 		bool DisarmPartitions(int partition);
-
 		void UpdateOutputName(int Idx, const unsigned char *name);
-		// Updates output name for virtual in/out (arming ald alarm)
 		
 	private:	  
 		bool CheckAddress();
-		// Closes socket
 		void DestroySocket();
-		// Connects socket
 		bool ConnectToIntegra();
-		// new data is collected in Integra for selected command
 		bool ReadNewData();
-		// Gets info from hardware about PCB, ETHM1 etc
 		bool GetInfo();
-		// Reads and reports zones violation
 
 
 		
-		// convert string from iso to utf8
 		std::string ISO2UTF8(const std::string &name);
 		
 		std::pair<unsigned char *, unsigned int> getFullFrame(const unsigned char *pCmd, unsigned int cmdLength);

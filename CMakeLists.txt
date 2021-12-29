@@ -21,6 +21,7 @@ set(INCLUDE_HEADER_FILES
 )
 file(GLOB SOURCES  "src/*.cpp")
  
-add_executable(MCI_swich_array ${SOURCES})
+add_executable(MCI_swich_array "src/main.cpp" ${SOURCES})
+add_executable(MCI_Satel_Listener "src/satelMain.cpp" ${SOURCES})
 
 target_link_libraries(MCI_swich_array  ${libs})

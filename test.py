@@ -114,4 +114,12 @@ send_message(5, 1, 23, 0,"Light_kotlownia")
 send_message(4, 1, 24, 0,"Switch_Piwnica")  
 send_message(5, 1, 24, 0,"Light_Piwnica")  
 
+send_message(4, 1, 28, 0,"Czujnik_zmierzchu")  
+send_message(4, 1, 29, 0,"Czujnik_zmierzchu")  
+
+send_message(5, 1, 28, 0,"Light_Zew1_przod")  
+send_message(5, 1, 29, 0,"Light_Zew1_tyl")  
+send_message(5, 1, 30, 0,"Light_Zew2_przod")  
+send_message(5, 1, 31, 0,"Light_Zew2_tyl")  
+
 send_message(255, 1, 2, 1)

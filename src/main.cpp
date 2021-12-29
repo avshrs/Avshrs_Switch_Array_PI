@@ -14,6 +14,7 @@ MCP_Settings mcpsettings;
 void th1(){
     socketserver.receive_packets();
 }
+
 void th2(){
     char client_id[] = "SwitchMatrix";
     char host[] = "192.168.1.96";
@@ -22,19 +23,15 @@ void th2(){
 }
 
 int main(){ 
-    
     mcpsettings.read_settings();
     settingsserver.register_mcp_settings(&mcpsettings);
     mcp.register_mcp_settings(&mcpsettings);
     socketserver.open_socket(5656);
     socketserver.register_settingsserver(&settingsserver);
+    mcp.MCP_Init();
     std::thread t1(th1);
     std::thread t2(th2);
-    mcp.MCP_Init();
-    
     while(true){
         mcp.scan_all_inputs();
     }
-            
 } 
-
