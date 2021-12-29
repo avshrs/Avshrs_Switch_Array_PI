@@ -57,7 +57,7 @@ void MCP_Manager::scan_all_inputs(){
 
 void MCP_Manager::write_output_timer(int output, unsigned int timeout){
     try{
-        std::thread t1(&MCP_Manager::change_state, this, output, timeout);
+        std::thread t1(&MCP_Manager::change_state, this, output, timeout).detach();
     }
     catch (const std::exception& e) { 
         std::cout << e.what(); 
