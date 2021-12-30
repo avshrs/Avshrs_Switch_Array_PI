@@ -22,7 +22,7 @@ void chechViolation(){
     int out = 0;
     while(true){
         out = 100-1;
-        if(sa.out_state[100] == true){
+        if(sa.out_state[out] == true){
             std::cout<< "out_state violated 100" << std::endl;
             if(count[out] == 0){
                 // salon
