@@ -59,7 +59,9 @@ void MCP_Manager::write_output_timer(int output, unsigned int timeout){
     try{
         // if(in_states[31]){
             if (out_states_forced[output] > 0){
+                std::cout << "timeout was: " << std::dec << out_states_forced[output] << std::endl;
                 out_states_forced[output] = timeout;
+                std::cout << "timeout is: " << std::dec << out_states_forced[output] << std::endl;
             }
             else{
             std::thread(&MCP_Manager::change_state, this, output, timeout).detach();
