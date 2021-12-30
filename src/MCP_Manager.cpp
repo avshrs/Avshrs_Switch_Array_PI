@@ -58,7 +58,12 @@ void MCP_Manager::scan_all_inputs(){
 void MCP_Manager::write_output_timer(int output, unsigned int timeout){
     try{
         // if(in_states[31]){
+            if (out_states_forced[output] > 0){
+                out_states_forced[output] = timeout;
+            }
+            else{
             std::thread(&MCP_Manager::change_state, this, output, timeout).detach();
+            }
         // }
     }
     catch (const std::exception& e) { 
@@ -67,23 +72,17 @@ void MCP_Manager::write_output_timer(int output, unsigned int timeout){
 }
 
 void MCP_Manager::change_state(int output, unsigned int timeout){
-    if (out_states_forced[output]){
-        out_states_forced[output] = timeout;
+    uint8_t input = mcp_settings->get_oi_relation(output);
+    if (!read_input_buffer(input)){
+        write_output(output, true, 999);
     }
-    
-    if(!out_states_forced[output]){
-        uint8_t input = mcp_settings->get_oi_relation(output);
-        if (!read_input_buffer(input)){
-            write_output(output, true, 999);
-        }
-        for(out_states_forced[output] = timeout; out_states_forced[output] < 1 ; out_states_forced[output]--){
+    for(out_states_forced[output] = timeout; out_states_forced[output] < 1 ; out_states_forced[output]--){
         usleep(1000000);
-        }
-        input = mcp_settings->get_oi_relation(output);
-        if (!read_input_buffer(input)){
-            write_output(output, false, 999);
-        }
     }
+    if (!read_input_buffer(input)){
+        write_output(output, false, 999);
+    }
+
 }
 
 void MCP_Manager::write_output(int output, bool value, int in = 999){
