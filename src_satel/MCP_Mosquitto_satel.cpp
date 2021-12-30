@@ -9,13 +9,13 @@
 mqtt_client::mqtt_client(const char *id, const char *host, int port, MCP_Manager *mcp_manager_) : mosquittopp(id)
 {
     mcp_manager = mcp_manager_;
-    int keepalive = 50;
+    int keepalive = 60;
     connect(host, port, keepalive);
     
 }
 mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
 {
-    int keepalive = 50;
+    int keepalive = 60;
     connect(host, port, keepalive);
     reconnect_delay_set(5, 1000000, true);
     
@@ -73,6 +73,10 @@ void mqtt_client::on_connect(int rc)
         #ifdef DEBUG
             std::cout << "Connected with code " << rc << std::endl;
         #endif
+    }
+    else {
+           std::cout << "Error Connected with code " << rc << std::endl;
+        
     }
     
 }
