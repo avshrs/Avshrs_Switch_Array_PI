@@ -129,6 +129,16 @@ bool SatelIntegra::CheckAddress()
 	return true;
 }
 
+void SatelIntegra::ReadLoop(){
+	while(true){
+		ReadZonesStatesAll();
+		ReadOutputsStatesAll();
+		ReadArmStatesAll();
+		ReadAlarm();
+		usleep(10000);
+	}
+}
+
 bool SatelIntegra::ConnectToIntegra()
 {
 	if (m_socket != INVALID_SOCKET)
@@ -235,7 +245,7 @@ void SatelIntegra::ReadZonesStatesAll(){
 	{
 		unsigned int byteNumber;
 		unsigned int bitNumber;
-		for(int i = 0; i < 128; i++){
+		for(int i = 1; i < 129; i++){
 			byteNumber = i / 8;
 			bitNumber = i % 8;
 			in_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
@@ -254,7 +264,7 @@ void SatelIntegra::ReadOutputsStatesAll(){
 	{
 		unsigned int byteNumber;
 		unsigned int bitNumber;
-		for(int i = 0; i < 128; i++){
+		for(int i = 1; i < 129; i++){
 			byteNumber = i / 8;
 			bitNumber = i % 8;
 			out_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
@@ -273,7 +283,7 @@ void SatelIntegra::ReadArmStatesAll()
 	cmd[0] = 0x0A; // read armed partition
 	if (SendCommand(cmd, 1, buffer, 5) > 0)
 	{	
-		for(int i = 0; i < 32; i++){
+		for(int i = 1; i < 33; i++){
 			unsigned int byteNumber = i / 8;
 			unsigned int bitNumber = i % 8;
 			arm_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;

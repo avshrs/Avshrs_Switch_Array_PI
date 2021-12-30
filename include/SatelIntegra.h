@@ -23,23 +23,28 @@ class SatelIntegra{
 		SatelIntegra(int ID, const std::string &IPAddress, unsigned short IPPort, const std::string &userCode, int pollInterval);
 
     public:
-		bool arm_state[32] = {false};
+		bool arm_state[33] = {false};
 		bool alarm_state = false;
 
-		bool in_state[128] = {false};
-		std::string in_name[128];
+		bool in_state[129] = {false};
+		std::string in_name[129];
 		
-		bool out_state[128] = {false};
-		std::string out_name[128];
+		bool out_state[129] = {false};
+		std::string out_name[129];
+		
+		
+
 
     public:
+		void ReadLoop();
+		void CheckViolationAndInformLoop();
 		void ReadZonesStatesAll();
 		void ReadOutputsStatesAll();
 		void ReadArmStatesAll();
 		void ReadAlarm();
-
-
 		bool ReadEvents();
+
+		
 		bool ArmPartitions(int partition, int mode = 0);
 		bool DisarmPartitions(int partition);
 		void UpdateOutputName(int Idx, const unsigned char *name);

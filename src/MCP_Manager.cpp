@@ -65,13 +65,17 @@ void MCP_Manager::write_output_timer(int output, unsigned int timeout){
 }
 
 void MCP_Manager::change_state(int output, unsigned int timeout){
-    write_output(output, true, 999);
-    for(unsigned int i = 0; i < timeout+1; i++){
-    usleep(1000000);
-    }
-    uint8_t input = mcp_settings->get_oi_relation(output);
-    if (!read_input_buffer(input)){
-        write_output(output, false, 999);
+    if(!out_states_forced[output]){
+        write_output(output, true, 999);
+        out_states_forced[output]= true;
+        for(unsigned int i = 0; i < timeout+1; i++){
+        usleep(1000000);
+        }
+        uint8_t input = mcp_settings->get_oi_relation(output);
+        if (!read_input_buffer(input)){
+            write_output(output, false, 999);
+        }
+        out_states_forced[output]= false;
     }
 
 }
