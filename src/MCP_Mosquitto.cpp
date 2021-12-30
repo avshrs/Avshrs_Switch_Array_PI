@@ -1,11 +1,10 @@
 #include "MCP_Mosquitto.h"
 
 
-#ifdef DEBUG
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#endif
+
 
 mqtt_client::mqtt_client(const char *id, const char *host, int port, MCP_Manager *mcp_manager_) : mosquittopp(id)
 {

@@ -17,6 +17,7 @@ mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquitto
 {
     int keepalive = 50;
     connect(host, port, keepalive);
+    reconnect_delay_set(5, 1000000, true);
     
 }
 
@@ -29,8 +30,6 @@ void mqtt_client::client_loop_forever(){
         std::cout << "Wrong class constructor!!!" << std::endl;
     }
 }
-
-
 
 
 void mqtt_client::register_subs(){
@@ -62,7 +61,8 @@ void mqtt_client::unregister_subs(){
 
 void mqtt_client::on_error() {
     std::cout<<"onerror"<<std::endl;
-    return;}
+    return;
+}
 
 
 void mqtt_client::on_connect(int rc)
@@ -86,6 +86,7 @@ void mqtt_client::on_disconnect(int rc)
         #endif
     }
 }
+
 void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
 {
 
