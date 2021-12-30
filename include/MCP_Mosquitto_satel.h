@@ -15,6 +15,7 @@ class mqtt_client : public mosqpp::mosquittopp
 public:
     mqtt_client (const char *id, const char *host, int port);
     void on_connect(int rc);
+    void client_loop_forever();
     void on_error();
     void on_disconnect(int rc);
 };

@@ -19,7 +19,9 @@ void th1(){
     std::cout<< "read loop" << std::endl;
     sa.ReadLoop();
 }
-
+void th2(){
+    mqtt_.client_loop_forever();
+}
 void chechViolation(){
     std::cout<< "chechViolation" << std::endl;
     int salon = 100-1;
@@ -122,6 +124,8 @@ void chechViolation(){
 
 int main(){ 
     std::thread t1(th1);
+    std::thread t2(th2);
     usleep(100000);
     chechViolation();
 }
+
