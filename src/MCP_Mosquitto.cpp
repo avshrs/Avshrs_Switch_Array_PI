@@ -3,7 +3,8 @@
 
 #ifdef DEBUG
 #include <iostream>
-
+#include <iomanip>
+#include <ctime>
 #endif
 
 mqtt_client::mqtt_client(const char *id, const char *host, int port, MCP_Manager *mcp_manager_) : mosquittopp(id)
@@ -162,20 +163,25 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
-            else if(message_payload == "ON_TIME"){
+            else if(message_payload.find("ON_TIME")!=std::string::npos){
+            // else if(message_payload == "ON_TIME"){
                 std::string nr_str;
+                std::string timeout;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);
                 }
                 else{
                     nr_str = message_topic.substr(message_topic.length() - 1);
                 }
+                if (message_payload.substr(message_payload.length() - 3, 1 ) == "_"){
+                    timeout = message_payload.substr(message_payload.length() - 2);
+                }
+                else{
+                     timeout = message_payload.substr(message_payload.length() - 3);
+                }
                 int nr = std::stoi(nr_str);
-                std::string pub = "MCP_OUT_P_";
-                std::string msg = "ON";
-                pub += nr_str;
-                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
-                mcp_manager->write_output_timer(nr, 60);
+                int time = std::stoi(timeout);
+                mcp_manager->write_output_timer(nr, time);
                 #ifdef DEBUG
                     std::cout << "Request to turn on output nr:" << nr << "by PIR to 60 seconds" << std::endl;
                 #endif

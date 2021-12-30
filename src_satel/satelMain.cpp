@@ -2,6 +2,9 @@
 #include "MCP_Mosquitto.h"
 #include <thread>
 #include <string>
+#include <iomanip>
+#include <ctime>
+
 
 char client_id[] = "Satel_Listener";
 char host[] = "192.168.1.96";
@@ -24,73 +27,60 @@ void chechViolation(){
         out = 100-1;
         if(sa.out_state[out] == true){
             // std::cout<< "out_state violated 100" << std::endl;
-            if(count[out] == 0){
+            if(std::time(nullptr) - count[out] > 59 ){
                 // salon
-                std::cout<< "out_state violated 100 - counter == 0" << std::endl;
-                std::string msg = "ON_TIME";
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout<< "Out_state violated 100 Salon" << std::endl;
+                std::string msg = "ON_TIME_60";
                 mqtt_.publish(NULL, "MCP_OUT_S_12", msg.length(), msg.c_str());
-                count[out] = 200;
+                count[out] = std::time(nullptr);
             }
-            else{
-                count[out]--;
-            }
+            
         }
-        else{
-            count[out] = 0;
-        }
+        
         out = 101-1;
         if(sa.out_state[out] == true){
             // std::cout<< "out_state violated 101" << std::endl;
-            if(count[out] == 0){
-                std::cout<< "out_state violated 101 - counter == 0" << std::endl;
+            if(std::time(nullptr) - count[out] > 59 ){
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout<< "Out_state violated 101 Kuchnia" << std::endl;
                 // kuchnia
-                std::string msg = "ON_TIME";
+                std::string msg = "ON_TIME_60";
                 mqtt_.publish(NULL, "MCP_OUT_S_18", msg.length(), msg.c_str());
-                count[out] = 200;
+                count[out] = std::time(nullptr);
             }
-            else{
-                count[out]--;
-            }
-
-        }
-        else{
-            count[101] = 0;
         }
         out = 102-1;
         if(sa.out_state[out] == true){
             // std::cout<< "out_state violated 102" << std::endl;
-            if(count[out] == 0){
-                std::cout<< "out_state violated 102 - counter == 0" << std::endl;
+            if(std::time(nullptr) - count[out] > 59 ){
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout<< "Out_state violated 102 Wiatrolap" << std::endl;
                 // wiatrołap
-                std::string msg = "ON_TIME";
+                std::string msg = "ON_TIME_60";
                 mqtt_.publish(NULL, "MCP_OUT_S_11", msg.length(), msg.c_str());
-                count[out] = 200;
+                count[out] = std::time(nullptr);
             }
-            else{
-                count[out]--;
-            }
-
-        }
-        else{
-            count[out] = 0;
         }
         out = 103-1;
         if(sa.out_state[out] == true){
             // std::cout<< "out_state violated 103" << std::endl;
-            if(count[out] == 0){
-                std::cout<< "out_state violated 103 - counter == 0" << std::endl;
+            if(std::time(nullptr) - count[out] > 59 ){
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout<< "Out_state violated 103 Garaz" << std::endl;
                 // garaz
-                std::string msg = "ON_TIME";
-                mqtt_.publish(NULL, "MCP_OUT_S_022", msg.length(), msg.c_str());
-                count[out] = 200;
+                std::string msg = "ON_TIME_600";
+                mqtt_.publish(NULL, "MCP_OUT_S_22", msg.length(), msg.c_str());
+                count[out] = std::time(nullptr);
             }
-            else{
-                count[out]--;
-            }
-
-        }
-        else{
-            count[out] = 0;
         }
         usleep(10000);
        
