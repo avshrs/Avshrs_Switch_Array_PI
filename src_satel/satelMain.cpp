@@ -12,7 +12,7 @@ int main(){
 
 SatelIntegra sa(67, "192.168.1.240", 25197, "1234", 60);
 
-std::string msg = "ON_TIMER";
+std::string msg = "ON_TIME";
 mqtt_.publish(NULL, "MCP_OUT_S_0", msg.length(), msg.c_str());
 
 // while(true){
