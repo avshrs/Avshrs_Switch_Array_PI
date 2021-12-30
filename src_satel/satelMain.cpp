@@ -7,12 +7,18 @@ char client_id[] = "Satel_Listener";
 char host[] = "192.168.1.96";
 int port = 1883;
 mqtt_client mqtt_(client_id, host, port);
+
 SatelIntegra sa(67, "192.168.1.240", 25197, "1234", 60);
+
 unsigned int count[129] = {0};
+
 void th1(){
+    std::cout<< "read loop" << std::endl;
     sa.ReadLoop();
 }
+
 void chechViolation(){
+    std::cout<< "chechViolation" << std::endl;
     while(true){
         if(sa.out_state[100] == true){
             std::cout<< "out_state violated 100" << std::endl;
