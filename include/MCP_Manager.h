@@ -27,7 +27,7 @@ class MCP_Manager
         bool out_states_real[OUT_RANGE] = {false};
         bool out_states[OUT_RANGE] = {false};
         bool alarm_armed = false;
-        bool out_states_forced[OUT_RANGE] = {false};
+        unsigned int out_states_forced[OUT_RANGE] = {false};
         
     public:
         void MCP_Init();

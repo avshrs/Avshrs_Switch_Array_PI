@@ -93,7 +93,7 @@ void chechViolation(){
             count[out] = 0;
         }
         usleep(100000);
-        std::cout<< "chechViolation_loop" << std::endl;
+       
 
     }
 }
