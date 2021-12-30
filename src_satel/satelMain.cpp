@@ -19,74 +19,78 @@ void th1(){
 
 void chechViolation(){
     std::cout<< "chechViolation" << std::endl;
+    int out = 0;
     while(true){
+        out = 100-1;
         if(sa.out_state[100] == true){
             std::cout<< "out_state violated 100" << std::endl;
-            if(count[100] == 0){
+            if(count[out] == 0){
                 // salon
                 std::cout<< "out_state violated 100 - counter == 0" << std::endl;
                 std::string msg = "ON_TIME";
                 mqtt_.publish(NULL, "MCP_OUT_S_12", msg.length(), msg.c_str());
-                count[100] = 15;
+                count[out] = 15;
             }
             else{
-                count[100]--;
+                count[out]--;
             }
         }
         else{
-            count[100] = 0;
+            count[out] = 0;
         }
-        if(sa.out_state[101] == true){
+        out = 101-1;
+        if(sa.out_state[out] == true){
             std::cout<< "out_state violated 101" << std::endl;
-            if(count[101] == 0){
+            if(count[out] == 0){
                 std::cout<< "out_state violated 101 - counter == 0" << std::endl;
                 // kuchnia
                 std::string msg = "ON_TIME";
                 mqtt_.publish(NULL, "MCP_OUT_S_18", msg.length(), msg.c_str());
-                count[101] = 15;
+                count[out] = 15;
             }
             else{
-                count[101]--;
+                count[out]--;
             }
 
         }
         else{
             count[101] = 0;
         }
-        if(sa.out_state[102] == true){
+        out = 102-1;
+        if(sa.out_state[out] == true){
             std::cout<< "out_state violated 102" << std::endl;
-            if(count[102] == 0){
+            if(count[out] == 0){
                 std::cout<< "out_state violated 102 - counter == 0" << std::endl;
                 // wiatrołap
                 std::string msg = "ON_TIME";
                 mqtt_.publish(NULL, "MCP_OUT_S_11", msg.length(), msg.c_str());
-                count[102] = 15;
+                count[out] = 15;
             }
             else{
-                count[102]--;
+                count[out]--;
             }
 
         }
         else{
-            count[102] = 0;
+            count[out] = 0;
         }
-
-        if(sa.out_state[103] == true){
+        out = 103-1;
+        if(sa.out_state[out] == true){
             std::cout<< "out_state violated 103" << std::endl;
-            if(count[103] == 0){
+            if(count[out] == 0){
                 std::cout<< "out_state violated 103 - counter == 0" << std::endl;
                 // garaz
                 std::string msg = "ON_TIME";
                 mqtt_.publish(NULL, "MCP_OUT_S_022", msg.length(), msg.c_str());
-                count[103] = 15;
+                count[out] = 15;
             }
             else{
-                count[103]--;
+                count[out]--;
             }
 
         }
         else{
-            count[103] = 0;
+            count[out] = 0;
         }
         usleep(100000);
     }

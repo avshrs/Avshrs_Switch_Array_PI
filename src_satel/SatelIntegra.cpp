@@ -245,7 +245,7 @@ void SatelIntegra::ReadZonesStatesAll(){
 	{
 		unsigned int byteNumber;
 		unsigned int bitNumber;
-		for(int i = 1; i < 129; i++){
+		for(int i = 0; i < 128; i++){
 			byteNumber = i / 8;
 			bitNumber = i % 8;
 			in_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
@@ -264,7 +264,7 @@ void SatelIntegra::ReadOutputsStatesAll(){
 	{
 		unsigned int byteNumber;
 		unsigned int bitNumber;
-		for(int i = 1; i < 129; i++){
+		for(int i = 0; i < 128; i++){
 			byteNumber = i / 8;
 			bitNumber = i % 8;
 			out_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
