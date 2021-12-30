@@ -57,14 +57,14 @@ void MCP_Manager::scan_all_inputs(){
 
 void MCP_Manager::write_output_timer(int output, unsigned int timeout){
     try{
-        // if(in_states[31]){
+        if(in_states[31]){
             if (out_states_forced[output] > 0){
                 out_states_forced[output] = timeout;
             }
             else{
             std::thread(&MCP_Manager::change_state, this, output, timeout).detach();
             }
-        // }
+        }
     }
     catch (const std::exception& e) { 
         std::cout << e.what() << std::endl;

@@ -71,6 +71,9 @@ void mqtt_client::on_connect(int rc)
     {
 
         #ifdef DEBUG
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);      
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
             std::cout << "Connected with code " << rc << std::endl;
         #endif
         unregister_subs();
@@ -84,6 +87,9 @@ void mqtt_client::on_disconnect(int rc)
     if (!rc)
     {
         #ifdef DEBUG
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);      
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
             std::cout << "disconnected - code " << rc << std::endl;
         #endif
     }
@@ -92,6 +98,9 @@ void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
 {
 
     #ifdef DEBUG
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);      
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         std::cout << "Subscription succeeded. " << " mid: " << mid << " qos_count: "<< qos_count << " qos_granted: "<< granted_qos << std::endl;
     #endif
 }
@@ -116,6 +125,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::string msg = "Online";
                 publish(NULL, "MCP_Array", msg.length(), msg.c_str());
                 #ifdef DEBUG
+                    auto t = std::time(nullptr);
+                    auto tm = *std::localtime(&t);      
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                     std::cout << "Status Request Recieved." << std::endl;
                 #endif
             }
@@ -140,6 +152,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     msg = "OFF";
                 publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 #ifdef DEBUG
+                    auto t = std::time(nullptr);
+                    auto tm = *std::localtime(&t);      
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                     std::cout << "Request for output state" << std::endl;
                 #endif
                     
@@ -159,6 +174,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 mcp_manager->write_output(nr, true, 999);
                 #ifdef DEBUG
+                    auto t = std::time(nullptr);
+                    auto tm = *std::localtime(&t);      
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
@@ -182,7 +200,10 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 int time = std::stoi(timeout);
                 mcp_manager->write_output_timer(nr, time);
                 #ifdef DEBUG
-                    std::cout << "Request to turn on output nr:" << nr << "by PIR to 60 seconds" << std::endl;
+                    auto t = std::time(nullptr);
+                    auto tm = *std::localtime(&t);      
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                    std::cout << "Request to turn on output nr:" << nr << " by PIR with timeout: " << time << " seconds" << std::endl;
                 #endif
             }
 
@@ -201,6 +222,9 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 publish(NULL, pub.c_str(), msg.length(), msg.c_str());
                 mcp_manager->write_output(nr, false, 999);
                 #ifdef DEBUG
+                    auto t = std::time(nullptr);
+                    auto tm = *std::localtime(&t);      
+                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                     std::cout << "Request to turn off output nr:" << nr<<std::endl;
                 #endif
             }
