@@ -81,5 +81,5 @@ void chechViolation(){
 
 int main(){ 
     std::thread t1(th1);
-    std::thread t2(chechViolation);
+    chechViolation();
 }
