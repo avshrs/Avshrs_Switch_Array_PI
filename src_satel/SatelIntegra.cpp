@@ -268,9 +268,9 @@ void SatelIntegra::ReadOutputsStatesAll(){
 			byteNumber = i / 8;
 			bitNumber = i % 8;
 			out_state[i] = (buffer[byteNumber + 1] >> bitNumber) & 0x01;
-			if (out_state[i] == true){
-		        std::cout<< "out_state violated: " << std::dec << i << std::endl;
-			}
+			// if (out_state[i] == true){
+		    //     std::cout<< "out_state violated: " << std::dec << i << std::endl;
+			// }
 		}
 	}
 	else
