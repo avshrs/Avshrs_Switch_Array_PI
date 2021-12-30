@@ -2,7 +2,7 @@
 #include "MCP_Mosquitto.h"
 #include <thread>
 
-char client_id[] = "SwitchMatrix";
+char client_id[] = "satel";
 char host[] = "192.168.1.96";
 int port = 1883;
 mqtt_client mqtt_(client_id, host, port);
