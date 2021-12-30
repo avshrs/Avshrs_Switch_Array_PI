@@ -8,7 +8,7 @@ char host[] = "192.168.1.96";
 int port = 1883;
 mqtt_client mqtt_(client_id, host, port);
 SatelIntegra sa(67, "192.168.1.240", 25197, "1234", 60);
-unsigned int count[129];
+unsigned int count[129] = {0};
 void th1(){
     sa.ReadLoop();
 }
@@ -63,7 +63,7 @@ void chechViolation(){
             if(count[103] == 0){
                 // garaz
                 std::string msg = "ON_TIME";
-                mqtt_.publish(NULL, "MCP_OUT_S_22", msg.length(), msg.c_str());
+                mqtt_.publish(NULL, "MCP_OUT_S_022", msg.length(), msg.c_str());
                 count[103] = 15;
             }
             else{
