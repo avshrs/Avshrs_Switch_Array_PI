@@ -95,5 +95,6 @@ void chechViolation(){
 
 int main(){ 
     std::thread t1(th1);
+    usleep(100000);
     chechViolation();
 }
