@@ -67,7 +67,7 @@ void MCP_Manager::write_output_timer(int output, unsigned int timeout){
         // }
     }
     catch (const std::exception& e) { 
-        std::cout << e.what(); 
+        std::cout << e.what() << std::endl;
     }
 }
 
@@ -78,6 +78,7 @@ void MCP_Manager::change_state(int output, unsigned int timeout){
     }
     for(out_states_forced[output] = timeout; out_states_forced[output] < 1 ; out_states_forced[output]--){
         usleep(1000000);
+        std::cout << "sleep: " << std::dec << out_states_forced[output] << std::endl;
     }
     if (!read_input_buffer(input)){
         write_output(output, false, 999);
