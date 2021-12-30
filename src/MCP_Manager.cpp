@@ -79,7 +79,7 @@ void MCP_Manager::change_state(int output, unsigned int timeout){
         for(out_states_forced[output] = timeout; out_states_forced[output] < 1 ; out_states_forced[output]--){
         usleep(1000000);
         }
-        uint8_t input = mcp_settings->get_oi_relation(output);
+        input = mcp_settings->get_oi_relation(output);
         if (!read_input_buffer(input)){
             write_output(output, false, 999);
         }
