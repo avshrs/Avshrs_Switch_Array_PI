@@ -41,6 +41,10 @@ void MCP_Manager::register_mcp_settings(MCP_Settings *mcp_settings_){
     mcp_settings = mcp_settings_; 
 }
 
+void MCP_Manager::register_mcp_mqtt(mqtt_client *mqtt_){
+    mqtt = mqtt_;
+}
+
 void MCP_Manager::scan_all_inputs(){
     for(int in = 0; in < IN_RANGE ; in++){
         if (mcp_settings->get_in_status(in)){
