@@ -38,7 +38,7 @@ class MCP_Manager
         bool read_input_buffer(uint8_t input);
         void scan_all_inputs();
         void write_output(int output, bool value, int input);
-        void write_output_timer(int output, unsigned int timeout);
+        void write_output_timer(int output, unsigned int timeout, bool twilight_force);
     
     private:
         MCP_Data get_address(uint8_t io);

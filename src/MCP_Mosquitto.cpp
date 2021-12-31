@@ -181,8 +181,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
             else if(message_payload.find("ON_TIME")!=std::string::npos){
-            // else if(message_payload == "ON_TIME"){
-                std::string nr_str;
+l                std::string nr_str;
                 std::string timeout;
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);

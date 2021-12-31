@@ -55,9 +55,9 @@ void MCP_Manager::scan_all_inputs(){
 }
 
 
-void MCP_Manager::write_output_timer(int output, unsigned int timeout){
+void MCP_Manager::write_output_timer(int output, unsigned int timeout, bool twilight_force=false){
     try{
-        if(in_states[31]){
+        if(in_states[31] || twilight_force){
             if (out_states_forced[output] > 0){
                 out_states_forced[output] = timeout;
             }
