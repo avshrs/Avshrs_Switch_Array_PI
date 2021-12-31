@@ -239,6 +239,7 @@ std::vector<std::string> mqtt_client::parse_string(std::string str){
     std::stringstream ss(str);
 
     for (std::string i; ss >> i;) {
+        std::cout<<i << std::endl;
         vect.push_back(i);    
         if (ss.peek() == '_')
             ss.ignore();
