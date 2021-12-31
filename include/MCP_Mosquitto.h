@@ -4,8 +4,8 @@
 #include <cstring>
 #include <string>
 #include <cstdio>
-#include "MCP_Manager.h"
 
+class MCP_Manager;
 
 #define DEBUG
 

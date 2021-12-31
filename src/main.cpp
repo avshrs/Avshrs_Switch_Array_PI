@@ -24,6 +24,7 @@ void th2(){
 }
 
 int main(){ 
+    mcp.register_mcp_mqtt(&mqtt);
     mcpsettings.read_settings();
     settingsserver.register_mcp_settings(&mcpsettings);
     mcp.register_mcp_settings(&mcpsettings);
