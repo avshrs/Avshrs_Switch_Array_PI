@@ -178,8 +178,8 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             }
             else if(message_payload.find("ON_TIME")!=std::string::npos){
                 std::vector<std::string> data = parse_string(message_payload);
-                std::cout<<"Test : ";
-                std::cout << "0: " << data[0] << " 1: " << data[1] << " 2: " << data[2] <<std::endl;
+                // std::cout<<"Test : ";
+                // std::cout << "0: " << data[0] << " 1: " << data[1] << " 2: " << data[2] <<std::endl;
 
                 std::string nr_str;
                 std::string timeout;
@@ -238,11 +238,13 @@ std::vector<std::string> mqtt_client::parse_string(std::string str){
     std::vector<std::string> vect;
     std::stringstream ss(str);
 
-    for (std::string i; ss >> i;) {
-        std::cout<<i << std::endl;
-        vect.push_back(i);    
-        if (ss.peek() == '_')
-            ss.ignore();
-    }    
+    while (ss.good()) {
+        std::string substr;
+        getline(ss, substr, '_');
+        vect.push_back(substr);
+    }
+ 
+    for (size_t i = 0; i < vect.size(); i++)
+        std::cout << vect[i] << std::endl;    
     return vect;
 }
