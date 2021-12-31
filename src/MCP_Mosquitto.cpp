@@ -231,7 +231,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
 }
 
 
-std::vector<std::string> parse_string(std::string str){
+std::vector<std::string> mqtt_client::parse_string(std::string str){
     std::vector<std::string> vect;
     std::stringstream ss(str);
 

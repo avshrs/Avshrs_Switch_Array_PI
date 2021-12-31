@@ -4,7 +4,7 @@
 #include <cstring>
 #include <string>
 #include <cstdio>
-
+#include <vector>
 class MCP_Manager;
 
 #define DEBUG
@@ -27,4 +27,7 @@ public:
     void on_disconnect(int rc);
     void on_message(const struct mosquitto_message *message);
     void on_subscribe(int mid, int qos_count, const int *granted_qos);
+private:
+    std::vector<std::string> parse_string(std::string str);
+
 };
