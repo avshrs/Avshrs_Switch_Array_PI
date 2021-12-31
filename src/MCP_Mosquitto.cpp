@@ -5,7 +5,9 @@
 #include <iomanip>
 #include <ctime>
 
-
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
 {
