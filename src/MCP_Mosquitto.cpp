@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-
+#include <vector>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -177,8 +177,10 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
             else if(message_payload.find("ON_TIME")!=std::string::npos){
+                std::vector<std::string> data parse_string(message_payload);
                 std::string nr_str;
                 std::string timeout;
+
                 if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
                     nr_str = message_topic.substr(message_topic.length() - 2);
                 }
@@ -226,4 +228,17 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         }
     }
     catch(...){std::cout << "Received Empty Payload" << std:: endl;}
+}
+
+
+std::vector<std::string> parse_string(std::string str){
+    std::vector<std::string> vect;
+    std::stringstream ss(str);
+
+    for (std::string i; ss >> i;) {
+        vect.push_back(i);    
+        if (ss.peek() == '/')
+            ss.ignore();
+    }    
+    return vect;
 }
