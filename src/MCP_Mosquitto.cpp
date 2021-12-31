@@ -193,7 +193,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 }
                 int nr = std::stoi(nr_str);
                 int time = std::stoi(timeout);
-                mcp_manager->write_output_timer(nr, time);
+                mcp_manager->write_output_timer(nr, time, false);
                 #ifdef DEBUG
                     auto t = std::time(nullptr);
                     auto tm = *std::localtime(&t);      
