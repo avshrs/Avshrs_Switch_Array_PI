@@ -6,13 +6,7 @@
 #include <ctime>
 
 
-mqtt_client::mqtt_client(const char *id, const char *host, int port, MCP_Manager *mcp_manager_) : mosquittopp(id)
-{
-    mcp_manager = mcp_manager_;
-    int keepalive = 50;
-    connect(host, port, keepalive);
-    
-}
+
 mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
 {
     int keepalive = 50;

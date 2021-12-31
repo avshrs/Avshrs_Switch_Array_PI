@@ -13,7 +13,7 @@ MCP_Settings mcpsettings;
 char client_id[] = "SwitchMatrix";
 char host[] = "192.168.1.96";
 int port = 1883;
-mqtt_client mqtt(client_id, host, port, &mcp);
+mqtt_client mqtt(client_id, host, port);
 
 void th1(){
     socketserver.receive_packets();
@@ -24,6 +24,7 @@ void th2(){
 }
 
 int main(){ 
+    mqtt.register_mcp_manager(&mcp);
     mcp.register_mcp_mqtt(&mqtt);
     mcpsettings.read_settings();
     settingsserver.register_mcp_settings(&mcpsettings);

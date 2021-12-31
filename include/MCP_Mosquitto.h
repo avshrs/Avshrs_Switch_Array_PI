@@ -15,7 +15,6 @@ class MCP_Manager;
 class mqtt_client : public mosqpp::mosquittopp
 {
 public:
-    mqtt_client (const char *id, const char *host, int port, MCP_Manager *mcp_manager_);
     mqtt_client (const char *id, const char *host, int port);
     MCP_Manager *mcp_manager;
     void send_ack(std::string pub, std::string msg);
