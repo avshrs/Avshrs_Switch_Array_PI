@@ -191,6 +191,6 @@ std::vector<std::string> mqtt_client::parse_string(std::string str, char delimit
         getline(ss, substr, delimiter);
         vect.push_back(substr);
     }
-    std::cout << vect.size() << std::endl;
+    // std::cout << vect.size() << std::endl;
     return vect;
 }
