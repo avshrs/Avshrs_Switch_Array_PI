@@ -6,14 +6,16 @@
 #include <thread>
 #include "MCP_Mosquitto.h"
 
-MCP_Manager mcp;
-SettingsServer settingsserver;
-SocketServer socketserver;
-MCP_Settings mcpsettings;
 char client_id[] = "SwitchMatrix";
 char host[] = "192.168.1.96";
 int port = 1883;
 mqtt_client mqtt(client_id, host, port);
+
+MCP_Manager mcp;
+SettingsServer settingsserver;
+SocketServer socketserver;
+MCP_Settings mcpsettings;
+
 
 void th1(){
     socketserver.receive_packets();

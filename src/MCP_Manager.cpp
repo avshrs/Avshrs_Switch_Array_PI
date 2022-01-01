@@ -77,14 +77,12 @@ void MCP_Manager::write_output_timer(int output, unsigned int timeout, bool twil
 }
 
 void MCP_Manager::change_state(int output, unsigned int timeout){
-    // uint8_t input = mcp_settings->get_oi_relation(output);
     if (!read_output_buffer(output)){
         write_output(output, true, 999);
     }
     for(out_states_forced[output] = timeout; out_states_forced[output] > 0 ; out_states_forced[output]--){
         usleep(1000000);
-        // std::cout << "sleep: " << std::dec << out_states_forced[output] << std::endl;
-    }
+     }
     if (!read_output_buffer(output)){
         write_output(output, false, 999);
     }

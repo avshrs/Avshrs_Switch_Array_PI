@@ -11,7 +11,7 @@
 
 mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
 {
-    int keepalive = 50;
+    int keepalive = 60;
     connect(host, port, keepalive);
     
 }
@@ -27,8 +27,6 @@ void mqtt_client::client_loop_forever(){
 }
 
 
-
-
 void mqtt_client::register_subs(){
     subscribe(NULL, "MCP_Array");  // Main device topic - Online 
 
@@ -37,7 +35,6 @@ void mqtt_client::register_subs(){
         std::string sub = "MCP_OUT_S_";
         sub += std::to_string(i);
         pub += std::to_string(i);
-        publish(NULL, pub.c_str());
         subscribe(NULL, sub.c_str());
         usleep(10000);
     }
@@ -122,25 +119,13 @@ void mqtt_client::pub_state(int out, bool state){
     }
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
+
 void mqtt_client::on_message(const struct mosquitto_message *message){
 
     try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
-        if(!message_payload.empty() && message_topic == "MCP_Array"){
-
-            if(message_payload == "STATUS"){
-                std::string msg = "Online";
-                publish(NULL, "MCP_Array", msg.length(), msg.c_str());
-                #ifdef DEBUG
-                    auto t = std::time(nullptr);
-                    auto tm = *std::localtime(&t);      
-                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                    std::cout << "Status Request Recieved." << std::endl;
-                #endif
-            }
-        }
-        else if(!message_payload.empty() && message_topic.find("MCP_OUT_S_") != std::string::npos){
+        if(!message_payload.empty() && message_topic.find("MCP_OUT_S_") != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '_');
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
