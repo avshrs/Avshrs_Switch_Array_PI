@@ -147,7 +147,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
             else if(message_payload.find("ONTIME")!=std::string::npos){
-                std::vector<std::string> mdata = parse_string(message_payload, '/');
+                std::vector<std::string> mdata = parse_string(message_payload, '_');
                 if (mdata.size() != 3 ){
                     auto t = std::time(nullptr);
                     auto tm = *std::localtime(&t);      
