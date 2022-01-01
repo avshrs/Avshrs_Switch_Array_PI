@@ -109,7 +109,7 @@ void mqtt_client::send_ack(std::string pub, std::string msg ){
 
 void mqtt_client::pub_state(int out, bool state){
     std::string pub = "MCP_OUT_P_";
-    pub += out;
+    pub += std::to_string(out);
     std::string msg; 
     if (state){
         msg = "ON";
