@@ -16,6 +16,14 @@ SettingsServer settingsserver;
 SocketServer socketserver;
 MCP_Settings mcpsettings;
 
+void keep_alive_message(){
+    std::string msg = "Online";
+    while (true){
+        mqtt.publish(NULL, "MCP_Array", msg.length(), msg.c_str());
+        sleep(60); 
+    }
+
+}
 
 void th1(){
     socketserver.receive_packets();
@@ -23,6 +31,9 @@ void th1(){
 
 void th2(){
     mqtt.client_loop_forever();
+}
+void th3(){
+    keep_alive_message();
 }
 
 int main(){ 
@@ -36,6 +47,7 @@ int main(){
     mcp.MCP_Init();
     std::thread t1(th1);
     std::thread t2(th2);
+    std::thread t3(th3);
     while(true){
         mcp.scan_all_inputs();
     }
