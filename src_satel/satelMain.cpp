@@ -29,7 +29,7 @@ void chechViolation(){
     int wiatrolap = 102-1;
     int garaz = 103-1;
     int lazienka = 104-1;
-    int korytarz = 105-1;
+    // int korytarz = 105-1;
     
     while(true){
         
