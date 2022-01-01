@@ -85,7 +85,7 @@ void MCP_Manager::change_state(int output, unsigned int timeout){
         usleep(1000000);
         // std::cout << "sleep: " << std::dec << out_states_forced[output] << std::endl;
     }
-    if (!read_input_buffer(input)){
+    if (!read_output_buffer(output)){
         write_output(output, false, 999);
     }
 }
