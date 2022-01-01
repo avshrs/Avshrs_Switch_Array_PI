@@ -110,6 +110,18 @@ void mqtt_client::send_ack(std::string pub, std::string msg ){
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
 
+void mqtt_client::pub_state(int out, bool state){
+    std::string pub = "MCP_OUT_P_";
+    pub += out;
+    std::string msg; 
+    if (state){
+        msg = "ON";
+    }
+    else{
+        msg = "OFF";
+    }
+    publish(NULL, pub.c_str(), msg.length(), msg.c_str());
+}
 void mqtt_client::on_message(const struct mosquitto_message *message){
 
     try{

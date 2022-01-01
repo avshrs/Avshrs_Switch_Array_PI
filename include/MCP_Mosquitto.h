@@ -18,6 +18,7 @@ public:
     mqtt_client (const char *id, const char *host, int port);
     MCP_Manager *mcp_manager;
     void send_ack(std::string pub, std::string msg);
+    void pub_state(int out, bool sate);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
     void client_loop_forever();
     void register_subs();

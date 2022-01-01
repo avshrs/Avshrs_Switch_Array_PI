@@ -102,6 +102,7 @@ void MCP_Manager::write_output(int output, bool value, int in = 999){
         }
         else if (mcp_settings->get_out_bistable(output)){
             if (out_states[output] > 0 && value > 0){
+                
                 out_states[output] = false;
                 write_output_direct(output, false);
                 auto t = std::time(nullptr);
@@ -136,6 +137,7 @@ bool MCP_Manager::read_input_buffer(uint8_t input){
 }
 
 void MCP_Manager::write_output_direct(uint8_t out, bool state){
+    mqtt->pub_state(out, state);
     MCP_Data mcp_data = get_address(out);
     out_states_real[out] = state;
     mcpc_out[mcp_data.chipset]->writeRaw(mcp_data.side, mcp_data.io, state);
