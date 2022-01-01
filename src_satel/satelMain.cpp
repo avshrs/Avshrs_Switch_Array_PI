@@ -41,7 +41,7 @@ void chechViolation(){
                 auto tm = *std::localtime(&t);
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout<< "Out_state violated 100 Salon" << std::endl;
-                std::string msg = "ON_TIME_60";
+                std::string msg = "ONTIME_60_0";
                 mqtt_.publish(NULL, "MCP_OUT_S_12", msg.length(), msg.c_str());
                 count[salon] = std::time(nullptr);
             }
@@ -55,7 +55,7 @@ void chechViolation(){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout<< "Out_state violated 101 Kuchnia" << std::endl;
                 // kuchnia
-                std::string msg = "ON_TIME_60";
+                std::string msg = "ONTIME_60_0";
                 mqtt_.publish(NULL, "MCP_OUT_S_18", msg.length(), msg.c_str());
                 count[kuchnia] = std::time(nullptr);
             }
@@ -69,7 +69,7 @@ void chechViolation(){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout<< "Out_state violated 102 Wiatrolap" << std::endl;
                 // wiatrołap
-                std::string msg = "ON_TIME_60";
+                std::string msg = "ONTIME_60_0";
                 mqtt_.publish(NULL, "MCP_OUT_S_11", msg.length(), msg.c_str());
                 count[wiatrolap] = std::time(nullptr);
             }
@@ -83,7 +83,7 @@ void chechViolation(){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout<< "Out_state violated 103 Garaz" << std::endl;
                 // garaz
-                std::string msg = "ON_TIME_600";
+                std::string msg = "ON_TIME_600_1";
                 mqtt_.publish(NULL, "MCP_OUT_S_22", msg.length(), msg.c_str());
                 count[garaz] = std::time(nullptr);
             }
@@ -96,24 +96,24 @@ void chechViolation(){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout<< "Out_state violated 103 Lazienka" << std::endl;
                 // garaz
-                std::string msg = "ON_TIME_60";
+                std::string msg = "ONTIME_60_0";
                 mqtt_.publish(NULL, "MCP_OUT_S_6", msg.length(), msg.c_str());
                 count[lazienka] = std::time(nullptr);
             }
         }
-        if(sa.out_state[korytarz] == true){
-            // std::cout<< "out_state violated 103" << std::endl;
-            if(std::time(nullptr) - count[korytarz] > 5 ){
-                auto t = std::time(nullptr);
-                auto tm = *std::localtime(&t);
-                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                std::cout<< "Out_state violated 103 Korytarz" << std::endl;
-                // garaz
-                std::string msg = "ON_TIME_60";
-                mqtt_.publish(NULL, "MCP_OUT_S_8", msg.length(), msg.c_str());
-                count[korytarz] = std::time(nullptr);
-            }
-        }
+        // if(sa.out_state[korytarz] == true){
+        //     // std::cout<< "out_state violated 103" << std::endl;
+        //     if(std::time(nullptr) - count[korytarz] > 5 ){
+        //         auto t = std::time(nullptr);
+        //         auto tm = *std::localtime(&t);
+        //         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+        //         std::cout<< "Out_state violated 103 Korytarz" << std::endl;
+        //         // garaz
+        //         std::string msg = "ONTIME_60_0";
+        //         mqtt_.publish(NULL, "MCP_OUT_S_8", msg.length(), msg.c_str());
+        //         count[korytarz] = std::time(nullptr);
+        //     }
+        // }
 
         usleep(10000);
        

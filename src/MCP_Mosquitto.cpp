@@ -129,45 +129,15 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             }
         }
         else if(!message_payload.empty() && message_topic.find("MCP_OUT_S_") != std::string::npos){
-            if(message_payload == "STATE"){
-                std::string nr_str;
-                if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
-                    nr_str = message_topic.substr(message_topic.length() - 2);
-                }
-                else{
-                    nr_str = message_topic.substr(message_topic.length() - 1);
-                }
-                int nr = std::stoi(nr_str);
-                std::string pub = "MCP_OUT_P_";
-                std::string msg;
-                pub += nr_str;
-
-                if (mcp_manager->read_output_buffer(nr))
-                    msg = "ON";
-                else
-                    msg = "OFF";
-                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
-                #ifdef DEBUG
-                    auto t = std::time(nullptr);
-                    auto tm = *std::localtime(&t);      
-                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                    std::cout << "Request for output state" << std::endl;
-                #endif
-                    
+            std::vector<std::string> tdata = parse_string(message_topic, '_');
+            if (tdata.size() != 4){
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);      
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout << "Wrong Topic lengh" << std::endl;
             }
             else if(message_payload == "ON"){
-                std::string nr_str;
-                if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
-                    nr_str = message_topic.substr(message_topic.length() - 2);
-                }
-                else{
-                    nr_str = message_topic.substr(message_topic.length() - 1);
-                }
-                int nr = std::stoi(nr_str);
-                std::string pub = "MCP_OUT_P_";
-                std::string msg = "ON";
-                pub += nr_str;
-                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
+                int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, true, 999);
                 #ifdef DEBUG
                     auto t = std::time(nullptr);
@@ -176,50 +146,31 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
-            else if(message_payload.find("ON_TIME")!=std::string::npos){
-                std::vector<std::string> data = parse_string(message_payload);
-                // std::cout<<"Test : ";
-                // std::cout << "0: " << data[0] << " 1: " << data[1] << " 2: " << data[2] <<std::endl;
-
-                std::string nr_str;
-                std::string timeout;
-
-                if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
-                    nr_str = message_topic.substr(message_topic.length() - 2);
-                }
-                else{
-                    nr_str = message_topic.substr(message_topic.length() - 1);
-                }
-                if (message_payload.substr(message_payload.length() - 3, 1 ) == "_"){
-                    timeout = message_payload.substr(message_payload.length() - 2);
-                }
-                else{
-                     timeout = message_payload.substr(message_payload.length() - 3);
-                }
-                int nr = std::stoi(nr_str);
-                int time = std::stoi(timeout);
-                mcp_manager->write_output_timer(nr, time, false);
-                #ifdef DEBUG
+            else if(message_payload.find("ONTIME")!=std::string::npos){
+                std::vector<std::string> mdata = parse_string(message_payload, '/');
+                if (mdata.size() != 3 ){
                     auto t = std::time(nullptr);
                     auto tm = *std::localtime(&t);      
                     std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                    std::cout << "Request to turn on output nr:" << nr << " by PIR with timeout: " << time << " seconds" << std::endl;
-                #endif
+                    std::cout << "Wrong payload lengh" << std::endl;
+                }
+                else{
+                    int nr = std::stoi(tdata[3]);
+                    int time = std::stoi(mdata[1]);
+                    int force = std::stoi(mdata[2]);
+                    mcp_manager->write_output_timer(nr, time, force);
+                    #ifdef DEBUG
+                        auto t = std::time(nullptr);
+                        auto tm = *std::localtime(&t);      
+                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                        std::cout << "Request to turn on output nr:" << nr << " by PIR with timeout: " << time << " seconds" << std::endl;
+                    #endif
+                }
+                
             }
 
             else if(message_payload == "OFF"){
-                std::string nr_str;
-                if (message_topic.substr(message_topic.length() - 3, 1 ) == "_"){
-                    nr_str = message_topic.substr(message_topic.length() - 2);
-                }
-                else{
-                    nr_str = message_topic.substr(message_topic.length() - 1);
-                }
-                int nr = std::stoi(nr_str);
-                std::string pub = "MCP_OUT_P_";
-                std::string msg = "OFF";
-                pub += nr_str;
-                publish(NULL, pub.c_str(), msg.length(), msg.c_str());
+                int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, false, 999);
                 #ifdef DEBUG
                     auto t = std::time(nullptr);
@@ -234,17 +185,15 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
 }
 
 
-std::vector<std::string> mqtt_client::parse_string(std::string str){
+std::vector<std::string> mqtt_client::parse_string(std::string str, char delimiter){
     std::vector<std::string> vect;
     std::stringstream ss(str);
 
     while (ss.good()) {
         std::string substr;
-        getline(ss, substr, '_');
+        getline(ss, substr, delimiter);
         vect.push_back(substr);
     }
  
-    for (size_t i = 0; i < vect.size(); i++)
-        std::cout << vect[i] << std::endl;    
     return vect;
 }
