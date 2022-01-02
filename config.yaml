@@ -3,13 +3,13 @@ mqtt:
     ServerIp: 192.168.1.96
     serverPort: 1883
     keepAliveTopic: MCP_Array
-    keepAliveMsg: Online
+    keepAliveMsg: 1line
     # eg MCP_OUT_S_0
     outSubsring: MCP_OUT_S_
     # eg MCP_OUT_P_0
     outPubsring: MCP_OUT_P_
-    outOnMsg: ON
-    outOffMsg: OFF
+    outONMsg: ON
+    outOFFMsg: OFF
 
 i2c1:
     i2cPath: /dev/i2c-1
@@ -33,515 +33,1020 @@ i2c2:
     in1Address: NULL
     in1Address: NULL
 
-output:
+outputs:
     out0:
         nr: 0
         name: Dzienny 
         type: light
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
     out1:
         nr: 1
         name: Dzieciakow
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
 
     out2:
         nr: 2
         name: Goscinny
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out3:
         nr: 3
         name: Sypialnia1
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out4:
         nr: 4
         name: Sypialnia2
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out5:
         nr: 5
         name: Garderoba
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out6:
         nr: 6
         name: Lazienka_pietro
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out7:
         nr: 7
         name: Strych
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out8:
         nr: 8
         name: Korytarz
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out9:
         nr: 9
         name: Schody
         type: light  
-        enabled: true
-        bistable: true
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 1
+        inputRelated: 1
         
     out10:
         nr: 10
         name: Empty
-        type: none  
-        enabled: false
-        bistable: false
-        inputRelated: false
+        type: n1e  
+        defaultState: 0
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
         
     out11:
         nr: 11
         name: Wiatrolap
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out12:
         nr: 12
-        name: Salon_kom
+        name: Sal1_kom
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out13:
         nr: 13
-        name: Salon_kom2
+        name: Sal1_kom2
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out14:
         nr: 14
-        name: Salon_gl
+        name: Sal1_gl
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out15:
         nr: 15
-        name: Salon_Wneka
+        name: Sal1_Wneka
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out16:
         nr: 16
         name: Lazienka_Parter
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out17:
         nr: 17
         name: Kuchnia_Glowne
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out18:
         nr: 18
         name: Kuchnia_Szafki
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out19:
         nr: 19
         name: Kuchnia_Okap
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out20:
         nr: 20
         name: Spizarnia
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out21:
         nr: 21
         name: Garaz_Brama
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
             
         
     out22:
         nr: 22
         name: Garaz_Lodowka
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out23:
         nr: 23
         name: Kotlownia
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out24:
         nr: 24
-        name: none
+        name: n1e
         type: light  
-        enabled: false
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
         
     out25:
         nr: 25
-        name: none
+        name: n1e
         type: light  
-        enabled: false
-        bistable: false
-        inputRelated: false
+        defaultState: 0
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
         
     out26:
         nr: 26
-        name: none
+        name: n1e
         type: light  
-        enabled: false
-        bistable: false
-        inputRelated: flase
+        defaultState: 0
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
         
     out27:
         nr: 27
-        name: none
+        name: n1e
         type: light  
-        enabled: false
-        bistable: false
-        inputRelated: false
+        defaultState: 0
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
         
     out28:
         nr: 28
         name: Podbitka_przod1
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out29:
         nr: 29
         name: Podbitka_tyl1
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
         
     out30:
         nr: 30
         name: Podbitka_przod2
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: false
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out31:
         nr: 31
         name: Podbitka_tyl2
         type: light  
-        enabled: true
-        bistable: false
-        inputRelated: false
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out32:
         nr: 32
-        name: Goscinny
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Goscinny_we
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out33:
         nr: 33
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Goscinny_ns
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out34:
         nr: 34
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Dzieciakow_n
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out35:
         nr: 35
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Dzieciakow_ews
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out36:
         nr: 36
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Dzienny_w
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out37:
         nr: 37
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Dzienny_s
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out38:
         nr: 38
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Dzienny_n
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
         
     out39:
         nr: 39
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Sypialnia_ssg
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out40:
         nr: 40
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Sypialnia_wne
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out41:
         nr: 41
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Strych
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out42:
         nr: 42
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Korytaz
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out43:
         nr: 43
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Lazienka_parter
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out44:
         nr: 44
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Lazienka_pietro_pralka
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out45:
         nr: 45
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Lazienka_pietro_komin
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out46:
         nr: 46
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Spiżarnia 
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out47:
         nr: 47
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia_przy_wlacziku
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out48:
         nr: 48
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia_pod_szafkami
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out49:
         nr: 49
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia_zmywarka
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out50:
         nr: 50
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia_mikrofala
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out51:
         nr: 51
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia_piekarnik
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out52:
         nr: 52
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Sal1_wneka
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out53:
         nr: 53
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Sal1_sw
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out54:
         nr: 54
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Sal1_TV
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out55:
         nr: 55
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: n1e
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
 
     out56:
         nr: 56
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia L1
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out57:
         nr: 57
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia L2
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out58:
         nr: 58
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: Kuchnia L3
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out59:
         nr: 59
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: n1e
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
 
     out60:
         nr: 60
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: n1e
+        type: power  
+        defaultState: 1
+        enabled: 1
+        bistable: 0
+        inputRelated: 0
 
     out61:
         nr: 61
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: n1e
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
 
     out62:
         nr: 62
-        name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        name: n1e
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
 
     out63:
         nr: 63
+        name: n1e
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
+inputs:
+    in0:
+        nr: 0
+        name: Dzienny
+        type: switch 
+        enabled: 1
+        outputRelated: 0
+
+    in1:
+        nr: 1
         name: Dzieciakow
-        type: light  
-        enabled: true
-        bistable: false
-        inputRelated: true
+        type: switch 
+        enabled: 1
+        outputRelated: 1
+    
+    in2:
+        nr: 2
+        name: Goscinny
+        type: switch 
+        enabled: 1
+        outputRelated: 2                
+    
+    in3:
+        nr: 3
+        name: Sypialnia1 
+        type: switch 
+        enabled: 1
+        outputRelated: 3                
+            
+    in4:
+        nr: 4
+        name: Sypialnia2
+        type: switch 
+        enabled: 1
+        outputRelated: 4                
+            
+    in5:
+        nr: 5
+        name: Garderoba
+        type: switch 
+        enabled: 1
+        outputRelated: 5                
+            
+    in6:
+        nr: 6
+        name: Lazienka
+        type: switch 
+        enabled: 1
+        outputRelated: 6                
+            
+    in7:
+        nr: 7
+        name: Strych
+        type: switch 
+        enabled: 1
+        outputRelated: 7                
+            
+    in8:
+        nr: 8
+        name: Korytarz 
+        type: switch 
+        enabled: 1
+        outputRelated: 8                
+            
+    in9:
+        nr: 9
+        name: Schody_pietro
+        type: switch 
+        enabled: 1
+        outputRelated: 9                
+            
+    in10:
+        nr: 10
+        name: Schody_parter
+        type: switch 
+        enabled: 1
+        outputRelated: 10                
+            
+    in11:
+        nr: 11
+        name: Wiatrolap
+        type: switch 
+        enabled: 1
+        outputRelated: 11                
+            
+    in12:
+        nr: 12
+        name: Salon_kom
+        type: switch 
+        enabled: 1
+        outputRelated: 12                
+            
+    in13:
+        nr: 13
+        name: Salon_kom_2
+        type: switch 
+        enabled: 1
+        outputRelated: 13                
+            
+    in14:
+        nr: 14
+        name: Salon_glowne 
+        type: switch 
+        enabled: 1
+        outputRelated: 14                
+            
+    in15:
+        nr: 15
+        name: WSalon_wneka
+        type: switch 
+        enabled: 1
+        outputRelated: 15                
+            
+    in16:
+        nr: 16
+        name: Lazienka_parter
+        type: switch 
+        enabled: 1
+        outputRelated: 16                
+            
+    in17:
+        nr: 17
+        name: Kuchnia_glowne
+        type: switch 
+        enabled: 1
+        outputRelated: 17                        
+            
+    in18:
+        nr: 18
+        name: Kuchnia_pod_szafkami
+        type: switch 
+        enabled: 1
+        outputRelated: 18                
+            
+    in19:
+        nr: 19
+        name: Kuchnia_okap 
+        type: switch 
+        enabled: 1
+        outputRelated: 19                
+            
+    in20:
+        nr: 20
+        name: Spirzarnia
+        type: switch 
+        enabled: 1
+        outputRelated: 20                
+            
+    in21:
+        nr: 21
+        name: Garaz_Brama
+        type: switch 
+        enabled: 1
+        outputRelated: 21                
+            
+    in22:
+        nr: 22
+        name: Garaz_lodowka
+        type: switch 
+        enabled: 1
+        outputRelated: 22                
+                    
+    in23:
+        nr: 23
+        name: Kotlownia
+        type: switch 
+        enabled: 1
+        outputRelated: 23
+                    
+    in24:
+        nr: 24
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 24
+
+    in25:
+        nr: 25
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 25
+
+    in26:
+        nr: 26
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 26
+
+    in27:
+        nr: 27
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 27
+
+    in28:
+        nr: 28
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 28
+
+    in29:
+        nr: 29
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 29
+
+    in30:
+        nr: 30
+        name: Zmierzchowka 
+        type: switch 
+        enabled: 1
+        outputRelated: 30
+
+    in31:
+        nr: 31
+        name: Zmierzchowka 
+        type: switch 
+        enabled: 1
+        outputRelated: 31
+
+    in32:
+        nr: 32
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 32
+
+    in33:
+        nr: 33
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 33
+
+    in34:
+        nr: 34
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 34
+
+    in35:
+        nr: 35
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 35
+
+    in36:
+        nr: 36
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 36
+
+    in37:
+        nr: 37
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 37
+
+    in38:
+        nr: 38
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 38
+
+    in39:
+        nr: 39
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 39
+
+    in40:
+        nr: 40
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 40
+
+    in41:
+        nr: 41
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 41
+    in42:
+        nr: 42
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 42
+    in43:
+        nr: 43
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 43
+    in44:
+        nr: 44
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 44
+    in45:
+        nr: 45
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 45
+    in46:
+        nr: 46
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 46
+    in47:
+        nr: 47
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 47
+    in48:
+        nr: 48
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 48
+    in49:
+        nr: 49
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 49
+    
+    in50:
+        nr: 50
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 50
+            
+    in51:
+        nr: 51
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 51
+            
+    in52:
+        nr: 52
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 52
+            
+    in53:
+        nr: 53
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 53
+            
+    in54:
+        nr: 54
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 54
+            
+    in55:
+        nr: 55
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 55
+            
+    in56:
+        nr: 56
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 56
+            
+    in57:
+        nr: 57
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 57
+            
+    in58:
+        nr: 58
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 58
+            
+    in59:
+        nr: 59
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 59
+            
+    in60:
+        nr: 60
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 60
+            
+                        
+    in61:
+        nr: 61
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 61
+            
+    in62:
+        nr: 62
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 62
+            
+    in63:
+        nr: 63
+        name: none
+        type: switch 
+        enabled: 0
+        outputRelated: 63
