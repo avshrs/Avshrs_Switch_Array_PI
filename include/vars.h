@@ -115,9 +115,11 @@ struct Mqtt_config{
     std::string keepAliveMsg;
     std::string outSubstring;
     std::string outPubstring;
+    std::string inSubstring;
+    std::string inPubstring;
     std::string ONMsg;
     std::string OFFMsg;
-    std::string utONTIMEMsg;
+    std::string ONTIMEMsg;
 };
 
 struct I2c1_config{
