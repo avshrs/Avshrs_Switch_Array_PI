@@ -32,6 +32,7 @@ void keep_alive_message(mqtt_client *mqtt){
 }
 
 void th2(mqtt_client *mqtt){
+    sleep(50);
     mqtt->client_loop_forever();
 }
 void th3(mqtt_client *mqtt){
