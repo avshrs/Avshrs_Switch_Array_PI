@@ -41,6 +41,7 @@ void th3(mqtt_client *mqtt){
 }
 
 int main(){ 
+    mcp.MCP_Init();
     std::cout<<1<<std::endl;
     mcp_rw_cfg.read_config();
     std::cout<<2<<std::endl;
@@ -50,7 +51,7 @@ int main(){
     mqtt.register_mcp_config(&mcp_rw_cfg);
     mcp.register_mcp_mqtt(&mqtt);
     mcp.register_mcp_config(&mcp_rw_cfg);
-    mcp.MCP_Init();
+    
     std::cout<<4<<std::endl;
     std::thread t2(th2, &mqtt);
     std::cout<<5<<std::endl;
