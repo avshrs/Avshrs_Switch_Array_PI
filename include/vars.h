@@ -104,5 +104,5 @@ struct Input_conf{
     std::string name;
     std::string type;
     bool enabled;
-    int outputRelated;
+    int output_related;
 };
