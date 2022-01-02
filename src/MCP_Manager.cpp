@@ -31,9 +31,13 @@ void MCP_Manager::MCP_Init(){
     mcpc_out[3] = &mcpc_out_3;
     
     
-    // for(int i=0; i<IN_RANGE;i++){
-    //     write_output_direct(i, false);
-    // }
+    for(int i=0; i < 32;i++){
+        out_states_real[i] = (i, read_input_direct(i));
+        out_states[i] = (i, read_input_direct(i));
+    }
+    for(int i=0; i < 64;i++){
+        in_states[i] = (i, read_input_direct(i));
+    }
     
 }   
 
