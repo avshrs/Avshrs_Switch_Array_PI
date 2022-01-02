@@ -20,9 +20,22 @@ void keep_alive_message(){
     std::string msg = "Online";
     while (true){
         mqtt.publish(NULL, "MCP_Array", msg.length(), msg.c_str());
+        for(int i = 0; i < 64; i++){
+            bool value = mcp.read_output_buffer(i);
+            std::string msg; 
+            std::string pu = "MCP_OUT_P_"; 
+            if(value){
+                msg = "ON";
+            }
+            else{
+                msg = "OFF";
+            }
+            pu += std::to_string(i);
+            mqtt.publish(NULL, pu.c_str(), msg.length(), msg.c_str());
+            usleep(1000);
+        }
         sleep(60); 
     }
-
 }
 
 void th1(){
