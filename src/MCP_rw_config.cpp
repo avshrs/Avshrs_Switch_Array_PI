@@ -89,30 +89,30 @@ int MCP_rw_config::get_in_output_related(int in){
     return input_conf[in].output_related;
 }
 
-std::string MCP_rw_config::get_mqqt_ClientId(){
+std::string MCP_rw_config::get_mqtt_ClientId(){
     return  mqtt_config.ClientId;
 }
-std::string MCP_rw_config::get_mqqt_ip(){
+std::string MCP_rw_config::get_mqtt_ip(){
     return  mqtt_config.ServerIp;
 }
-int MCP_rw_config::get_mqqt_port(){
+int MCP_rw_config::get_mqtt_port(){
     return  mqtt_config.serverPort;
 }
-std::string MCP_rw_config::get_mqqt_keepAliveTopic(){
+std::string MCP_rw_config::get_mqtt_keepAliveTopic(){
     return  mqtt_config.keepAliveTopic;
 }
-std::string MCP_rw_config::get_mqqt_keepAliveMsg(){
+std::string MCP_rw_config::get_mqtt_keepAliveMsg(){
     return  mqtt_config.keepAliveMsg;
 }
-std::string MCP_rw_config::get_mqqt_outSubsring(){
+std::string MCP_rw_config::get_mqtt_outSubsring(){
     return  mqtt_config.outSubsring;
 }
-std::string MCP_rw_config::get_mqqt_outPubsring(){
+std::string MCP_rw_config::get_mqtt_outPubsring(){
     return  mqtt_config.outPubsring;
 }
-std::string MCP_rw_config::get_mqqt_outONMsg(){
+std::string MCP_rw_config::get_mqtt_outONMsg(){
     return  mqtt_config.outONMsg;
 }
-std::string MCP_rw_config::get_mqqt_outOFFMsg(){
+std::string MCP_rw_config::get_mqtt_outOFFMsg(){
     return  mqtt_config.outOFFMsg;
 }

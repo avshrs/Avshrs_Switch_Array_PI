@@ -22,13 +22,13 @@ class MCP_rw_config{
     bool get_in_enabled(int in);
     int get_in_output_related(int in);
 
-    std::string get_mqqt_ClientId();
-    std::string get_mqqt_ip();
-    int get_mqqt_port();
-    std::string get_mqqt_keepAliveTopic();
-    std::string get_mqqt_keepAliveMsg();
-    std::string get_mqqt_outSubsring();
-    std::string get_mqqt_outPubsring();
-    std::string get_mqqt_outONMsg();
-    std::string get_mqqt_outOFFMsg();
+    std::string get_mqtt_ClientId();
+    std::string get_mqtt_ip();
+    int get_mqtt_port();
+    std::string get_mqtt_keepAliveTopic();
+    std::string get_mqtt_keepAliveMsg();
+    std::string get_mqtt_outSubsring();
+    std::string get_mqtt_outPubsring();
+    std::string get_mqtt_outONMsg();
+    std::string get_mqtt_outOFFMsg();
 };

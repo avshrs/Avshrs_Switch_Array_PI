@@ -7,11 +7,9 @@
 #include "MCP_Mosquitto.h"
 #include "MCP_rw_config.h"
 
-
+mqtt_client mqtt;
 
 MCP_rw_config mcp_rw_cfg;
-mcp_rw_cfg.read_config();
-mqtt_client mqtt(mcp_rw_cfg.get_mqqt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqqt_port().c_str());
 
 MCP_Manager mcp;
 SettingsServer settingsserver;
@@ -52,7 +50,8 @@ void th3(){
 }
 
 int main(){ 
-    
+    mcp_rw_cfg.read_config();
+    mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port());
     mqtt.register_mcp_manager(&mcp);
     mcp.register_mcp_mqtt(&mqtt);
     mcpsettings.read_settings();
