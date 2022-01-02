@@ -26,6 +26,7 @@ void MCP_rw_config::read_config(){
             input_conf[i].output_related = config["inputs"][in_nr]["outputRelated"].as<int>();
         }
     }
+    std::cout << "Mqtt settings load" << std::endl;
     mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
     mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
@@ -33,9 +34,9 @@ void MCP_rw_config::read_config(){
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
     mqtt_config.outSubsring = config["mqtt"]["outSubsring"].as<std::string>();
     mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
-    // mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
-    // mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
-    
+    mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
+    mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
+    std::cout << "I2C settings load" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
     i2c1_config.in1Address = static_cast<uint8_t>(config["i2c1"]["in1Address"].as<int>());
     i2c1_config.in2Address = static_cast<uint8_t>(config["i2c1"]["in2Address"].as<int>());
