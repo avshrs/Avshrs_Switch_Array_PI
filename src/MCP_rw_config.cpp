@@ -31,25 +31,25 @@ void MCP_rw_config::read_config(){
     mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
-    std::cout << "keepAliveTopic:|"<< mqtt_config.keepAliveTopic << std::endl;
+    std::cout << "keepAliveTopic:|"<< mqtt_config.keepAliveTopic << "|" <<std::endl;
 
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
-    std::cout << "keepAliveMsg:|"<< mqtt_config.keepAliveMsg << std::endl;
+    std::cout << "keepAliveMsg:|"<< mqtt_config.keepAliveMsg << "|" <<std::endl;
 
     mqtt_config.outSubsring = config["mqtt"]["outSubsring"].as<std::string>();
-    std::cout << "outSubsring:|"<< mqtt_config.outSubsring << std::endl;
+    std::cout << "outSubsring:|"<< mqtt_config.outSubsring << "|" <<std::endl;
 
     mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
-    std::cout << "outPubsring:|"<< mqtt_config.outPubsring << std::endl;
+    std::cout << "outPubsring:|"<< mqtt_config.outPubsring << "|" <<std::endl;
 
     mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
-    std::cout << "outONMsg:|"<< mqtt_config.outONMsg << std::endl;
+    std::cout << "outONMsg:|"<< mqtt_config.outONMsg << "|" <<std::endl;
 
     mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
-    std::cout << "outOFFMsg:|"<< mqtt_config.outOFFMsg << std::endl;
+    std::cout << "outOFFMsg:|"<< mqtt_config.outOFFMsg << "|" <<std::endl;
 
     mqtt_config.utONTIMEMsg = config["mqtt"]["utONTIMEMsg"].as<std::string>();
-    std::cout << "utONTIMEMsg:|"<< mqtt_config.utONTIMEMsg << std::endl;
+    std::cout << "utONTIMEMsg:|"<< mqtt_config.utONTIMEMsg << "|" <<std::endl;
     
     std::cout << "I2C settings load" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
