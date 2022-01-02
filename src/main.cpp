@@ -15,27 +15,6 @@ SocketServer socketserver;
 MCP_Settings mcpsettings;
 
 
-int main(){ 
-    mcp_rw_cfg.read_config();
-    mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port());
-    
-    mqtt.register_mcp_manager(&mcp);
-    mcp.register_mcp_mqtt(&mqtt);
-    mcpsettings.read_settings();
-    settingsserver.register_mcp_settings(&mcpsettings);
-    mcp.register_mcp_settings(&mcpsettings);
-    socketserver.open_socket(5656);
-    socketserver.register_settingsserver(&settingsserver);
-    mcp.MCP_Init();
-    std::thread t1(th1, &socketserver);
-    std::thread t2(th2, &mqtt);
-    std::thread t3(th3, &mqtt);
-    while(true){
-        mcp.scan_all_inputs();
-    }
-} 
-
-
 void keep_alive_message(mqtt_client *mqtt){
     std::string msg = "Online";
     while (true){
@@ -68,3 +47,24 @@ void th2(mqtt_client *mqtt){
 void th3(mqtt_client *mqtt){
     keep_alive_message(mqtt);
 }
+
+int main(){ 
+    mcp_rw_cfg.read_config();
+    mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port());
+    
+    mqtt.register_mcp_manager(&mcp);
+    mcp.register_mcp_mqtt(&mqtt);
+    mcpsettings.read_settings();
+    settingsserver.register_mcp_settings(&mcpsettings);
+    mcp.register_mcp_settings(&mcpsettings);
+    socketserver.open_socket(5656);
+    socketserver.register_settingsserver(&settingsserver);
+    mcp.MCP_Init();
+    std::thread t1(th1, &socketserver);
+    std::thread t2(th2, &mqtt);
+    std::thread t3(th3, &mqtt);
+    while(true){
+        mcp.scan_all_inputs();
+    }
+} 
+
