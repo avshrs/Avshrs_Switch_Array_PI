@@ -14,16 +14,16 @@ mqtt:
     outOFFMsg: OFF
 
 i2c1:
-    i2cPath: /dev/i2c-1
+    i2cPath: "/dev/i2c-1"
     # address decimal value eg 32 == 0x20
     out1Address: 32
     out2Address: 33
     out3Address: 34
     out4Address: 35
     in1Address: 36
-    in1Address: 37
-    in1Address: 38
-    in1Address: 39
+    in2Address: 37
+    in3Address: 38
+    in4Address: 39
 
 outputs:
     out0:

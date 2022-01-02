@@ -36,16 +36,17 @@ void MCP_rw_config::read_config(){
     mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
     mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
     mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
+    
     std::cout << "I2C settings load" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
-    i2c1_config.in1Address = static_cast<uint8_t>(config["i2c1"]["in1Address"].as<int>());
-    i2c1_config.in2Address = static_cast<uint8_t>(config["i2c1"]["in2Address"].as<int>());
-    i2c1_config.in3Address = static_cast<uint8_t>(config["i2c1"]["in3Address"].as<int>());
-    i2c1_config.in4Address = static_cast<uint8_t>(config["i2c1"]["in4Address"].as<int>());
-    i2c1_config.out1Address = static_cast<uint8_t>(config["i2c1"]["out1Address"].as<int>());
-    i2c1_config.out2Address = static_cast<uint8_t>(config["i2c1"]["out2Address"].as<int>());
-    i2c1_config.out3Address = static_cast<uint8_t>(config["i2c1"]["out3Address"].as<int>());
-    i2c1_config.out4Address = static_cast<uint8_t>(config["i2c1"]["out4Address"].as<int>());
+    i2c1_config.in1Address = config["i2c1"]["in1Address"].as<int>();
+    i2c1_config.in2Address = config["i2c1"]["in2Address"].as<int>();
+    i2c1_config.in3Address = config["i2c1"]["in3Address"].as<int>();
+    i2c1_config.in4Address = config["i2c1"]["in4Address"].as<int>();
+    i2c1_config.out1Address = config["i2c1"]["out1Address"].as<int>();
+    i2c1_config.out2Address = config["i2c1"]["out2Address"].as<int>();
+    i2c1_config.out3Address = config["i2c1"]["out3Address"].as<int>();
+    i2c1_config.out4Address = config["i2c1"]["out4Address"].as<int>();
 
 }
     
