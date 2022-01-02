@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-
+#include <string>
 #define    IN_RANGE     (64) 
 #define    OUT_RANGE    (64) 
 
@@ -91,4 +91,18 @@ struct MCP_values
     uint8_t v7;
 }; 
 
+struct Output_conf{
+    std::string name;
+    std::string type;
+    bool default_state;
+    bool enabled;
+    bool bistable;
+    bool input_related;
+};
 
+struct Input_conf{
+    std::string name;
+    std::string type;
+    bool enabled;
+    int outputRelated;
+};

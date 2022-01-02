@@ -1,3 +1,6 @@
+config: 1
+maxout: 64
+maxin: 64
 mqtt:
     ClientId: SwitchMatrix
     ServerIp: 192.168.1.96
@@ -21,17 +24,6 @@ i2c1:
     in1Address: 0x25
     in1Address: 0x26
     in1Address: 0x27
-
-i2c2:
-    i2cPath: /dev/i2c-4
-    out1Address: 0x20
-    out2Address: 0x21
-    out3Address: 0x22
-    out4Address: 0x23
-    in1Address: NULL
-    in1Address: NULL
-    in1Address: NULL
-    in1Address: NULL
 
 outputs:
     out0:
@@ -685,7 +677,7 @@ inputs:
         name: Schody_parter
         type: switch 
         enabled: 1
-        outputRelated: 10                
+        outputRelated: 9               
             
     in11:
         nr: 11
