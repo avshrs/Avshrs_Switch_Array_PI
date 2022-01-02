@@ -1,12 +1,11 @@
 config: 1
-maxout: 64
-maxin: 64
+
 mqtt:
     ClientId: SwitchMatrix
     ServerIp: 192.168.1.96
     serverPort: 1883
     keepAliveTopic: MCP_Array
-    keepAliveMsg: 1line
+    keepAliveMsg: Online
     # eg MCP_OUT_S_0
     outSubsring: MCP_OUT_S_
     # eg MCP_OUT_P_0
@@ -16,14 +15,15 @@ mqtt:
 
 i2c1:
     i2cPath: /dev/i2c-1
-    out1Address: 0x20
-    out2Address: 0x21
-    out3Address: 0x22
-    out4Address: 0x23
-    in1Address: 0x24
-    in1Address: 0x25
-    in1Address: 0x26
-    in1Address: 0x27
+    # address decimal value eg 32 == 0x20
+    out1Address: 32
+    out2Address: 33
+    out3Address: 34
+    out4Address: 35
+    in1Address: 36
+    in1Address: 37
+    in1Address: 38
+    in1Address: 39
 
 outputs:
     out0:

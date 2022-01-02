@@ -106,3 +106,27 @@ struct Input_conf{
     bool enabled;
     int output_related;
 };
+
+struct mqtt_config{
+    std::string ClientId;
+    std::string ServerIp;
+    int serverPort;
+    std::string keepAliveTopic;
+    std::string keepAliveMsg;
+    std::string outSubsring;
+    std::string outPubsring;
+    std::string outONMsg;
+    std::string outOFFMsg;
+};
+
+struct i2c1_config{
+    std::string i2cPath;
+    uint8_t out1Address;
+    uint8_t out2Address;
+    uint8_t out3Address;
+    uint8_t out4Address;
+    uint8_t in1Address;
+    uint8_t in2Address;
+    uint8_t in3Address;
+    uint8_t in4Address;
+};
