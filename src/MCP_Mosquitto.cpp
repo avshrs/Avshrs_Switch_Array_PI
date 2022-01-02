@@ -46,7 +46,7 @@ void mqtt_client::unregister_subs(){
         std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
         unsubscribe(NULL, sub.c_str());
-        usleep(10000);
+        usleep(100000);
     }
 }
 
@@ -129,7 +129,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout << "Wrong Topic lengh" << std::endl;
             }
-            else if (std::stoi(tdata[3]) > 63 || !mcp_cfg->get_out_enabled(std::stoi(tdata[3]))){
+            else if (!mcp_cfg->get_out_enabled(std::stoi(tdata[3]))){
                 auto t = std::time(nullptr);
                 auto tm = *std::localtime(&t);      
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
