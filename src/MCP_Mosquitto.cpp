@@ -12,7 +12,6 @@ mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquitto
 {
     int keepalive = 60;
     connect(host, port, keepalive);
-    
 }
 
 void mqtt_client::client_loop_forever(){
@@ -25,19 +24,16 @@ void mqtt_client::client_loop_forever(){
     }
 }
 
-
 void mqtt_client::register_subs(){
     for(int i = 0; i<64; i++){
-        
-            std::string sub = mcp_cfg->get_mqtt_outSubsring();
-            sub += std::to_string(i);
-            subscribe(NULL, sub.c_str());
-            auto t = std::time(nullptr);
-            auto tm = *std::localtime(&t);      
-            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout << "Subscribe output: " << i << std::endl;
-            usleep(10000);
-        
+        std::string sub = mcp_cfg->get_mqtt_outSubsring();
+        sub += std::to_string(i);
+        subscribe(NULL, sub.c_str());
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);      
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+        std::cout << "Subscribe output: " << i << std::endl;
+        usleep(10000);
     }
 }
 
@@ -52,49 +48,39 @@ void mqtt_client::unregister_subs(){
 
 void mqtt_client::on_error() {
     std::cout<<"onerror"<<std::endl;
-    return;}
+    return;
+    }
 
 
 void mqtt_client::on_connect(int rc)
 {
     if (!rc)
     {
-
-        
-            auto t = std::time(nullptr);
-            auto tm = *std::localtime(&t);      
-            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout << "Connected with code " << rc << std::endl;
-        
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);      
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+        std::cout << "Connected with code " << rc << std::endl;
         unregister_subs();
         register_subs();
     }
     
 }
 
-void mqtt_client::on_disconnect(int rc)
-{
-    if (!rc)
-    {
-    
-            auto t = std::time(nullptr);
-            auto tm = *std::localtime(&t);      
-            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout << "disconnected - code " << rc << std::endl;
+void mqtt_client::on_disconnect(int rc){
+    if (!rc){
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);      
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+        std::cout << "disconnected - code " << rc << std::endl;
     
     }
 }
-void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
-{
-
-    
+void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos){
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);      
         std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
         std::cout << "Subscription succeeded. " << " mid: " << mid << " qos_count: "<< qos_count << " qos_granted: "<< granted_qos << std::endl;
-    
 }
-
 
 void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
     mcp_manager = mcp_manager_;
@@ -124,6 +110,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         const char * outONMsg = mcp_cfg->get_mqtt_outONMsg().c_str();
         const char * outONTIMEMsg = mcp_cfg->get_mqtt_outONTIMEMsg().c_str();
         const char * outOFFMsg = mcp_cfg->get_mqtt_outOFFMsg().c_str();
+
         if(!message_payload.empty() && message_topic.find(outSubsring) != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '_');
             if (tdata.size() != 4){
