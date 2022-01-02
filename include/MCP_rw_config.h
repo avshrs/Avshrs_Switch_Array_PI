@@ -5,7 +5,7 @@ class MCP_rw_config{
     int max_out = 64;
     int max_in = 64;
     Output_conf output_conf[64];
-    Input_conf intput_conf[64];
+    Input_conf input_conf[64];
 
     void read_config();
     std::string get_out_name(int out);
