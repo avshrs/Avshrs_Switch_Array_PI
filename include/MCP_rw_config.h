@@ -18,5 +18,5 @@ class MCP_rw_config{
     std::string get_in_name(int in);
     std::string get_in_type(int in);
     bool get_in_enabled(int in);
-    int get_in_outputRelated(int in);
+    int get_in_output_related(int in);
 };

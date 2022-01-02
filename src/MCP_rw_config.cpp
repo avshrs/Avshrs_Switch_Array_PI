@@ -51,7 +51,7 @@ bool MCP_rw_config::get_out_bistable(int out){
     return output_conf[out].bistable;
 }
 
-bool MCP_rw_config::get_out_inputrel(int out){
+bool MCP_rw_config::get_out_input_rel(int out){
     return output_conf[out].input_related;
 }
 
