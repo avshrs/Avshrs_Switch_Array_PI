@@ -107,7 +107,7 @@ struct Input_conf{
     int output_related;
 };
 
-struct mqtt_config{
+struct Mqtt_config{
     std::string ClientId;
     std::string ServerIp;
     int serverPort;
@@ -119,7 +119,7 @@ struct mqtt_config{
     std::string outOFFMsg;
 };
 
-struct i2c1_config{
+struct I2c1_config{
     std::string i2cPath;
     uint8_t out1Address;
     uint8_t out2Address;

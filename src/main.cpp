@@ -7,12 +7,12 @@
 #include "MCP_Mosquitto.h"
 #include "MCP_rw_config.h"
 
-char client_id[] = "SwitchMatrix";
-char host[] = "192.168.1.96";
-int port = 1883;
-mqtt_client mqtt(client_id, host, port);
+
 
 MCP_rw_config mcp_rw_cfg;
+mcp_rw_cfg.read_config();
+mqtt_client mqtt(mcp_rw_cfg.get_mqqt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqqt_port().c_str());
+
 MCP_Manager mcp;
 SettingsServer settingsserver;
 SocketServer socketserver;
@@ -52,7 +52,7 @@ void th3(){
 }
 
 int main(){ 
-    mcp_rw_cfg.read_config();
+    
     mqtt.register_mcp_manager(&mcp);
     mcp.register_mcp_mqtt(&mqtt);
     mcpsettings.read_settings();

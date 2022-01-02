@@ -6,6 +6,8 @@ class MCP_rw_config{
     int max_in = 64;
     Output_conf output_conf[64];
     Input_conf input_conf[64];
+    Mqtt_config mqtt_config;
+    I2c1_config i2c1_config;
 
     void read_config();
     std::string get_out_name(int out);
@@ -19,4 +21,14 @@ class MCP_rw_config{
     std::string get_in_type(int in);
     bool get_in_enabled(int in);
     int get_in_output_related(int in);
+
+    std::string get_mqqt_ClientId();
+    std::string get_mqqt_ip();
+    int get_mqqt_port();
+    std::string get_mqqt_keepAliveTopic();
+    std::string get_mqqt_keepAliveMsg();
+    std::string get_mqqt_outSubsring();
+    std::string get_mqqt_outPubsring();
+    std::string get_mqqt_outONMsg();
+    std::string get_mqqt_outOFFMsg();
 };

@@ -26,10 +26,26 @@ void MCP_rw_config::read_config(){
             input_conf[i].output_related = config["inputs"][in_nr]["outputRelated"].as<int>();
         }
     }
+    mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
+    mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
+    mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
+    mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
+    mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
+    mqtt_config.outSubsring = config["mqtt"]["outSubsring"].as<std::string>();
+    mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
+    mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
+    mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
+    
+    i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
+    i2c1_config.in1Address = static_cast<uint8_t>(config["i2c1"]["in1Address"].as<int>());
+    i2c1_config.in2Address = static_cast<uint8_t>(config["i2c1"]["in2Address"].as<int>());
+    i2c1_config.in3Address = static_cast<uint8_t>(config["i2c1"]["in3Address"].as<int>());
+    i2c1_config.in4Address = static_cast<uint8_t>(config["i2c1"]["in4Address"].as<int>());
+    i2c1_config.out1Address = static_cast<uint8_t>(config["i2c1"]["out1Address"].as<int>());
+    i2c1_config.out2Address = static_cast<uint8_t>(config["i2c1"]["out2Address"].as<int>());
+    i2c1_config.out3Address = static_cast<uint8_t>(config["i2c1"]["out3Address"].as<int>());
+    i2c1_config.out4Address = static_cast<uint8_t>(config["i2c1"]["out4Address"].as<int>());
 
-    for(int i = 0; i<max_out; i++){
-        std::cout << output_conf[i].name << std::endl;
-    }
 }
     
 std::string MCP_rw_config::get_out_name(int out){
@@ -71,4 +87,32 @@ bool MCP_rw_config::get_in_enabled(int in){
 
 int MCP_rw_config::get_in_output_related(int in){
     return input_conf[in].output_related;
+}
+
+std::string MCP_rw_config::get_mqqt_ClientId(){
+    return  mqtt_config.ClientId;
+}
+std::string MCP_rw_config::get_mqqt_ip(){
+    return  mqtt_config.ServerIp;
+}
+int MCP_rw_config::get_mqqt_port(){
+    return  mqtt_config.serverPort;
+}
+std::string MCP_rw_config::get_mqqt_keepAliveTopic(){
+    return  mqtt_config.keepAliveTopic;
+}
+std::string MCP_rw_config::get_mqqt_keepAliveMsg(){
+    return  mqtt_config.keepAliveMsg;
+}
+std::string MCP_rw_config::get_mqqt_outSubsring(){
+    return  mqtt_config.outSubsring;
+}
+std::string MCP_rw_config::get_mqqt_outPubsring(){
+    return  mqtt_config.outPubsring;
+}
+std::string MCP_rw_config::get_mqqt_outONMsg(){
+    return  mqtt_config.outONMsg;
+}
+std::string MCP_rw_config::get_mqqt_outOFFMsg(){
+    return  mqtt_config.outOFFMsg;
 }
