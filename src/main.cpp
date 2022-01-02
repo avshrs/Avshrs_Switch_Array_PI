@@ -40,15 +40,21 @@ void th3(mqtt_client *mqtt){
 }
 
 int main(){ 
+    std::cout<<1<<std::endl;
     mcp_rw_cfg.read_config();
+    std::cout<<2<<std::endl;
     mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port());
+    std::cout<<3<<std::endl;
     mqtt.register_mcp_manager(&mcp);
     mqtt.register_mcp_config(&mcp_rw_cfg);
     mcp.register_mcp_mqtt(&mqtt);
     mcp.register_mcp_config(&mcp_rw_cfg);
     mcp.MCP_Init();
+    std::cout<<4<<std::endl;
     std::thread t2(th2, &mqtt);
+    std::cout<<5<<std::endl;
     std::thread t3(th3, &mqtt);
+    std::cout<<6<<std::endl;
     while(true){
         mcp.scan_all_inputs();
     }
