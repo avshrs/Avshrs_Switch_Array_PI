@@ -1,18 +1,20 @@
 #include "MCP_rw_config.h"
-#include <yaml-cpp>
+// #include <yaml-cpp>
+#include <yaml-cpp/yaml.h>
 #include <iostream>
+#include <string>
 
 
 void read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
 
-    cout << "name:" << config["name"].as<string>() << endl;
-    cout << "sex:" << config["sex"].as<string>() << endl;
-    cout << "age:" << config["age"].as<int>() << endl;
-    cout << "skills c++:" << config["skills"]["c++"].as<int>() << endl;
-    cout << "skills java:" << config["skills"]["java"].as<int>() << endl;
-    cout << "skills android:" << config["skills"]["android"].as<int>() << endl;
-    cout << "skills python:" << config["skills"]["python"].as<int>() << endl;
+    std::cout << "name:" << config["name"].as<std::string>() << std::endl;
+    std::cout << "sex:" << config["sex"].as<std::string>() << std::endl;
+    std::cout << "age:" << config["age"].as<int>() << std::endl;
+    std::cout << "skills c++:" << config["skills"]["c++"].as<int>() << std::endl;
+    std::cout << "skills java:" << config["skills"]["java"].as<int>() << std::endl;
+    std::cout << "skills android:" << config["skills"]["android"].as<int>() << std::endl;
+    std::cout << "skills python:" << config["skills"]["python"].as<int>() << std::endl;
 
 }
     
