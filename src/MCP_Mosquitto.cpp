@@ -31,6 +31,10 @@ void mqtt_client::register_subs(){
         std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
         subscribe(NULL, sub.c_str());
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);      
+        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+        std::cout << "Subscribe output: " << i << std::endl;
         usleep(10000);
     }
 }
