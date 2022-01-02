@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+mqtt_client::mqtt_client(){
+    
+}
 mqtt_client::mqtt_client(const char *id, const char *host, int port) : mosquittopp(id)
 {
     int keepalive = 60;
