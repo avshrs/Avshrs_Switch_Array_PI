@@ -1,10 +1,547 @@
-name: frank
-sex: male
-age: 18
+mqtt:
+    ClientId: SwitchMatrix
+    ServerIp: 192.168.1.96
+    serverPort: 1883
+    keepAliveTopic: MCP_Array
+    keepAliveMsg: Online
+    # eg MCP_OUT_S_0
+    outSubsring: MCP_OUT_S_
+    # eg MCP_OUT_P_0
+    outPubsring: MCP_OUT_P_
+    outOnMsg: ON
+    outOffMsg: OFF
 
-skills: 
-    c++: 1
-    java: 1
-    android: 1
-    python: 1
+i2c1:
+    i2cPath: /dev/i2c-1
+    out1Address: 0x20
+    out2Address: 0x21
+    out3Address: 0x22
+    out4Address: 0x23
+    in1Address: 0x24
+    in1Address: 0x25
+    in1Address: 0x26
+    in1Address: 0x27
 
+i2c2:
+    i2cPath: /dev/i2c-4
+    out1Address: 0x20
+    out2Address: 0x21
+    out3Address: 0x22
+    out4Address: 0x23
+    in1Address: NULL
+    in1Address: NULL
+    in1Address: NULL
+    in1Address: NULL
+
+output:
+    out0:
+        nr: 0
+        name: Dzienny 
+        type: light
+        enabled: true
+        bistable: false
+        inputRelated: true
+    out1:
+        nr: 1
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out2:
+        nr: 2
+        name: Goscinny
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out3:
+        nr: 3
+        name: Sypialnia1
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out4:
+        nr: 4
+        name: Sypialnia2
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out5:
+        nr: 5
+        name: Garderoba
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out6:
+        nr: 6
+        name: Lazienka_pietro
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out7:
+        nr: 7
+        name: Strych
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out8:
+        nr: 8
+        name: Korytarz
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out9:
+        nr: 9
+        name: Schody
+        type: light  
+        enabled: true
+        bistable: true
+        inputRelated: true
+        
+    out10:
+        nr: 10
+        name: Empty
+        type: none  
+        enabled: false
+        bistable: false
+        inputRelated: false
+        
+    out11:
+        nr: 11
+        name: Wiatrolap
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out12:
+        nr: 12
+        name: Salon_kom
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out13:
+        nr: 13
+        name: Salon_kom2
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out14:
+        nr: 14
+        name: Salon_gl
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out15:
+        nr: 15
+        name: Salon_Wneka
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out16:
+        nr: 16
+        name: Lazienka_Parter
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out17:
+        nr: 17
+        name: Kuchnia_Glowne
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out18:
+        nr: 18
+        name: Kuchnia_Szafki
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out19:
+        nr: 19
+        name: Kuchnia_Okap
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out20:
+        nr: 20
+        name: Spizarnia
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out21:
+        nr: 21
+        name: Garaz_Brama
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+            
+        
+    out22:
+        nr: 22
+        name: Garaz_Lodowka
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out23:
+        nr: 23
+        name: Kotlownia
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out24:
+        nr: 24
+        name: none
+        type: light  
+        enabled: false
+        bistable: false
+        inputRelated: true
+        
+    out25:
+        nr: 25
+        name: none
+        type: light  
+        enabled: false
+        bistable: false
+        inputRelated: false
+        
+    out26:
+        nr: 26
+        name: none
+        type: light  
+        enabled: false
+        bistable: false
+        inputRelated: flase
+        
+    out27:
+        nr: 27
+        name: none
+        type: light  
+        enabled: false
+        bistable: false
+        inputRelated: false
+        
+    out28:
+        nr: 28
+        name: Podbitka_przod1
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out29:
+        nr: 29
+        name: Podbitka_tyl1
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out30:
+        nr: 30
+        name: Podbitka_przod2
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: false
+        
+    out31:
+        nr: 31
+        name: Podbitka_tyl2
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: false
+        
+    out32:
+        nr: 32
+        name: Goscinny
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out33:
+        nr: 33
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out34:
+        nr: 34
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out35:
+        nr: 35
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out36:
+        nr: 36
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out37:
+        nr: 37
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out38:
+        nr: 38
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+        
+    out39:
+        nr: 39
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out40:
+        nr: 40
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out41:
+        nr: 41
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out42:
+        nr: 42
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out43:
+        nr: 43
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out44:
+        nr: 44
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out45:
+        nr: 45
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out46:
+        nr: 46
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out47:
+        nr: 47
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out48:
+        nr: 48
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out49:
+        nr: 49
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out50:
+        nr: 50
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out51:
+        nr: 51
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out52:
+        nr: 52
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out53:
+        nr: 53
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out54:
+        nr: 54
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out55:
+        nr: 55
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out56:
+        nr: 56
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out57:
+        nr: 57
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out58:
+        nr: 58
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out59:
+        nr: 59
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out60:
+        nr: 60
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out61:
+        nr: 61
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out62:
+        nr: 62
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
+
+    out63:
+        nr: 63
+        name: Dzieciakow
+        type: light  
+        enabled: true
+        bistable: false
+        inputRelated: true
