@@ -5,7 +5,7 @@
 #include <string>
 
 
-void read_config(){
+void MCP_rw_config::read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
 
     std::cout << "name:" << config["name"].as<std::string>() << std::endl;
