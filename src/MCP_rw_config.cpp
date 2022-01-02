@@ -138,10 +138,10 @@ std::string MCP_rw_config::get_mqtt_outPubstring(){
     return  mqtt_config.outPubstring;
 }
 std::string MCP_rw_config::get_mqtt_inSubstring(){
-    return  mqtt_config.outSubstring;
+    return  mqtt_config.inSubstring;
 }
 std::string MCP_rw_config::get_mqtt_inPubstring(){
-    return  mqtt_config.outPubstring;
+    return  mqtt_config.inPubstring;
 }
 std::string MCP_rw_config::get_mqtt_ONMsg(){
     return  mqtt_config.ONMsg;
