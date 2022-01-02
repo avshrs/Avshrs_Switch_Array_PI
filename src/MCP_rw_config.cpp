@@ -33,8 +33,8 @@ void MCP_rw_config::read_config(){
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
     mqtt_config.outSubsring = config["mqtt"]["outSubsring"].as<std::string>();
     mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
-    mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
-    mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
+    // mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
+    // mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
     
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
     i2c1_config.in1Address = static_cast<uint8_t>(config["i2c1"]["in1Address"].as<int>());
