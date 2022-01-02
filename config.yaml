@@ -12,6 +12,7 @@ mqtt:
     outPubsring: MCP_OUT_P_
     outONMsg: ON
     outOFFMsg: OFF
+    utONTIMEMsg: ONTIME
 
 i2c1:
     i2cPath: "/dev/i2c-1"

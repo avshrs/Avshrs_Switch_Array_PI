@@ -36,6 +36,7 @@ void MCP_rw_config::read_config(){
     mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
     mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
     mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
+    mqtt_config.utONTIMEMsg = config["mqtt"]["utONTIMEMsg"].as<std::string>();
     
     std::cout << "I2C settings load" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
@@ -117,4 +118,7 @@ std::string MCP_rw_config::get_mqtt_outONMsg(){
 }
 std::string MCP_rw_config::get_mqtt_outOFFMsg(){
     return  mqtt_config.outOFFMsg;
+}
+std::string MCP_rw_config::get_mqtt_outONTIMEMsg(){
+    return  mqtt_config.utONTIMEMsg;
 }

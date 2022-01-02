@@ -31,4 +31,5 @@ class MCP_rw_config{
     std::string get_mqtt_outPubsring();
     std::string get_mqtt_outONMsg();
     std::string get_mqtt_outOFFMsg();
+    std::string get_mqtt_outONTIMEMsg();
 };

@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <vector>
 class MCP_Manager;
+#include "MCP_rw_config.h"
 
 #define DEBUG
 
@@ -18,9 +19,11 @@ public:
     mqtt_client (const char *id, const char *host, int port);
 
     MCP_Manager *mcp_manager;
+    MCP_rw_config *mcp_cfg;
     void send_ack(std::string pub, std::string msg);
     void pub_state(int out, bool sate);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
+    void register_mcp_config(MCP_rw_config *mcp_cfg_);
     void client_loop_forever();
     void register_subs();
     void unregister_subs();

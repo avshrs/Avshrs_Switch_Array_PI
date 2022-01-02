@@ -117,6 +117,7 @@ struct Mqtt_config{
     std::string outPubsring;
     std::string outONMsg;
     std::string outOFFMsg;
+    std::string utONTIMEMsg;
 };
 
 struct I2c1_config{

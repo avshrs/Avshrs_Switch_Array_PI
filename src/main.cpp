@@ -16,18 +16,18 @@ MCP_Settings mcpsettings;
 
 
 void keep_alive_message(mqtt_client *mqtt){
-    std::string msg = "Online";
+    std::string msg = mcp_rw_cfg.get_mqtt_keepAliveMsg();
     while (true){
-        mqtt->publish(NULL, "MCP_Array", msg.length(), msg.c_str());
+        mqtt->publish(NULL, mcp_rw_cfg.get_mqtt_keepAliveTopic().c_str(), msg.length(), msg.c_str());
         for(int i = 0; i < 64; i++){
             bool value = mcp.read_output_buffer(i);
             std::string msg; 
-            std::string pu = "MCP_OUT_P_"; 
+            std::string pu = mcp_rw_cfg.get_mqtt_outPubsring();
             if(value){
-                msg = "ON";
+                msg = mcp_rw_cfg.get_mqtt_outONMsg();
             }
             else{
-                msg = "OFF";
+                msg = mcp_rw_cfg.get_mqtt_outOFFMsg();
             }
             pu += std::to_string(i);
             mqtt->publish(NULL, pu.c_str(), msg.length(), msg.c_str());
@@ -53,6 +53,7 @@ int main(){
     mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port());
     
     mqtt.register_mcp_manager(&mcp);
+    mqtt.register_mcp_config(&mcp_rw_cfg);
     mcp.register_mcp_mqtt(&mqtt);
     mcpsettings.read_settings();
     settingsserver.register_mcp_settings(&mcpsettings);

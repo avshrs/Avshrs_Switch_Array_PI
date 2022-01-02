@@ -1,6 +1,5 @@
 #include "MCP_Mosquitto.h"
 #include "MCP_Manager.h"
-
 #include <iostream>
 #include <iomanip>
 #include <ctime>
@@ -28,11 +27,9 @@ void mqtt_client::client_loop_forever(){
 
 
 void mqtt_client::register_subs(){
-    subscribe(NULL, "MCP_Array");  // Main device topic - Online 
-
     for(int i = 0; i<64; i++){
-        std::string pub = "MCP_OUT_P_";
-        std::string sub = "MCP_OUT_S_";
+        std::string pub = mcp_cfg->get_mqtt_outPubsring();
+        std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
         pub += std::to_string(i);
         subscribe(NULL, sub.c_str());
@@ -41,10 +38,9 @@ void mqtt_client::register_subs(){
 }
 
 void mqtt_client::unregister_subs(){
-    unsubscribe(NULL, "MCP_Array");  // Main device topic - Online 
     for(int i = 0; i<64; i++){
-        std::string pub = "MCP_OUT_P_";
-        std::string sub = "MCP_OUT_S_";
+        std::string pub = mcp_cfg->get_mqtt_outPubsring();
+        std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
         pub += std::to_string(i);
         
@@ -102,20 +98,22 @@ void mqtt_client::on_subscribe(int mid, int qos_count, const int *granted_qos)
 void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
     mcp_manager = mcp_manager_;
 }
-
+void mqtt_client::register_mcp_config(MCP_rw_config *mcp_cfg_){
+    mcp_cfg = mcp_cfg_;
+}
 void mqtt_client::send_ack(std::string pub, std::string msg ){
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
 
 void mqtt_client::pub_state(int out, bool state){
-    std::string pub = "MCP_OUT_P_";
+    std::string pub = mcp_cfg->get_mqtt_outPubsring();
     pub += std::to_string(out);
     std::string msg; 
     if (state){
-        msg = "ON";
+        msg = mcp_cfg->get_mqtt_outONMsg();
     }
     else{
-        msg = "OFF";
+        msg = mcp_cfg->get_mqtt_outOFFMsg();
     }
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
@@ -125,7 +123,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
-        if(!message_payload.empty() && message_topic.find("MCP_OUT_S_") != std::string::npos){
+        if(!message_payload.empty() && message_topic.find(mcp_cfg->get_mqtt_outSubsring()) != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '_');
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
@@ -133,7 +131,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout << "Wrong Topic lengh" << std::endl;
             }
-            else if(message_payload == "ON"){
+            else if(message_payload == mcp_cfg->get_mqtt_outONMsg()){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, true, 999);
                 #ifdef DEBUG
@@ -143,7 +141,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
-            else if(message_payload.find("ONTIME")!=std::string::npos){
+            else if(message_payload.find(mcp_cfg->get_mqtt_outONTIMEMsg())!=std::string::npos){
                 std::vector<std::string> mdata = parse_string(message_payload, '_');
                 if (mdata.size() != 3 ){
                     auto t = std::time(nullptr);
@@ -166,7 +164,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 
             }
 
-            else if(message_payload == "OFF"){
+            else if(message_payload == mcp_cfg->get_mqtt_outOFFMsg()){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, false, 999);
                 #ifdef DEBUG
