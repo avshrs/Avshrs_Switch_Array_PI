@@ -120,8 +120,11 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
-        const char * c = mcp_cfg->get_mqtt_outSubsring().c_str();
-        if(!message_payload.empty() && message_topic.find(c) != std::string::npos){
+        const char * outSubsring = mcp_cfg->get_mqtt_outSubsring().c_str();
+        const char * outONMsg = mcp_cfg->get_mqtt_outONMsg().c_str();
+        const char * outONTIMEMsg = mcp_cfg->get_mqtt_outONTIMEMsg().c_str();
+        const char * outOFFMsg = mcp_cfg->get_mqtt_outOFFMsg().c_str();
+        if(!message_payload.empty() && message_topic.find(outSubsring) != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '_');
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
@@ -135,7 +138,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout << "Error output disabled or aout of range" << std::endl;
             }
-            else if(message_payload == mcp_cfg->get_mqtt_outONMsg()){
+            else if(message_payload == outONMsg){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, true, 999);
                 #ifdef DEBUG
@@ -145,7 +148,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
-            else if(message_payload.find(mcp_cfg->get_mqtt_outONTIMEMsg())!=std::string::npos){
+            else if(message_payload.find(outONTIMEMsg)!=std::string::npos){
                 std::vector<std::string> mdata = parse_string(message_payload, '_');
                 if (mdata.size() != 3 ){
                     auto t = std::time(nullptr);
@@ -167,7 +170,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 }
                 
             }
-            else if(message_payload == mcp_cfg->get_mqtt_outOFFMsg()){
+            else if(message_payload == outOFFMsg){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, false, 999);
                 #ifdef DEBUG
