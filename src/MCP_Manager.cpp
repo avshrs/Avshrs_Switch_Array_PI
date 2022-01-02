@@ -32,11 +32,11 @@ void MCP_Manager::MCP_Init(){
     
     
     for(int i=0; i < 32;i++){
-        out_states_real[i] = (i, read_input_direct(i));
-        out_states[i] = (i, read_input_direct(i));
+        out_states_real[i] = read_input_direct(i);
+        out_states[i] = read_input_direct(i);
     }
     for(int i=0; i < 64;i++){
-        in_states[i] = (i, read_input_direct(i));
+        in_states[i] = read_input_direct(i);
     }
     
 }   
