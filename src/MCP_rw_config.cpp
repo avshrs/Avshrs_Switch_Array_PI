@@ -150,5 +150,5 @@ std::string MCP_rw_config::get_mqtt_OFFMsg(){
     return  mqtt_config.OFFMsg;
 }
 std::string MCP_rw_config::get_mqtt_ONTIMEMsg(){
-    return  mqtt_config.utONTIMEMsg;
+    return  mqtt_config.ONTIMEMsg;
 }

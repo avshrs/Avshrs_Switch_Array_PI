@@ -121,7 +121,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         std::string message_payload(static_cast<char*>(message->payload));
         const char * outSubstring = mcp_cfg->get_mqtt_outSubstring().c_str();
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
-        const char * outONTIMEMsg = mcp_cfg->get_mqtt_ONTIMEMsg().c_str();
+        const char * ONTIMEMsg = mcp_cfg->get_mqtt_ONTIMEMsg().c_str();
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
 
         if(!message_payload.empty() && message_topic.find(outSubstring) != std::string::npos){
@@ -143,7 +143,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
             }
-            else if(message_payload.find(outONTIMEMsg)!=std::string::npos){
+            else if(message_payload.find(ONTIMEMsg)!=std::string::npos){
                 std::vector<std::string> mdata = parse_string(message_payload, '_');
                 if (mdata.size() != 3 ){
                     auto t = std::time(nullptr);
