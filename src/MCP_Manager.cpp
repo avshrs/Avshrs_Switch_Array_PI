@@ -99,7 +99,7 @@ void MCP_Manager::write_output(int output, bool value, int in = 999){
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
             std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-            std::cout<<"MO -"<<mcp_config->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_config->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
+            // std::cout<<"MO -"<<mcp_config->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_config->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(value)<<std::endl;
         }
         else if (mcp_config->get_out_bistable(output)){
             if (out_states[output] > 0 && value > 0){
@@ -109,7 +109,7 @@ void MCP_Manager::write_output(int output, bool value, int in = 999){
                 auto t = std::time(nullptr);
                 auto tm = *std::localtime(&t);
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                std::cout<<"BI -"<<mcp_config->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_config->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
+                // std::cout<<"BI -"<<mcp_config->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_config->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(false)<<std::endl;
             }
             else if (value > 0){
                 out_states[output] = true;
@@ -117,7 +117,7 @@ void MCP_Manager::write_output(int output, bool value, int in = 999){
                 auto t = std::time(nullptr);
                 auto tm = *std::localtime(&t);
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                std::cout<<"BI -"<<mcp_config->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_config->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
+                // std::cout<<"BI -"<<mcp_config->get_in_name(in)<<" in:"<<unsigned(in)<<" - "<<mcp_config->get_out_name(output)<<" out:"<<unsigned(output)<<" - val:"<<unsigned(true)<<std::endl;
             }
         }
     }
