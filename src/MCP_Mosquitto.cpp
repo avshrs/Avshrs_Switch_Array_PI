@@ -46,7 +46,7 @@ void mqtt_client::unregister_subs(){
         std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
         unsubscribe(NULL, sub.c_str());
-        usleep(100000);
+        usleep(10000);
     }
 }
 
