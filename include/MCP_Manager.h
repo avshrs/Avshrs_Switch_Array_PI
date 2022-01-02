@@ -5,6 +5,7 @@
 #include "MCP_rw_config.h"
 #include <cmath>       
 class mqtt_client;
+
 class MCP_Manager
 {
     
