@@ -20,7 +20,8 @@ public:
 
     MCP_Manager *mcp_manager;
     MCP_rw_config *mcp_cfg;
-    void pub_state(int out, bool sate);
+    void pub_out_state(int out, bool sate);
+    void pub_in_state(int out, bool sate);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
     void register_mcp_config(MCP_rw_config *mcp_cfg_);
     void client_loop_forever();

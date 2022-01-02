@@ -26,7 +26,7 @@ void mqtt_client::client_loop_forever(){
 
 void mqtt_client::register_subs(){
     for(int i = 0; i<64; i++){
-        std::string sub = mcp_cfg->get_mqtt_outSubsring();
+        std::string sub = mcp_cfg->get_mqtt_outSubstring();
         sub += std::to_string(i);
         subscribe(NULL, sub.c_str());
         auto t = std::time(nullptr);
@@ -39,7 +39,7 @@ void mqtt_client::register_subs(){
 
 void mqtt_client::unregister_subs(){
     for(int i = 0; i<64; i++){
-        std::string sub = mcp_cfg->get_mqtt_outSubsring();
+        std::string sub = mcp_cfg->get_mqtt_outSubstring();
         sub += std::to_string(i);
         unsubscribe(NULL, sub.c_str());
         usleep(10000);
@@ -89,15 +89,28 @@ void mqtt_client::register_mcp_config(MCP_rw_config *mcp_cfg_){
     mcp_cfg = mcp_cfg_;
 }
 
-void mqtt_client::pub_state(int out, bool state){
-    std::string pub = mcp_cfg->get_mqtt_outPubsring();
+void mqtt_client::pub_out_state(int out, bool state){
+    std::string pub = mcp_cfg->get_mqtt_outPubstring();
     pub += std::to_string(out);
     std::string msg; 
     if (state){
-        msg = mcp_cfg->get_mqtt_outONMsg();
+        msg = mcp_cfg->get_mqtt_ONMsg();
     }
     else{
-        msg = mcp_cfg->get_mqtt_outOFFMsg();
+        msg = mcp_cfg->get_mqtt_OFFMsg();
+    }
+    publish(NULL, pub.c_str(), msg.length(), msg.c_str());
+}
+
+void mqtt_client::pub_in_state(int in, bool state){
+    std::string pub = mcp_cfg->get_mqtt_inPubstring();
+    pub += std::to_string(in);
+    std::string msg; 
+    if (state){
+        msg = mcp_cfg->get_mqtt_ONMsg();
+    }
+    else{
+        msg = mcp_cfg->get_mqtt_OFFMsg();
     }
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
@@ -106,12 +119,12 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
-        const char * outSubsring = mcp_cfg->get_mqtt_outSubsring().c_str();
-        const char * outONMsg = mcp_cfg->get_mqtt_outONMsg().c_str();
-        const char * outONTIMEMsg = mcp_cfg->get_mqtt_outONTIMEMsg().c_str();
-        const char * outOFFMsg = mcp_cfg->get_mqtt_outOFFMsg().c_str();
+        const char * outSubstring = mcp_cfg->get_mqtt_outSubstring().c_str();
+        const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
+        const char * outONTIMEMsg = mcp_cfg->get_mqtt_ONTIMEMsg().c_str();
+        const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
 
-        if(!message_payload.empty() && message_topic.find(outSubsring) != std::string::npos){
+        if(!message_payload.empty() && message_topic.find(outSubstring) != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '_');
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
@@ -120,7 +133,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::cout << "Wrong Topic lengh" << std::endl;
             }
 
-            else if(message_payload == outONMsg){
+            else if(message_payload == ONMsg){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, true, 999);
                 #ifdef DEBUG
@@ -152,7 +165,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 }
                 
             }
-            else if(message_payload == outOFFMsg){
+            else if(message_payload == OFFMsg){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, false, 999);
                 #ifdef DEBUG

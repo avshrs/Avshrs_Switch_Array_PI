@@ -32,11 +32,13 @@ void MCP_rw_config::read_config(){
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
-    mqtt_config.outSubsring = config["mqtt"]["outSubsring"].as<std::string>();
-    mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
-    mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
-    mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
-    mqtt_config.utONTIMEMsg = config["mqtt"]["utONTIMEMsg"].as<std::string>();
+    mqtt_config.outSubstring = config["mqtt"]["outSubstring"].as<std::string>();
+    mqtt_config.outPubstring = config["mqtt"]["outPubstring"].as<std::string>();
+    mqtt_config.inSubstring = config["mqtt"]["inSubstring"].as<std::string>();
+    mqtt_config.inPubstring = config["mqtt"]["inPubstring"].as<std::string>();
+    mqtt_config.ONMsg = config["mqtt"]["ONMsg"].as<std::string>();
+    mqtt_config.OFFMsg = config["mqtt"]["OFFMsg"].as<std::string>();
+    mqtt_config.utONTIMEMsg = config["mqtt"]["ONTIMEMsg"].as<std::string>();
     std::cout << "Mqtt settings loaded" << std::endl;
     std::cout << "I2C settings loading" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
@@ -129,18 +131,24 @@ std::string MCP_rw_config::get_mqtt_keepAliveTopic(){
 std::string MCP_rw_config::get_mqtt_keepAliveMsg(){
     return  mqtt_config.keepAliveMsg;
 }
-std::string MCP_rw_config::get_mqtt_outSubsring(){
-    return  mqtt_config.outSubsring;
+std::string MCP_rw_config::get_mqtt_outSubstring(){
+    return  mqtt_config.outSubstring;
 }
-std::string MCP_rw_config::get_mqtt_outPubsring(){
-    return  mqtt_config.outPubsring;
+std::string MCP_rw_config::get_mqtt_outPubstring(){
+    return  mqtt_config.outPubstring;
 }
-std::string MCP_rw_config::get_mqtt_outONMsg(){
-    return  mqtt_config.outONMsg;
+std::string MCP_rw_config::get_mqtt_inSubstring(){
+    return  mqtt_config.outSubstring;
 }
-std::string MCP_rw_config::get_mqtt_outOFFMsg(){
-    return  mqtt_config.outOFFMsg;
+std::string MCP_rw_config::get_mqtt_inPubstring(){
+    return  mqtt_config.outPubstring;
 }
-std::string MCP_rw_config::get_mqtt_outONTIMEMsg(){
+std::string MCP_rw_config::get_mqtt_ONMsg(){
+    return  mqtt_config.ONMsg;
+}
+std::string MCP_rw_config::get_mqtt_OFFMsg(){
+    return  mqtt_config.OFFMsg;
+}
+std::string MCP_rw_config::get_mqtt_ONTIMEMsg(){
     return  mqtt_config.utONTIMEMsg;
 }

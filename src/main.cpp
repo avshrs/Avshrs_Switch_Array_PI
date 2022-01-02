@@ -17,12 +17,12 @@ void keep_alive_message(mqtt_client *mqtt){
         for(int i = 0; i < 64; i++){
             bool value = mcp.read_output_buffer(i);
             std::string msg; 
-            std::string pu = mcp_rw_cfg.get_mqtt_outPubsring();
+            std::string pu = mcp_rw_cfg.get_mqtt_outPubstring();
             if(value){
-                msg = mcp_rw_cfg.get_mqtt_outONMsg();
+                msg = mcp_rw_cfg.get_mqtt_ONMsg();
             }
             else{
-                msg = mcp_rw_cfg.get_mqtt_outOFFMsg();
+                msg = mcp_rw_cfg.get_mqtt_OFFMsg();
             }
             pu += std::to_string(i);
             mqtt->publish(NULL, pu.c_str(), msg.length(), msg.c_str());

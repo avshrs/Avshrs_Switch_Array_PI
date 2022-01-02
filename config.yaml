@@ -7,12 +7,16 @@ mqtt:
     keepAliveTopic: MCP_Array
     keepAliveMsg: Online
     # eg MCP_OUT_S_0
-    outSubsring: MCP_OUT_S_
+    outSubstring: MCP_OUT_S_
     # eg MCP_OUT_P_0
-    outPubsring: MCP_OUT_P_
-    outONMsg: ON
-    outOFFMsg: OFF
-    utONTIMEMsg: ONTIME
+    outPubstring: MCP_OUT_P_
+    # eg MCP_IN_S_0
+    inSubstring: MCP_IN_S_
+    # eg MCP_IN_P_0
+    inPubstring: MCP_IN_P_
+    ONMsg: ON
+    OFFMsg: OFF
+    ONTIMEMsg: ONTIME
 
 i2c1:
     i2cPath: "/dev/i2c-1"

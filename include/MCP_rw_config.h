@@ -27,9 +27,11 @@ class MCP_rw_config{
     int get_mqtt_port();
     std::string get_mqtt_keepAliveTopic();
     std::string get_mqtt_keepAliveMsg();
-    std::string get_mqtt_outSubsring();
-    std::string get_mqtt_outPubsring();
-    std::string get_mqtt_outONMsg();
-    std::string get_mqtt_outOFFMsg();
-    std::string get_mqtt_outONTIMEMsg();
+    std::string get_mqtt_outSubstring();
+    std::string get_mqtt_outPubstring();
+    std::string get_mqtt_inSubstring();
+    std::string get_mqtt_inPubstring();
+    std::string get_mqtt_ONMsg();
+    std::string get_mqtt_OFFMsg();
+    std::string get_mqtt_ONTIMEMsg();
 };

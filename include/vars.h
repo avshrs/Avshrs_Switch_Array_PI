@@ -113,10 +113,10 @@ struct Mqtt_config{
     int serverPort;
     std::string keepAliveTopic;
     std::string keepAliveMsg;
-    std::string outSubsring;
-    std::string outPubsring;
-    std::string outONMsg;
-    std::string outOFFMsg;
+    std::string outSubstring;
+    std::string outPubstring;
+    std::string ONMsg;
+    std::string OFFMsg;
     std::string utONTIMEMsg;
 };
 
