@@ -23,7 +23,7 @@ void MCP_rw_config::read_config(){
             input_conf[i].name = config["inputs"][in_nr]["name"].as<std::string>();
             input_conf[i].type = config["inputs"][in_nr]["type"].as<std::string>();
             input_conf[i].enabled = config["inputs"][in_nr]["enabled"].as<bool>();
-            input_conf[i].outputRelated = config["inputs"][in_nr]["outputRelated"].as<int>();
+            input_conf[i].output_related = config["inputs"][in_nr]["outputRelated"].as<int>();
         }
     }
 
@@ -51,24 +51,24 @@ bool MCP_rw_config::get_out_bistable(int out){
     return output_conf[out].bistable;
 }
 
-bool MCP_rw_config::get_out_input_rel(int out){
+bool MCP_rw_config::get_out_inputrel(int out){
     return output_conf[out].input_related;
 }
 
 
 std::string MCP_rw_config::get_in_name(int in){
-    return output_conf[in].name;
+    return input_conf[in].name;
 }
 
 std::string MCP_rw_config::get_in_type(int in){
-    return output_conf[in].type;
+    return input_conf[in].type;
 }
 
-bool MCP_rw_config::get_out_enabled(int in){
-     return output_conf[in].enabled;
+bool MCP_rw_config::get_in_enabled(int in){
+     return input_conf[in].enabled;
 }
 
 
-int MCP_rw_config::get_in_outputRelated(int in){
-    return output_conf[in].outputRelated;
+int MCP_rw_config::get_in_output_related(int in){
+    return input_conf[in].output_related;
 }
