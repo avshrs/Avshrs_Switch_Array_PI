@@ -28,6 +28,20 @@ void keep_alive_message(mqtt_client *mqtt){
             mqtt->publish(NULL, pu.c_str(), msg.length(), msg.c_str());
             usleep(1000);
         }
+        for(int i = 0; i < 64; i++){
+            bool value = mcp.read_input_buffer(i);
+            std::string msg; 
+            std::string pu = mcp_rw_cfg.get_mqtt_inPubstring();
+            if(value){
+                msg = mcp_rw_cfg.get_mqtt_ONMsg();
+            }
+            else{
+                msg = mcp_rw_cfg.get_mqtt_OFFMsg();
+            }
+            pu += std::to_string(i);
+            mqtt->publish(NULL, pu.c_str(), msg.length(), msg.c_str());
+            usleep(1000);
+        }
         sleep(60); 
     }
 }
