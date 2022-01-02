@@ -89,7 +89,13 @@ bool MCP_rw_config::get_out_input_rel(int out){
 
 
 std::string MCP_rw_config::get_in_name(int in){
-    return input_conf[in].name;
+    if (in < 64 ){
+        return input_conf[in].name;
+    }
+    else{
+        std::string name = "MQTT";
+        return name;
+    }
 }
 
 std::string MCP_rw_config::get_in_type(int in){

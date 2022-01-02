@@ -710,7 +710,7 @@ inputs:
             
     in15:
         nr: 15
-        name: WSalon_wneka
+        name: Salon_Wneka
         type: switch 
         enabled: 1
         outputRelated: 15                
