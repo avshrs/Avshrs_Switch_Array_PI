@@ -2,8 +2,8 @@
 #include "vars.h"
 class MCP_rw_config{
     public:
-    unsigned int max_out = 64;
-    unsigned int max_in = 64;
+    int max_out = 64;
+    int max_in = 64;
     Output_conf output_conf[64];
     Input_conf intput_conf[64];
 
