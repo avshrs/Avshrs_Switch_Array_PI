@@ -10,7 +10,9 @@ MCP_Manager mcp;
 
 void keep_alive_message(mqtt_client *mqtt){
     std::string msg = mcp_rw_cfg.get_mqtt_keepAliveMsg();
+    std::cout<<7<<std::endl;
     while (true){
+        
         sleep(60); 
         mqtt->publish(NULL, mcp_rw_cfg.get_mqtt_keepAliveTopic().c_str(), msg.length(), msg.c_str());
         for(int i = 0; i < 64; i++){
@@ -32,7 +34,6 @@ void keep_alive_message(mqtt_client *mqtt){
 }
 
 void th2(mqtt_client *mqtt){
-    
     mqtt->client_loop_forever();
 }
 void th3(mqtt_client *mqtt){
