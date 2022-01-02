@@ -86,16 +86,32 @@ std::string MCP_rw_config::get_in_name(int in){
 }
 
 std::string MCP_rw_config::get_in_type(int in){
-    return input_conf[in].type;
+    if (in < 64 ){
+        return input_conf[in].type;
+    }
+    else{
+        std::string name = "MQTT";
+        return name;
+    }
 }
 
 bool MCP_rw_config::get_in_enabled(int in){
-     return input_conf[in].enabled;
+     if (in < 64 ){
+        return input_conf[in].enabled;
+    }
+    else{
+        return false;
+    }
 }
 
 
 int MCP_rw_config::get_in_output_related(int in){
-    return input_conf[in].output_related;
+    if (in < 64 ){
+        return input_conf[in].output_related;
+    }
+    else{
+        return 0;
+    }
 }
 
 std::string MCP_rw_config::get_mqtt_ClientId(){
