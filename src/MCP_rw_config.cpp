@@ -32,43 +32,43 @@ void MCP_rw_config::read_config(){
     }
 }
     
-std::string MCP_rw_config::get_out_name(unsigned int out){
+std::string MCP_rw_config::get_out_name(int out){
     return output_conf[out].name;
 }
 
-std::string MCP_rw_config::get_out_type(unsigned int out){
+std::string MCP_rw_config::get_out_type(int out){
     return output_conf[out].type;
 }
 
-bool MCP_rw_config::get_out_def_state(unsigned int out){
+bool MCP_rw_config::get_out_def_state(int out){
     return output_conf[out].default_state;
 }
 
-bool MCP_rw_config::get_out_enabled(unsigned int out){
+bool MCP_rw_config::get_out_enabled(int out){
     return output_conf[out].enabled;
 }
-bool MCP_rw_config::get_out_bistable(unsigned int out){
+bool MCP_rw_config::get_out_bistable(int out){
     return output_conf[out].bistable;
 }
 
-bool MCP_rw_config::get_out_input_rel(unsigned int out){
+bool MCP_rw_config::get_out_input_rel(int out){
     return output_conf[out].input_related;
 }
 
 
-std::string MCP_rw_config::get_in_name(unsigned int in){
+std::string MCP_rw_config::get_in_name(int in){
     return output_conf[in].name;
 }
 
-std::string MCP_rw_config::get_in_type(unsigned int in){
+std::string MCP_rw_config::get_in_type(int in){
     return output_conf[in].type;
 }
 
-bool MCP_rw_config::get_out_enabled(unsigned int in){
+bool MCP_rw_config::get_out_enabled(int in){
      return output_conf[in].enabled;
 }
 
 
-int MCP_rw_config::get_in_outputRelated(unsigned int in){
+int MCP_rw_config::get_in_outputRelated(int in){
     return output_conf[in].outputRelated;
 }
