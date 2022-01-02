@@ -28,10 +28,8 @@ void mqtt_client::client_loop_forever(){
 
 void mqtt_client::register_subs(){
     for(int i = 0; i<64; i++){
-        std::string pub = mcp_cfg->get_mqtt_outPubsring();
         std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
-        pub += std::to_string(i);
         subscribe(NULL, sub.c_str());
         usleep(10000);
     }
@@ -39,11 +37,8 @@ void mqtt_client::register_subs(){
 
 void mqtt_client::unregister_subs(){
     for(int i = 0; i<64; i++){
-        std::string pub = mcp_cfg->get_mqtt_outPubsring();
         std::string sub = mcp_cfg->get_mqtt_outSubsring();
         sub += std::to_string(i);
-        pub += std::to_string(i);
-        
         unsubscribe(NULL, sub.c_str());
         usleep(10000);
     }
@@ -100,9 +95,6 @@ void mqtt_client::register_mcp_manager(MCP_Manager *mcp_manager_){
 }
 void mqtt_client::register_mcp_config(MCP_rw_config *mcp_cfg_){
     mcp_cfg = mcp_cfg_;
-}
-void mqtt_client::send_ack(std::string pub, std::string msg ){
-    publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
 
 void mqtt_client::pub_state(int out, bool state){
@@ -189,6 +181,5 @@ std::vector<std::string> mqtt_client::parse_string(std::string str, char delimit
         getline(ss, substr, delimiter);
         vect.push_back(substr);
     }
-    // std::cout << vect.size() << std::endl;
     return vect;
 }

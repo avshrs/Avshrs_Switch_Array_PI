@@ -1,8 +1,8 @@
 #pragma once
-
+// #include "MCP_Settings.h"
 #include "MCPdev.h"
 #include "vars.h"
-#include "MCP_Settings.h"
+#include "MCP_rw_config.h"
 #include <cmath>       
 class mqtt_client;
 class MCP_Manager
@@ -21,7 +21,8 @@ class MCP_Manager
         MCP mcpc_out_2;
         MCP mcpc_out_3;
 
-        MCP_Settings *mcp_settings;
+        // MCP_Settings *mcp_settings;
+        MCP_rw_config *mcp_config;
         MCP_Data mcp_data;
         mqtt_client * mqtt;
         bool in_states[IN_RANGE] = {true};
@@ -32,7 +33,8 @@ class MCP_Manager
         
     public:
         void MCP_Init();
-        void register_mcp_settings(MCP_Settings *mcp_settings_);
+        // void register_mcp_settings(MCP_Settings *mcp_settings_);
+        void register_mcp_config(MCP_rw_config *mcp_config_);
         void register_mcp_mqtt(mqtt_client *mqtt_);
         bool read_input_direct(uint8_t input);
         void write_output_direct(uint8_t output, bool state);

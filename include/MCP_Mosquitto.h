@@ -20,7 +20,6 @@ public:
 
     MCP_Manager *mcp_manager;
     MCP_rw_config *mcp_cfg;
-    void send_ack(std::string pub, std::string msg);
     void pub_state(int out, bool sate);
     void register_mcp_manager(MCP_Manager *mcp_manager_);
     void register_mcp_config(MCP_rw_config *mcp_cfg_);
