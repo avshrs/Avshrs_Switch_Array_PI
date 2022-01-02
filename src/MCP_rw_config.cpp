@@ -26,32 +26,19 @@ void MCP_rw_config::read_config(){
             input_conf[i].output_related = config["inputs"][in_nr]["outputRelated"].as<int>();
         }
     }
-    std::cout << "Mqtt settings load" << std::endl;
+    std::cout << "Mqtt settings loading" << std::endl;
     mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
     mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
-    std::cout << "keepAliveTopic:|"<< mqtt_config.keepAliveTopic << "|" <<std::endl;
-
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
-    std::cout << "keepAliveMsg:|"<< mqtt_config.keepAliveMsg << "|" <<std::endl;
-
     mqtt_config.outSubsring = config["mqtt"]["outSubsring"].as<std::string>();
-    std::cout << "outSubsring:|"<< mqtt_config.outSubsring << "|" <<std::endl;
-
     mqtt_config.outPubsring = config["mqtt"]["outPubsring"].as<std::string>();
-    std::cout << "outPubsring:|"<< mqtt_config.outPubsring << "|" <<std::endl;
-
     mqtt_config.outONMsg = config["mqtt"]["outONMsg"].as<std::string>();
-    std::cout << "outONMsg:|"<< mqtt_config.outONMsg << "|" <<std::endl;
-
     mqtt_config.outOFFMsg = config["mqtt"]["outOFFMsg"].as<std::string>();
-    std::cout << "outOFFMsg:|"<< mqtt_config.outOFFMsg << "|" <<std::endl;
-
     mqtt_config.utONTIMEMsg = config["mqtt"]["utONTIMEMsg"].as<std::string>();
-    std::cout << "utONTIMEMsg:|"<< mqtt_config.utONTIMEMsg << "|" <<std::endl;
-    
-    std::cout << "I2C settings load" << std::endl;
+    std::cout << "Mqtt settings loaded" << std::endl;
+    std::cout << "I2C settings loading" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
     i2c1_config.in1Address = config["i2c1"]["in1Address"].as<int>();
     i2c1_config.in2Address = config["i2c1"]["in2Address"].as<int>();
@@ -61,7 +48,7 @@ void MCP_rw_config::read_config(){
     i2c1_config.out2Address = config["i2c1"]["out2Address"].as<int>();
     i2c1_config.out3Address = config["i2c1"]["out3Address"].as<int>();
     i2c1_config.out4Address = config["i2c1"]["out4Address"].as<int>();
-
+    std::cout << "I2C settings loaded" << std::endl;
 }
     
 std::string MCP_rw_config::get_out_name(int out){
