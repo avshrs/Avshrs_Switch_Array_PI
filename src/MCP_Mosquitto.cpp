@@ -132,12 +132,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout << "Wrong Topic lengh" << std::endl;
             }
-            else if (!mcp_cfg->get_out_enabled(std::stoi(tdata[3]))){
-                auto t = std::time(nullptr);
-                auto tm = *std::localtime(&t);      
-                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                std::cout << "Error output disabled or aout of range" << std::endl;
-            }
             else if(message_payload == outONMsg){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, true, 999);
