@@ -12,17 +12,17 @@ void MCP_rw_config::read_config(){
             out_nr += std::to_string(i);
             output_conf[i].name = config["outputs"][out_nr]["name"].as<std::string>();
             output_conf[i].type = config["outputs"][out_nr]["type"].as<std::string>();
-            output_conf[i].default_state = config["outputs"][out_nr]["defaultState"].as<bool>();
-            output_conf[i].enabled = config["outputs"][out_nr]["enabled"].as<bool>();
-            output_conf[i].bistable = config["outputs"][out_nr]["bistable"].as<bool>();
-            output_conf[i].input_related = config["outputs"][out_nr]["inputRelated"].as<bool>();
+            output_conf[i].default_state = config["outputs"][out_nr]["defaultState"].as<int>();
+            output_conf[i].enabled = config["outputs"][out_nr]["enabled"].as<int>();
+            output_conf[i].bistable = config["outputs"][out_nr]["bistable"].as<int>();
+            output_conf[i].input_related = config["outputs"][out_nr]["inputRelated"].as<int>();
         }
         for(int i = 0; i < max_in ;i++){
             std::string in_nr ="in";
             in_nr += std::to_string(i);
             input_conf[i].name = config["inputs"][in_nr]["name"].as<std::string>();
             input_conf[i].type = config["inputs"][in_nr]["type"].as<std::string>();
-            input_conf[i].enabled = config["inputs"][in_nr]["enabled"].as<bool>();
+            input_conf[i].enabled = config["inputs"][in_nr]["enabled"].as<int>();
             input_conf[i].output_related = config["inputs"][in_nr]["outputRelated"].as<int>();
         }
     }

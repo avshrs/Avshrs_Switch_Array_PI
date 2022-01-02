@@ -30,10 +30,10 @@ outputs:
         nr: 0
         name: Dzienny 
         type: light
-        defaultState: false
-        enabled: true
-        bistable: false
-        inputRelated: true
+        defaultState: 0
+        enabled: 1
+        bistable: 0
+        inputRelated: 1
     out1:
         nr: 1
         name: Dzieciakow
