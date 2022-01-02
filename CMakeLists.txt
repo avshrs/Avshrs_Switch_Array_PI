@@ -14,6 +14,7 @@ set(libs
 /usr/lib/arm-linux-gnueabihf/libmosquittopp.so
 /usr/lib/arm-linux-gnueabihf/libpthread.so
 /usr/lib/arm-linux-gnueabihf/libi2c.so
+/usr/lib/arm-linux-gnueabihf/libyaml-cpp.so
 )
 
 set(INCLUDE_HEADER_FILES
