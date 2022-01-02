@@ -8,7 +8,7 @@
 class MCP_Manager;
 #include "MCP_rw_config.h"
 
-#define DEBUG
+// #define DEBUG
 
 #define MAX_PAYLOAD 50
 #define DEFAULT_KEEP_ALIVE 60
