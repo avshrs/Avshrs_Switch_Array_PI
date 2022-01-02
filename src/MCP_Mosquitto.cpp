@@ -28,14 +28,16 @@ void mqtt_client::client_loop_forever(){
 
 void mqtt_client::register_subs(){
     for(int i = 0; i<64; i++){
-        std::string sub = mcp_cfg->get_mqtt_outSubsring();
-        sub += std::to_string(i);
-        subscribe(NULL, sub.c_str());
-        auto t = std::time(nullptr);
-        auto tm = *std::localtime(&t);      
-        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-        std::cout << "Subscribe output: " << i << std::endl;
-        usleep(10000);
+        
+            std::string sub = mcp_cfg->get_mqtt_outSubsring();
+            sub += std::to_string(i);
+            subscribe(NULL, sub.c_str());
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);      
+            std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+            std::cout << "Subscribe output: " << i << std::endl;
+            usleep(10000);
+        
     }
 }
 
@@ -127,6 +129,12 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                 std::cout << "Wrong Topic lengh" << std::endl;
             }
+            else if (std::stoi(tdata[3]) > 63 || !mcp_cfg->get_out_enabled(std::stoi(tdata[3]))){
+                auto t = std::time(nullptr);
+                auto tm = *std::localtime(&t);      
+                std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
+                std::cout << "Error output disabled or aout of range" << std::endl;
+            }
             else if(message_payload == mcp_cfg->get_mqtt_outONMsg()){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, true, 999);
@@ -159,7 +167,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 }
                 
             }
-
             else if(message_payload == mcp_cfg->get_mqtt_outOFFMsg()){
                 int nr = std::stoi(tdata[3]);
                 mcp_manager->write_output(nr, false, 999);
