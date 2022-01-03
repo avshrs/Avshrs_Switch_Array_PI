@@ -6,8 +6,8 @@
 
 void MCP_rw_config::read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
-    // max_out = config["output_len"].as<int>();
-    // max_in = config["input_len"].as<int>();
+    max_out = config["output_len"].as<int>();
+    max_in = config["input_len"].as<int>();
     std::cout << "outputs settings loading" << std::endl;
 
     const YAML::Node& outputs_ = config["outputs"];
@@ -41,26 +41,6 @@ void MCP_rw_config::read_config(){
     }
     std::cout << "inputs settings loaded" << std::endl;
     
-    if(config["config"].as<int>() == 1){
-        for(int i = 0; i < max_out ;i++){
-            std::string out_nr ="out";
-            out_nr += std::to_string(i);
-            // output_conf[i].nr = config["outputs"][out_nr]["nr"].as<int>();
-            output_conf[i].name = config["outputs"][out_nr]["name"].as<std::string>();
-            output_conf[i].type = config["outputs"][out_nr]["type"].as<std::string>();
-            output_conf[i].default_state = static_cast<bool>(config["outputs"][out_nr]["defaultState"].as<int>());
-            output_conf[i].enabled = static_cast<bool>(config["outputs"][out_nr]["enabled"].as<int>());
-            output_conf[i].bistable = static_cast<bool>(config["outputs"][out_nr]["bistable"].as<int>());
-            output_conf[i].input_related = static_cast<bool>(config["outputs"][out_nr]["inputRelated"].as<int>());
-        }
-        for(int i = 0; i < max_in ;i++){
-            std::string in_nr ="in";
-            in_nr += std::to_string(i);
-            input_conf[i].name = config["inputs"][in_nr]["name"].as<std::string>();
-            input_conf[i].type = config["inputs"][in_nr]["type"].as<std::string>();
-            input_conf[i].enabled = static_cast<bool>(config["inputs"][in_nr]["enabled"].as<int>());
-            input_conf[i].output_related = config["inputs"][in_nr]["outputRelated"].as<int>();
-        }
     }
     std::cout << "Mqtt settings loading" << std::endl;
     mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
@@ -76,6 +56,7 @@ void MCP_rw_config::read_config(){
     mqtt_config.OFFMsg = config["mqtt"]["OFFMsg"].as<std::string>();
     mqtt_config.ONTIMEMsg = config["mqtt"]["ONTIMEMsg"].as<std::string>();
     std::cout << "Mqtt settings loaded" << std::endl;
+    
     std::cout << "I2C settings loading" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
     i2c1_config.in1Address = config["i2c1"]["in1Address"].as<int>();
@@ -99,22 +80,47 @@ std::string MCP_rw_config::get_out_name(int out){
 }
 
 std::string MCP_rw_config::get_out_type(int out){
-    return output_conf[out].type;
+    for (auto i : output_conf_){
+        if( i.nr == out){
+            return i.type;
+        }
+    }
+    return "";
 }
 
 bool MCP_rw_config::get_out_def_state(int out){
-    return output_conf[out].default_state;
+    for (auto i : output_conf_){
+        if( i.nr == out){
+            return i.default_state;
+        }
+    }
+    return 0;
 }
 
 bool MCP_rw_config::get_out_enabled(int out){
-    return output_conf[out].enabled;
+    for (auto i : output_conf_){
+        if( i.nr == out){
+            return i.enabled;
+        }
+    }
+    return 0;
 }
 bool MCP_rw_config::get_out_bistable(int out){
-    return output_conf[out].bistable;
+    for (auto i : output_conf_){
+        if( i.nr == out){
+            return i.bistable;
+        }
+    }
+    return 0;    
 }
 
 bool MCP_rw_config::get_out_input_rel(int out){
-    return output_conf[out].input_related;
+    for (auto i : output_conf_){
+        if( i.nr == out){
+            return i.input_related;
+        }
+    }
+    return 0;    
 }
 
 
@@ -128,32 +134,38 @@ std::string MCP_rw_config::get_in_name(int in){
 }    
 
 std::string MCP_rw_config::get_in_type(int in){
-    if (in < 64 ){
-        return input_conf[in].type;
+    for (auto i : input_conf_){
+        if( i.nr == in){
+            return i.type;
+        }
     }
-    else{
-        std::string name = "MQTT";
-        return name;
-    }
+    return "";
 }
 
 bool MCP_rw_config::get_in_enabled(int in){
-     if (in < 64 ){
-        return input_conf[in].enabled;
+    for (auto i : input_conf_){
+        if( i.nr == in){
+            return i.enabled;
+        }
     }
-    else{
-        return false;
+    return 0;
+}
+bool MCP_rw_config::get_in_enabledOutputRelated(int in){
+    for (auto i : input_conf_){
+        if( i.nr == in){
+            return i.enabledOutputRelated;
+        }
     }
+    return 0;    
 }
 
-
 int MCP_rw_config::get_in_output_related(int in){
-    if (in < 64 ){
-        return input_conf[in].output_related;
+    for (auto i : input_conf_){
+        if( i.nr == in){
+            return i.output_related;
+        }
     }
-    else{
-        return 0;
-    }
+    return 0;    
 }
 
 std::string MCP_rw_config::get_mqtt_ClientId(){

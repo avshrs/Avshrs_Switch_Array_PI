@@ -50,13 +50,15 @@ void MCP_Manager::register_mcp_mqtt(mqtt_client *mqtt_){
 
 void MCP_Manager::scan_all_inputs(){
     for(int in = 0; in < IN_RANGE ; in++){
-        int out = mcp_config->get_in_output_related(in);
-        if (mcp_config->get_in_enabled(in) && mcp_config->get_out_input_rel(out)){
+        if (mcp_config->get_in_enabled(in)){
             bool value = read_input_direct(in);
             if (in_states[in] != value){
                 in_states[in] = value;
                 mqtt->pub_in_state(in, value);
-                write_output(static_cast<uint8_t>(out), value, in);
+                int out = mcp_config->get_in_output_related(in);
+                if (mcp_config->get_in_enabledOutputRelated(in)){
+                    write_output(static_cast<uint8_t>(out), value, in);
+                }
             }
         }
         usleep(100);
