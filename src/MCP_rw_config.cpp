@@ -25,8 +25,8 @@ void MCP_rw_config::read_config(){
         output_conf_.push_back(oc_tmp);
     }
 
-    const YAML::Node& outputs_ = config["inputs"];
-    for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
+    const YAML::Node& inputs_ = config["inputs"];
+    for (YAML::const_iterator it = inputs_.begin(); it != inputs_.end(); ++it) {
         const YAML::Node& out_ = *it;
         Input_conf oc_tmp; 
 
