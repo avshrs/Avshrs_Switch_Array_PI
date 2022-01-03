@@ -13,8 +13,8 @@ void MCP_rw_config::read_config(){
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
         const YAML::Node& out_ = *it;
        
-          std::cout<<it->first["name"].as<std::string>()<< std::endl;     // <- key
-        
+          std::cout<<it->second["name"].as<std::string>()<< std::endl;     // <- key
+       
     }
     // for (YAML::const_iterator it = config[outputs].begin(); it != sequence[outputs].end(); ++it)
     std::cout << "2 " << std::endl;
