@@ -1,5 +1,7 @@
 #pragma once
 #include "vars.h"
+#include <vector>
+
 class MCP_rw_config{
     public:
     int max_out = 64;
@@ -8,6 +10,9 @@ class MCP_rw_config{
     Input_conf input_conf[64];
     Mqtt_config mqtt_config;
     I2c1_config i2c1_config;
+
+    std::vector< Output_conf > output_conf_;
+    std::vector< Input_conf > intput_conf_;
 
     void read_config();
     std::string get_out_name(int out);

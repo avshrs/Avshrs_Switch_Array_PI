@@ -93,7 +93,7 @@ std::string MCP_rw_config::get_out_name(int out){
         std::cout << "dupa" <<it->name <<std::endl;
         return it->name;
     else 
-        return "dupa"
+        return "dupa";
 }
 
 std::string MCP_rw_config::get_out_type(int out){
