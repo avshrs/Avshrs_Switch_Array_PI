@@ -10,14 +10,15 @@ void MCP_rw_config::read_config(){
     max_in = config["input_len"].as<int>();
     const YAML::Node& outputs = config["outputs"];
 
-    for (YAML::iterator it = outputs.begin(); it != outputs.end(); ++it) {
+    for (YAML::const_iterator it = outputs.begin(); it != outputs.end(); ++it) {
         const YAML::Node& out = *it;
         std::cout << "Id: " << out["nr"].as<std::int>() << "\n";
         std::cout << "name: " << out["name"].as<std::string>() << "\n\n";
     }
+    // for (YAML::const_iterator it = config[outputs].begin(); it != sequence[outputs].end(); ++it)
 
     if(config["config"].as<int>() == 1){
-        for (YAML::const_iterator it = config[outputs].begin(); it != sequence[outputs].end(); ++it)
+        
         for(int i = 0; i < max_out ;i++){
             std::string out_nr ="out";
             out_nr += std::to_string(i);
