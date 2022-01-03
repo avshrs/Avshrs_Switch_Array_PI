@@ -2,24 +2,45 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <string>
-
+#include <algorithm>
 
 void MCP_rw_config::read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
     // max_out = config["output_len"].as<int>();
     // max_in = config["input_len"].as<int>();
+    
     const YAML::Node& outputs_ = config["outputs"];
-    std::cout << "1 " << std::endl;
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
         const YAML::Node& out_ = *it;
-       
-          std::cout<<it->second["name"].as<std::string>()<< std::endl;     // <- key
-       
-    }
-    // for (YAML::const_iterator it = config[outputs].begin(); it != sequence[outputs].end(); ++it)
-    std::cout << "2 " << std::endl;
-    if(config["config"].as<int>() == 1){
+        Output_conf oc_tmp; 
+
+        oc_tmp.nr = it->second["nr"].as<int>(); 
+        oc_tmp.name = it->second["name"].as<std::string>(); 
+        oc_tmp.type = it->second["type"].as<std::string>(); 
+        oc_tmp.default_state = static_cast<bool>(it->second["defaultState"].as<int>()); 
+        oc_tmp.enabled = static_cast<bool>(it->second["enabled"].as<int>()); 
+        oc_tmp.bistable = static_cast<bool>(it->second["bistable"].as<int>()); 
+        oc_tmp.input_related = static_cast<bool>(it->second["input_related"].as<int>()); 
         
+        output_conf_.push_back(oc_tmp);
+    }
+
+    const YAML::Node& outputs_ = config["inputs"];
+    for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
+        const YAML::Node& out_ = *it;
+        Input_conf oc_tmp; 
+
+        oc_tmp.nr = it->second["nr"].as<int>(); 
+        oc_tmp.name = it->second["name"].as<std::string>(); 
+        oc_tmp.type = it->second["type"].as<std::string>(); 
+        oc_tmp.enabled = static_cast<bool>(it->second["enabled"].as<int>()); 
+        oc_tmp.output_related = it->second["outputRelated"].as<int>(); 
+        
+        intput_conf_.push_back(oc_tmp);
+    }
+
+    
+    if(config["config"].as<int>() == 1){
         for(int i = 0; i < max_out ;i++){
             std::string out_nr ="out";
             out_nr += std::to_string(i);
@@ -68,7 +89,11 @@ void MCP_rw_config::read_config(){
 }
     
 std::string MCP_rw_config::get_out_name(int out){
-    return output_conf[out].name;
+    if ( std::find(output_conf_.begin(), output_conf_.end(), out) != output_conf_.end() )
+        std::cout << "dupa" <<it->name <<std::endl;
+        return it->name;
+    else 
+        return "dupa"
 }
 
 std::string MCP_rw_config::get_out_type(int out){
