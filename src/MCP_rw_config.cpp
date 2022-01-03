@@ -8,10 +8,9 @@ void MCP_rw_config::read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
     // max_out = config["output_len"].as<int>();
     // max_in = config["input_len"].as<int>();
-    
+    std::cout << "outputs settings loading" << std::endl;
     const YAML::Node& outputs_ = config["outputs"];
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
-        const YAML::Node& out_ = *it;
         Output_conf oc_tmp; 
 
         oc_tmp.nr = it->second["nr"].as<int>(); 
@@ -24,21 +23,22 @@ void MCP_rw_config::read_config(){
         
         output_conf_.push_back(oc_tmp);
     }
-
+    std::cout << "outputs settings loaded" << std::endl;
+    std::cout << "inputs settings loading" << std::endl;
     const YAML::Node& inputs_ = config["inputs"];
     for (YAML::const_iterator it = inputs_.begin(); it != inputs_.end(); ++it) {
-        const YAML::Node& out_ = *it;
         Input_conf oc_tmp; 
 
         oc_tmp.nr = it->second["nr"].as<int>(); 
         oc_tmp.name = it->second["name"].as<std::string>(); 
         oc_tmp.type = it->second["type"].as<std::string>(); 
         oc_tmp.enabled = static_cast<bool>(it->second["enabled"].as<int>()); 
+        oc_tmp.enabledOutputRelated = static_cast<bool>(it->second["enabledOutputRelated"].as<int>()); 
         oc_tmp.output_related = it->second["outputRelated"].as<int>(); 
         
         intput_conf_.push_back(oc_tmp);
     }
-
+    std::cout << "inputs settings loaded" << std::endl;
     
     if(config["config"].as<int>() == 1){
         for(int i = 0; i < max_out ;i++){
