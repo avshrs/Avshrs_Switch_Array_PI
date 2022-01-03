@@ -92,6 +92,7 @@ struct MCP_values
 }; 
 
 struct Output_conf{
+    int nr;
     std::string name;
     std::string type;
     bool default_state;
@@ -101,6 +102,7 @@ struct Output_conf{
 };
 
 struct Input_conf{
+    int nr;
     std::string name;
     std::string type;
     bool enabled;
