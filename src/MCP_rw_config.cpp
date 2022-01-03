@@ -14,7 +14,7 @@ void MCP_rw_config::read_config(){
         std::cout << "2 " << std::endl;
         const YAML::Node& out_ = *it;
         std::cout << "3 " << std::endl;
-        std::cout << "nr: " << out_["nr"].as<int>() << "\n";
+        std::cout << "nr: " << it["nr"].as<int>() << "\n";
         std::cout << "4 " << std::endl;
         std::cout << "name: " << out_["name"].as<std::string>() << "\n\n";
     }
