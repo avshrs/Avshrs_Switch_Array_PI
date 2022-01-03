@@ -89,7 +89,7 @@ void MCP_rw_config::read_config(){
 }
     
 std::string MCP_rw_config::get_out_name(int out){
-    for (auto i : v){
+    for (auto i : output_conf_){
         if( i.nr == out){
             return i.name;
         }
