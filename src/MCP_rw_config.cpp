@@ -9,6 +9,7 @@ void MCP_rw_config::read_config(){
     // max_out = config["output_len"].as<int>();
     // max_in = config["input_len"].as<int>();
     std::cout << "outputs settings loading" << std::endl;
+
     const YAML::Node& outputs_ = config["outputs"];
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
         Output_conf oc_tmp; 
@@ -19,7 +20,7 @@ void MCP_rw_config::read_config(){
         oc_tmp.default_state = static_cast<bool>(it->second["defaultState"].as<int>()); 
         oc_tmp.enabled = static_cast<bool>(it->second["enabled"].as<int>()); 
         oc_tmp.bistable = static_cast<bool>(it->second["bistable"].as<int>()); 
-        oc_tmp.input_related = static_cast<bool>(it->second["input_related"].as<int>()); 
+        oc_tmp.input_related = static_cast<bool>(it->second["inputRelated"].as<int>()); 
         
         output_conf_.push_back(oc_tmp);
     }
