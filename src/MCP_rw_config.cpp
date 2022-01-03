@@ -6,23 +6,10 @@
 
 void MCP_rw_config::read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
-    max_out = config["output_len"].as<int>();
-    max_in = config["input_len"].as<int>();
-    const YAML::Node& outputs = config["outputs"];
-
-    // for (YAML::const_iterator it = outputs.begin(); it != outputs.end(); ++it) {
-    //     const YAML::Node& out = *it;
-        
-        
-    // }
-    // for (YAML::const_iterator it = config[outputs].begin(); it != sequence[outputs].end(); ++it)
-
     if(config["config"].as<int>() == 1){
-        
         for(int i = 0; i < max_out ;i++){
             std::string out_nr ="out";
             out_nr += std::to_string(i);
-            output_conf[i].nr = config["outputs"][out_nr]["nr"].as<int>();
             output_conf[i].name = config["outputs"][out_nr]["name"].as<std::string>();
             output_conf[i].type = config["outputs"][out_nr]["type"].as<std::string>();
             output_conf[i].default_state = static_cast<bool>(config["outputs"][out_nr]["defaultState"].as<int>());
@@ -91,7 +78,13 @@ bool MCP_rw_config::get_out_input_rel(int out){
 
 
 std::string MCP_rw_config::get_in_name(int in){
-    return input_conf[in].name;
+    if (in < 64 ){
+        return input_conf[in].name;
+    }
+    else{
+        std::string name = "MQTT";
+        return name;
+    }
 }
 
 std::string MCP_rw_config::get_in_type(int in){
