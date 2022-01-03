@@ -1,5 +1,6 @@
 config: 1
-
+input_len: 65
+output_len: 64
 mqtt:
     ClientId: SwitchMatrix
     ServerIp: 192.168.1.96
@@ -1108,5 +1109,12 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
+        outputRelated: 63
+    in64:
+        nr: 999
+        name: MQtt
+        type: switch 
+        enabled: 1
         outputRelatedenabled: 0
         outputRelated: 63

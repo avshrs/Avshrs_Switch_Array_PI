@@ -64,6 +64,10 @@ void MCP_Manager::scan_all_inputs(){
 }
 
 
+// for(const auto& conf : configs){
+//     config.name
+// }
+
 void MCP_Manager::write_output_timer(int output, unsigned int timeout, bool twilight_force=false){
     try{
         if(in_states[31] || twilight_force){

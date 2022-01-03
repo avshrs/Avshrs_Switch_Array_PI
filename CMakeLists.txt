@@ -17,16 +17,10 @@ set(libs
 /usr/lib/arm-linux-gnueabihf/libyaml-cpp.so
 )
 
-set(INCLUDE_HEADER_FILES
-"include/*.h"
-)
+set(INCLUDE_HEADER_FILES "include/*.h" )
 file(GLOB mSOURCES  "src/*.cpp" )
- 
-file(GLOB sSOURCES  "src_satel/SatelIntegra.cpp" "src_satel/MCP_Mosquitto_satel.cpp"
-                    )                     
+                 
 
 add_executable(MCI_swich_array "src/main.cpp" ${mSOURCES})
 target_link_libraries(MCI_swich_array  ${libs})
 
-add_executable(MCI_Satel_Listener "src_satel/satelMain.cpp" ${sSOURCES})
-target_link_libraries(MCI_Satel_Listener  ${libs})
