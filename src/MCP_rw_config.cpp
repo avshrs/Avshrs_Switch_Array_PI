@@ -37,7 +37,7 @@ void MCP_rw_config::read_config(){
         oc_tmp.enabledOutputRelated = static_cast<bool>(it->second["enabledOutputRelated"].as<int>()); 
         oc_tmp.output_related = it->second["outputRelated"].as<int>(); 
         
-        intput_conf_.push_back(oc_tmp);
+        input_conf_.push_back(oc_tmp);
     }
     std::cout << "inputs settings loaded" << std::endl;
     

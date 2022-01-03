@@ -12,7 +12,7 @@ class MCP_rw_config{
     I2c1_config i2c1_config;
 
     std::vector< Output_conf > output_conf_;
-    std::vector< Input_conf > intput_conf_;
+    std::vector< Input_conf > input_conf_;
 
     void read_config();
     std::string get_out_name(int out);
