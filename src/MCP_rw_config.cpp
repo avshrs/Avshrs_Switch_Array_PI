@@ -89,11 +89,15 @@ void MCP_rw_config::read_config(){
 }
     
 std::string MCP_rw_config::get_out_name(int out){
-    if ( std::find(output_conf_.begin(), output_conf_.end(), out) != output_conf_.end() )
+    if ( std::find(output_conf_.begin(), output_conf_.end(), out) != output_conf_.end() ){
         std::cout << "dupa1" <<std::endl;
-         return "dupa1";
-    else 
+        return "dupa1";
+    }
+        
+    else {
         return "dupa";
+    }
+        
 }
 
 std::string MCP_rw_config::get_out_type(int out){
