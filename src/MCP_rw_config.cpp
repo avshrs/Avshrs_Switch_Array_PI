@@ -34,7 +34,7 @@ void MCP_rw_config::read_config(){
         oc_tmp.name = it->second["name"].as<std::string>(); 
         oc_tmp.type = it->second["type"].as<std::string>(); 
         oc_tmp.enabled = static_cast<bool>(it->second["enabled"].as<int>()); 
-        oc_tmp.enabledOutputRelated = static_cast<bool>(it->second["enabledOutputRelated"].as<int>()); 
+        oc_tmp.enabledOutputRelated = static_cast<bool>(it->second["outputRelatedenabled"].as<int>()); 
         oc_tmp.output_related = it->second["outputRelated"].as<int>(); 
         
         input_conf_.push_back(oc_tmp);
