@@ -9,7 +9,6 @@ void MCP_rw_config::read_config(){
     max_out = config["output_len"].as<int>();
     max_in = config["input_len"].as<int>();
     std::cout << "outputs settings loading" << std::endl;
-
     const YAML::Node& outputs_ = config["outputs"];
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
         Output_conf oc_tmp; 
@@ -41,7 +40,7 @@ void MCP_rw_config::read_config(){
     }
     std::cout << "inputs settings loaded" << std::endl;
     
-    }
+    
     std::cout << "Mqtt settings loading" << std::endl;
     mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
     mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
@@ -56,7 +55,7 @@ void MCP_rw_config::read_config(){
     mqtt_config.OFFMsg = config["mqtt"]["OFFMsg"].as<std::string>();
     mqtt_config.ONTIMEMsg = config["mqtt"]["ONTIMEMsg"].as<std::string>();
     std::cout << "Mqtt settings loaded" << std::endl;
-    
+
     std::cout << "I2C settings loading" << std::endl;
     i2c1_config.i2cPath = config["i2c1"]["i2cPath"].as<std::string>();
     i2c1_config.in1Address = config["i2c1"]["in1Address"].as<int>();
