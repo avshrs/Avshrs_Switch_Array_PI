@@ -612,6 +612,7 @@ inputs:
         name: Dzienny
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 0
 
     in1:
@@ -619,6 +620,7 @@ inputs:
         name: Dzieciakow
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 1
     
     in2:
@@ -626,6 +628,7 @@ inputs:
         name: Goscinny
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 2                
     
     in3:
@@ -633,6 +636,7 @@ inputs:
         name: Sypialnia1 
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 3                
             
     in4:
@@ -640,6 +644,7 @@ inputs:
         name: Sypialnia2
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 4                
             
     in5:
@@ -647,6 +652,7 @@ inputs:
         name: Garderoba
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 5                
             
     in6:
@@ -654,6 +660,7 @@ inputs:
         name: Lazienka
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 6                
             
     in7:
@@ -661,6 +668,7 @@ inputs:
         name: Strych
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 7                
             
     in8:
@@ -668,6 +676,7 @@ inputs:
         name: Korytarz 
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 8                
             
     in9:
@@ -675,6 +684,7 @@ inputs:
         name: Schody_pietro
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 9                
             
     in10:
@@ -682,6 +692,7 @@ inputs:
         name: Schody_parter
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 9               
             
     in11:
@@ -689,6 +700,7 @@ inputs:
         name: Wiatrolap
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 11                
             
     in12:
@@ -696,6 +708,7 @@ inputs:
         name: Salon_kom
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 12                
             
     in13:
@@ -703,6 +716,7 @@ inputs:
         name: Salon_kom_2
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 13                
             
     in14:
@@ -710,6 +724,7 @@ inputs:
         name: Salon_glowne 
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 14                
             
     in15:
@@ -717,6 +732,7 @@ inputs:
         name: Salon_Wneka
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 15                
             
     in16:
@@ -724,6 +740,7 @@ inputs:
         name: Lazienka_parter
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 16                
             
     in17:
@@ -731,6 +748,7 @@ inputs:
         name: Kuchnia_glowne
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 17                        
             
     in18:
@@ -738,6 +756,7 @@ inputs:
         name: Kuchnia_pod_szafkami
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 18                
             
     in19:
@@ -745,6 +764,7 @@ inputs:
         name: Kuchnia_okap 
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 19                
             
     in20:
@@ -752,6 +772,7 @@ inputs:
         name: Spirzarnia
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 20                
             
     in21:
@@ -759,6 +780,7 @@ inputs:
         name: Garaz_Brama
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 21                
             
     in22:
@@ -766,6 +788,7 @@ inputs:
         name: Garaz_lodowka
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 22                
                     
     in23:
@@ -773,6 +796,7 @@ inputs:
         name: Kotlownia
         type: switch 
         enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 23
                     
     in24:
@@ -780,6 +804,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        enabledOutputRelated: 0
         outputRelated: 24
 
     in25:
@@ -787,6 +812,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        enabledOutputRelated: 0
         outputRelated: 25
 
     in26:
@@ -794,6 +820,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        enabledOutputRelated: 0
         outputRelated: 26
 
     in27:
@@ -801,6 +828,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        enabledOutputRelated: 0
         outputRelated: 27
 
     in28:
@@ -808,6 +836,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        enabledOutputRelated: 0
         outputRelated: 28
 
     in29:
@@ -815,6 +844,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        enabledOutputRelated: 0
         outputRelated: 29
 
     in30:
@@ -822,6 +852,7 @@ inputs:
         name: Zmierzchowka 
         type: switch 
         enabled: 1
+        enabledOutputRelated: 0
         outputRelated: 30
 
     in31:
@@ -829,6 +860,7 @@ inputs:
         name: Zmierzchowka 
         type: switch 
         enabled: 1
+        outputRelatedenabled: 0
         outputRelated: 31
 
     in32:
@@ -836,6 +868,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 32
 
     in33:
@@ -843,6 +876,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 33
 
     in34:
@@ -850,6 +884,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 34
 
     in35:
@@ -857,6 +892,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 35
 
     in36:
@@ -864,6 +900,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 36
 
     in37:
@@ -871,6 +908,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 37
 
     in38:
@@ -878,6 +916,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 38
 
     in39:
@@ -885,6 +924,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 39
 
     in40:
@@ -892,6 +932,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 40
 
     in41:
@@ -899,54 +940,63 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 41
     in42:
         nr: 42
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 42
     in43:
         nr: 43
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 43
     in44:
         nr: 44
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 44
     in45:
         nr: 45
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 45
     in46:
         nr: 46
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 46
     in47:
         nr: 47
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 47
     in48:
         nr: 48
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 48
     in49:
         nr: 49
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 49
     
     in50:
@@ -954,6 +1004,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 50
             
     in51:
@@ -961,6 +1012,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 51
             
     in52:
@@ -968,6 +1020,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 52
             
     in53:
@@ -975,6 +1028,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 53
             
     in54:
@@ -982,6 +1036,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 54
             
     in55:
@@ -989,6 +1044,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 55
             
     in56:
@@ -996,6 +1052,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 56
             
     in57:
@@ -1003,6 +1060,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 57
             
     in58:
@@ -1010,6 +1068,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 58
             
     in59:
@@ -1017,6 +1076,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 59
             
     in60:
@@ -1024,6 +1084,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 60
             
                         
@@ -1032,6 +1093,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 61
             
     in62:
@@ -1039,6 +1101,7 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 62
             
     in63:
@@ -1046,4 +1109,5 @@ inputs:
         name: none
         type: switch 
         enabled: 0
+        outputRelatedenabled: 0
         outputRelated: 63
