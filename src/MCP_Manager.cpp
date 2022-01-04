@@ -30,14 +30,24 @@ void MCP_Manager::MCP_Init(){
     mcpc_out[2] = &mcpc_out_2;
     mcpc_out[3] = &mcpc_out_3;
     
-    
-    for(int i=0; i < 32;i++){
-        out_states_real[i] = read_input_direct(i);
-        out_states[i] = read_input_direct(i);
-    }
     for(int i=0; i < 64;i++){
         in_states[i] = read_input_direct(i);
+        if (mcp_config->get_out_enabled(i)){
+            if (mcp_config->get_out_def_state(i)){
+                out_states_real[i] = true; 
+                out_states[i] = true;
+                }
+            else{
+                out_states_real[i] = false; 
+                out_states[i] = false;
+            }
+        }
     }
+    for(int i=0; i < 32;i++){
+        out_states_real[i] = in_states[i];
+        out_states[i] = in_states[i];
+    }
+
     
 }   
 
@@ -144,14 +154,6 @@ bool MCP_Manager::read_input_direct(uint8_t in){
 
 bool MCP_Manager::read_output_buffer(uint8_t out){
     bool value = out_states_real[out];
-    if (mcp_config->get_out_def_state(out)){
-        if (value){
-            value = false; 
-        }
-        else{
-            value = true;
-        }
-    }
     return value;
 }   
 bool MCP_Manager::read_input_buffer(uint8_t input){
@@ -170,7 +172,7 @@ void MCP_Manager::write_output_direct(uint8_t out, bool state){
     }
     mqtt->pub_out_state(out, state);
     MCP_Data mcp_data = get_address(out);
-    out_states_real[out] = value;
+    out_states_real[out] = state;
     mcpc_out[mcp_data.chipset]->writeRaw(mcp_data.side, mcp_data.io, value);
 }
 

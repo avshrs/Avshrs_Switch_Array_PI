@@ -10,24 +10,14 @@ MCP_Manager mcp;
 
 void keep_alive_message(mqtt_client *mqtt){
     std::string msg = mcp_rw_cfg.get_mqtt_keepAliveMsg();
+    
     while (true){
-        
-        
         mqtt->publish(NULL, mcp_rw_cfg.get_mqtt_keepAliveTopic().c_str(), msg.length(), msg.c_str());
         for(int i = 0; i < 64; i++){
             if(mcp_rw_cfg.get_out_enabled(i)){
                 bool value = mcp.read_output_buffer(i);
                 std::string msg; 
                 std::string pu = mcp_rw_cfg.get_mqtt_outPubstring();
-                if (mcp_rw_cfg.get_out_def_state(i)){
-                    if(value){
-                        value = false; 
-                    }
-                    else{
-                        value = true;
-                    }
-                }
-
                 if(value){
                     msg = mcp_rw_cfg.get_mqtt_ONMsg();
                 }
@@ -68,13 +58,14 @@ void th3(mqtt_client *mqtt){
 }
 
 int main(){ 
-    mcp.MCP_Init();
     mcp_rw_cfg.read_config();
+    mcp.register_mcp_config(&mcp_rw_cfg);
+    mcp.MCP_Init();
+    
     mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port(), mcp_rw_cfg.get_mqtt_username().c_str(), mcp_rw_cfg.get_mqtt_password().c_str());
     mqtt.register_mcp_manager(&mcp);
-    mqtt.register_mcp_config(&mcp_rw_cfg);
+    
     mcp.register_mcp_mqtt(&mqtt);
-    mcp.register_mcp_config(&mcp_rw_cfg);
     
     std::thread t2(th2, &mqtt);
     std::thread t3(th3, &mqtt);
