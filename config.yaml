@@ -3,7 +3,7 @@ input_len: 65
 output_len: 64
 mqtt:
     ClientId: SwitchMatrix
-    ServerIp: 192.168.1.96
+    ServerIp: 192.168.1.111
     serverPort: 1883
     keepAliveTopic: MCP_Array
     keepAliveMsg: Online
