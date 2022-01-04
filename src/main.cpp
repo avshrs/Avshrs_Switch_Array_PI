@@ -19,6 +19,15 @@ void keep_alive_message(mqtt_client *mqtt){
                 bool value = mcp.read_output_buffer(i);
                 std::string msg; 
                 std::string pu = mcp_rw_cfg.get_mqtt_outPubstring();
+                if (mcp_rw_cfg.get_out_def_state(i)){
+                    if(value){
+                        value = false; 
+                    }
+                    else{
+                        value = true;
+                    }
+                }
+
                 if(value){
                     msg = mcp_rw_cfg.get_mqtt_ONMsg();
                 }
@@ -27,6 +36,7 @@ void keep_alive_message(mqtt_client *mqtt){
                 }
                 pu += std::to_string(i);
                 mqtt->publish(NULL, pu.c_str(), msg.length(), msg.c_str());
+                
                 usleep(1000);
             }
         }

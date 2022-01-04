@@ -150,10 +150,19 @@ bool MCP_Manager::read_input_buffer(uint8_t input){
 }
 
 void MCP_Manager::write_output_direct(uint8_t out, bool state){
-    mqtt->pub_out_state(out, state);
+    bool value = state;
+    if (mcp_config->get_out_def_state(out)){
+        if (state){
+            value = false; 
+        }
+        else{
+            value = true;
+        }
+    }
+    mqtt->pub_out_state(out, value);
     MCP_Data mcp_data = get_address(out);
-    out_states_real[out] = state;
-    mcpc_out[mcp_data.chipset]->writeRaw(mcp_data.side, mcp_data.io, state);
+    out_states_real[out] = value;
+    mcpc_out[mcp_data.chipset]->writeRaw(mcp_data.side, mcp_data.io, value);
 }
 
 MCP_Data MCP_Manager::get_address(uint8_t io){
