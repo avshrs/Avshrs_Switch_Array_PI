@@ -44,6 +44,8 @@ void MCP_rw_config::read_config(){
     std::cout << "Mqtt settings loading" << std::endl;
     mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
     mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
+    mqtt_config.username = config["mqtt"]["username"].as<std::string>();
+    mqtt_config.password = config["mqtt"]["password"].as<std::string>();
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
@@ -202,4 +204,10 @@ std::string MCP_rw_config::get_mqtt_OFFMsg(){
 }
 std::string MCP_rw_config::get_mqtt_ONTIMEMsg(){
     return  mqtt_config.ONTIMEMsg;
+}
+std::string MCP_rw_config::get_mqtt_password(){
+    return  mqtt_config.password;
+}
+std::string MCP_rw_config::get_mqtt_username(){
+    return  mqtt_config.username;
 }

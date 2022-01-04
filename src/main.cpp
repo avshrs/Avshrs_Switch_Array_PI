@@ -70,7 +70,7 @@ void th3(mqtt_client *mqtt){
 int main(){ 
     mcp.MCP_Init();
     mcp_rw_cfg.read_config();
-    mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port());
+    mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port(), mcp_rw_cfg.get_mqtt_username().c_str(), mcp_rw_cfg.get_mqtt_password().c_str());
     mqtt.register_mcp_manager(&mcp);
     mqtt.register_mcp_config(&mcp_rw_cfg);
     mcp.register_mcp_mqtt(&mqtt);

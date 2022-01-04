@@ -39,4 +39,6 @@ class MCP_rw_config{
     std::string get_mqtt_ONMsg();
     std::string get_mqtt_OFFMsg();
     std::string get_mqtt_ONTIMEMsg();
+    std::string get_mqtt_password();
+    std::string get_mqtt_username();
 };

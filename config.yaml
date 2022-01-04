@@ -5,6 +5,8 @@ mqtt:
     ClientId: SwitchMatrix
     ServerIp: 192.168.1.111
     serverPort: 1883
+    username: mqttuser
+    password: mqttuser
     keepAliveTopic: MCP_Array
     keepAliveMsg: Online
     # eg MCP_OUT_S_0

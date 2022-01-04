@@ -113,6 +113,8 @@ struct Input_conf{
 struct Mqtt_config{
     std::string ClientId;
     std::string ServerIp;
+    std::string username;
+    std::string password;
     int serverPort;
     std::string keepAliveTopic;
     std::string keepAliveMsg;
