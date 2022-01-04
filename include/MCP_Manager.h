@@ -24,11 +24,11 @@ class MCP_Manager
         MCP_rw_config *mcp_config;
         MCP_Data mcp_data;
         mqtt_client * mqtt;
-        bool in_states[IN_RANGE] = {true};
-        bool out_states_real[OUT_RANGE] = {false};
-        bool out_states[OUT_RANGE] = {false};
+        bool in_states[256] = {true};
+        bool out_states_real[256] = {false};
+        bool out_states[256] = {false};
         bool alarm_armed = false;
-        unsigned int out_states_forced[OUT_RANGE] = {false};
+        unsigned int out_states_forced[256] = {false};
         
     public:
         void MCP_Init();
@@ -40,6 +40,7 @@ class MCP_Manager
         bool read_input_buffer(uint8_t input);
         void scan_all_inputs();
         void write_output(int output, bool value, int input);
+        void update_io();
         void write_output_timer(int output, unsigned int timeout, bool twilight_force);
     
     private:

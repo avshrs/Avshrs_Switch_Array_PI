@@ -30,7 +30,11 @@ void MCP_Manager::MCP_Init(){
     mcpc_out[2] = &mcpc_out_2;
     mcpc_out[3] = &mcpc_out_3;
     
-    for(int i=0; i < 64;i++){
+ 
+}   
+
+void MCP_Manager::update_io(){
+        for(int i=0; i < 64;i++){
         in_states[i] = read_input_direct(i);
         if (mcp_config->get_out_enabled(i)){
             if (mcp_config->get_out_def_state(i)){
@@ -47,9 +51,7 @@ void MCP_Manager::MCP_Init(){
         out_states_real[i] = in_states[i];
         out_states[i] = in_states[i];
     }
-
-    
-}   
+}
 
 void MCP_Manager::register_mcp_config(MCP_rw_config *mcp_config_){
     mcp_config = mcp_config_; 
