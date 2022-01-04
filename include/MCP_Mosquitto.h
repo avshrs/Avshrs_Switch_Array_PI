@@ -16,7 +16,7 @@ class MCP_Manager;
 class mqtt_client : public mosqpp::mosquittopp
 {
 public:
-    mqtt_client(const char *id, const char *host, int port, const char *username, const char *password=NULL);
+    mqtt_client(const char *id, const char *host, int port, const char *username, const char *password);
 
     MCP_Manager *mcp_manager;
     MCP_rw_config *mcp_cfg;

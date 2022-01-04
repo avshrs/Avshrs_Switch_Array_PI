@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-mqtt_client::mqtt_client(const char *id, const char *host, int port, const char *username, const char *password=NULL) : mosquittopp(id)
+mqtt_client::mqtt_client(const char *id, const char *host, int port, const char *username, const char *password) : mosquittopp(id)
 {
     int keepalive = 60;
     
