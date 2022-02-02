@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DEBUG
 mqtt_client::mqtt_client(const char *id, const char *host, int port, const char *username, const char *password) : mosquittopp(id)
 {
     int keepalive = 60;
@@ -122,9 +123,13 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
         const char * outSubstring = mcp_cfg->get_mqtt_outSubstring().c_str();
+        std::cout << mcp_cfg->get_mqtt_outSubstring() << std::endl;
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
+        std::cout << mcp_cfg->get_mqtt_ONMsg() << std::endl;
         const char * ONTIMEMsg = mcp_cfg->get_mqtt_ONTIMEMsg().c_str();
+        std::cout << mcp_cfg->get_mqtt_ONTIMEMsg() << std::endl;
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
+        std::cout << mcp_cfg->get_mqtt_OFFMsg() << std::endl;
 
         if(!message_payload.empty() && message_topic.find(outSubstring) != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '_');
@@ -144,28 +149,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                     std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
                     std::cout << "Request to turn on output nr:" << nr<<std::endl;
                 #endif
-            }
-            else if(message_payload.find(ONTIMEMsg)!=std::string::npos){
-                std::vector<std::string> mdata = parse_string(message_payload, '_');
-                if (mdata.size() != 3 ){
-                    auto t = std::time(nullptr);
-                    auto tm = *std::localtime(&t);      
-                    std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                    std::cout << "Wrong payload lengh" << std::endl;
-                }
-                else{
-                    int nr = std::stoi(tdata[3]);
-                    int time = std::stoi(mdata[1]);
-                    int force = std::stoi(mdata[2]);
-                    mcp_manager->write_output_timer(nr, time, force);
-                    #ifdef DEBUG
-                        auto t = std::time(nullptr);
-                        auto tm = *std::localtime(&t);      
-                        std::cout << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ");
-                        std::cout << "Request to turn on output nr:" << nr << " by PIR with timeout: " << time << " seconds" << std::endl;
-                    #endif
-                }
-                
             }
             else if(message_payload == OFFMsg){
                 int nr = std::stoi(tdata[3]);
