@@ -161,8 +161,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     }
     catch(...){std::cout << "Received Empty Payload" << std:: endl;}
 }
-Avshrs_SwitchArray/set/out/out_0
-Avshrs_SwitchArray/set/out/out_
+
 
 
 std::vector<std::string> mqtt_client::parse_string(std::string str, char delimiter){
