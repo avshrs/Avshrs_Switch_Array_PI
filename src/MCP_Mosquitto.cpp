@@ -126,8 +126,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         std::cout << mcp_cfg->get_mqtt_outSubstring() << std::endl;
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
         std::cout << mcp_cfg->get_mqtt_ONMsg() << std::endl;
-        const char * ONTIMEMsg = mcp_cfg->get_mqtt_ONTIMEMsg().c_str();
-        std::cout << mcp_cfg->get_mqtt_ONTIMEMsg() << std::endl;
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
         std::cout << mcp_cfg->get_mqtt_OFFMsg() << std::endl;
 
