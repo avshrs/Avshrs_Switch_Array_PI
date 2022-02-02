@@ -126,11 +126,10 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         const char * clientid = mcp_cfg->get_mqtt_ClientId().c_str();
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
+        std::vector<std::string> tdata = parse_string(message_topic, '/');
 
-            std::cout<< "dupa 2" <<std::endl;
-
-        if(!message_payload.empty() && message_topic.find(clientid) != std::string::npos){
-            std::vector<std::string> tdata = parse_string(message_topic, '/');
+        if(!message_payload.empty() && tdata.at(0) == clientid){
+            
             for( int i =0 ; i< static_cast<int>(tdata.size());i++ )
             {
             std::cout<< "tdata_" << i << ": " << tdata.at(i) <<std::endl;
