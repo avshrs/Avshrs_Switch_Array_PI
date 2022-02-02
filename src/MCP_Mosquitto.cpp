@@ -123,14 +123,11 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
         const char * outSubstring = mcp_cfg->get_mqtt_outSubstring().c_str();
-        std::cout << mcp_cfg->get_mqtt_outSubstring() << std::endl;
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
-        std::cout << mcp_cfg->get_mqtt_ONMsg() << std::endl;
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
-        std::cout << mcp_cfg->get_mqtt_OFFMsg() << std::endl;
 
         if(!message_payload.empty() && message_topic.find(outSubstring) != std::string::npos){
-            std::vector<std::string> tdata = parse_string(message_topic, '_');
+            std::vector<std::string> tdata = parse_string(message_topic, '/');
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
                 auto tm = *std::localtime(&t);      
