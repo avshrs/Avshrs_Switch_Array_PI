@@ -142,7 +142,8 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
             }
 
             else if(message_payload == ONMsg){
-                int nr = std::stoi(tdata[3]);
+                std::vector<std::string> output = parse_string(tdata[3], '_');
+                int nr = std::stoi(output[1]);
                 mcp_manager->write_output(nr, true, 999);
                 #ifdef DEBUG
                     auto t = std::time(nullptr);
@@ -152,7 +153,8 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
                 #endif
             }
             else if(message_payload == OFFMsg){
-                int nr = std::stoi(tdata[3]);
+                std::vector<std::string> output = parse_string(tdata[3], '_');
+                int nr = std::stoi(output[1]);
                 mcp_manager->write_output(nr, false, 999);
                 #ifdef DEBUG
                     auto t = std::time(nullptr);
