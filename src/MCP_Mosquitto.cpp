@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DEBUG
+// #define DEBUG
 mqtt_client::mqtt_client(const char *id, const char *host, int port, const char *username, const char *password) : mosquittopp(id)
 {
     int keepalive = 60;
@@ -129,11 +129,6 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
         std::vector<std::string> tdata = parse_string(message_topic, '/');
 
         if(!message_payload.empty() && tdata.at(0) == clientid){
-            
-            for( int i =0 ; i< static_cast<int>(tdata.size());i++ )
-            {
-            std::cout<< "tdata_" << i << ": " << tdata.at(i) <<std::endl;
-            }
             
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
