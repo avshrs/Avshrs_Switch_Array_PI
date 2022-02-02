@@ -122,15 +122,14 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     try{
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
-        const char * outSubstring = mcp_cfg->get_mqtt_outSubstring().c_str();
+        const char * clientid = mcp_cfg->get_mqtt_ClientId().c_str();
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
-        std::cout << message_topic << std::endl;
-        std::cout << message_payload << std::endl;
-        if(!message_payload.empty() && message_topic.find(outSubstring) != std::string::npos){
-            std::vector<std::string> tdata = parse_string(message_topic, '/');
-  
 
+
+        if(!message_payload.empty() && message_topic.find(clientid) != std::string::npos){
+            std::vector<std::string> tdata = parse_string(message_topic, '/');
+            std::cout<< "innnnn"<<std::endl;
             if (tdata.size() != 4){
                 auto t = std::time(nullptr);
                 auto tm = *std::localtime(&t);      
@@ -162,6 +161,8 @@ void mqtt_client::on_message(const struct mosquitto_message *message){
     }
     catch(...){std::cout << "Received Empty Payload" << std:: endl;}
 }
+Avshrs_SwitchArray/set/out/out_0
+Avshrs_SwitchArray/set/out/out_
 
 
 std::vector<std::string> mqtt_client::parse_string(std::string str, char delimiter){
