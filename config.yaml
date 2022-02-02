@@ -9,10 +9,10 @@ mqtt:
     password: mqttuser
     keepAliveTopic: Avshrs_SwitchArray/status
     keepAliveMsg: Online
-    outSubstring: Avshrs_SwitchArray/set/out/out_
-    outPubstring: Avshrs_SwitchArray/get/out/out_
-    inSubstring: Avshrs_SwitchArray/set/in/in_
-    inPubstring: Avshrs_SwitchArray/get/in/in_
+    outSubstring: Avshrs_SwitchArray/set/out/
+    outPubstring: Avshrs_SwitchArray/get/out/
+    inSubstring: Avshrs_SwitchArray/set/in/
+    inPubstring: Avshrs_SwitchArray/get/in/
     ONMsg: ON
     OFFMsg: OFF
     ONTIMEMsg: ONTIME
