@@ -120,12 +120,14 @@ void mqtt_client::pub_in_state(int in, bool state){
 
 void mqtt_client::on_message(const struct mosquitto_message *message){
     try{
+        
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
         const char * clientid = mcp_cfg->get_mqtt_ClientId().c_str();
         const char * ONMsg = mcp_cfg->get_mqtt_ONMsg().c_str();
         const char * OFFMsg = mcp_cfg->get_mqtt_OFFMsg().c_str();
 
+            std::cout<< "dupa 2" <<std::endl;
 
         if(!message_payload.empty() && message_topic.find(clientid) != std::string::npos){
             std::vector<std::string> tdata = parse_string(message_topic, '/');
