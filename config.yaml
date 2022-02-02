@@ -2,21 +2,17 @@ config: 1
 input_len: 65
 output_len: 64
 mqtt:
-    ClientId: SwitchMatrix
+    ClientId: Avshrs_SwitchArray
     ServerIp: 192.168.1.111
     serverPort: 1883
     username: mqttuser
     password: mqttuser
-    keepAliveTopic: MCP_Array
+    keepAliveTopic: Avshrs_SwitchArray/status
     keepAliveMsg: Online
-    # eg MCP_OUT_S_0
-    outSubstring: MCP_OUT_S_
-    # eg MCP_OUT_P_0
-    outPubstring: MCP_OUT_P_
-    # eg MCP_IN_S_0
-    inSubstring: MCP_IN_S_
-    # eg MCP_IN_P_0
-    inPubstring: MCP_IN_P_
+    outSubstring: Avshrs_SwitchArray/get/out/out_
+    outPubstring: Avshrs_SwitchArray/set/out/out_
+    inSubstring: Avshrs_SwitchArray/get/in/in_
+    inPubstring: Avshrs_SwitchArray/set/in/in_
     ONMsg: ON
     OFFMsg: OFF
     ONTIMEMsg: ONTIME
