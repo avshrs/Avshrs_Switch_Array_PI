@@ -248,12 +248,12 @@ outputs:
         
     out24:
         nr: 24
-        name: n1e
+        name: Piwnica
         type: light  
         defaultState: 0
-        enabled: 0
+        enabled: 1
         bistable: 0
-        inputRelated: 0
+        inputRelated: 1
         
     out25:
         nr: 25
