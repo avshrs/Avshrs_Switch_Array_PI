@@ -2,21 +2,17 @@ config: 1
 input_len: 65
 output_len: 64
 mqtt:
-    ClientId: SwitchMatrix
+    ClientId: Avshrs_SwitchArray
     ServerIp: 192.168.1.111
     serverPort: 1883
     username: mqttuser
     password: mqttuser
-    keepAliveTopic: MCP_Array
+    keepAliveTopic: Avshrs_SwitchArray/status
     keepAliveMsg: Online
-    # eg MCP_OUT_S_0
-    outSubstring: MCP_OUT_S_
-    # eg MCP_OUT_P_0
-    outPubstring: MCP_OUT_P_
-    # eg MCP_IN_S_0
-    inSubstring: MCP_IN_S_
-    # eg MCP_IN_P_0
-    inPubstring: MCP_IN_P_
+    outSubstring: Avshrs_SwitchArray/set/out/
+    outPubstring: Avshrs_SwitchArray/get/out/
+    inSubstring: Avshrs_SwitchArray/set/in/
+    inPubstring: Avshrs_SwitchArray/get/in/
     ONMsg: ON
     OFFMsg: OFF
     ONTIMEMsg: ONTIME
@@ -252,12 +248,12 @@ outputs:
         
     out24:
         nr: 24
-        name: n1e
+        name: Piwnica
         type: light  
         defaultState: 0
-        enabled: 0
+        enabled: 1
         bistable: 0
-        inputRelated: 0
+        inputRelated: 1
         
     out25:
         nr: 25

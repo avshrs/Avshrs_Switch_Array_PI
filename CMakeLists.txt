@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.9)
-project(MCI_swich_array)
+project(SwitchArray)
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
 
@@ -21,6 +21,6 @@ set(INCLUDE_HEADER_FILES "include/*.h" )
 file(GLOB mSOURCES  "src/*.cpp" )
                  
 
-add_executable(MCI_swich_array "src/main.cpp" ${mSOURCES})
-target_link_libraries(MCI_swich_array  ${libs})
+add_executable(SwitchArray "src/main.cpp" ${mSOURCES})
+target_link_libraries(SwitchArray  ${libs})
 
