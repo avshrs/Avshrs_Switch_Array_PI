@@ -531,7 +531,7 @@ outputs:
 
     out55:
         nr: 55
-        name: n1e
+        name: none
         type: power  
         defaultState: 1
         enabled: 0
@@ -567,12 +567,12 @@ outputs:
 
     out59:
         nr: 59
-        name: n1e
+        name: odkurzacz_centr
         type: power  
         defaultState: 1
-        enabled: 0
+        enabled: 1
         bistable: 0
-        inputRelated: 0
+        inputRelated: 1
 
     out60:
         nr: 60
@@ -804,10 +804,10 @@ inputs:
                     
     in24:
         nr: 24
-        name: none
+        name: Piwnica
         type: switch 
-        enabled: 0
-        enabledOutputRelated: 0
+        enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 24
 
     in25:
@@ -868,11 +868,11 @@ inputs:
 
     in32:
         nr: 32
-        name: none
+        name: Odkurzacz_cent
         type: switch 
-        enabled: 0
-        enabledOutputRelated: 0
-        outputRelated: 32
+        enabled: 1
+        enabledOutputRelated: 1
+        outputRelated: 59
 
     in33:
         nr: 33
