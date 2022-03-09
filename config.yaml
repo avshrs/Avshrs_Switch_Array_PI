@@ -248,7 +248,7 @@ outputs:
         
     out24:
         nr: 24
-        name: Piwnica
+        name: Piwnica_1
         type: light  
         defaultState: 0
         enabled: 1
@@ -257,12 +257,12 @@ outputs:
         
     out25:
         nr: 25
-        name: n1e
+        name: Piwnica_2
         type: light  
         defaultState: 0
-        enabled: 0
+        enabled: 1
         bistable: 0
-        inputRelated: 0
+        inputRelated: 1
         
     out26:
         nr: 26
@@ -800,7 +800,7 @@ inputs:
                     
     in24:
         nr: 24
-        name: Piwnica
+        name: Piwnica_1
         type: switch 
         enabled: 1
         enabledOutputRelated: 1
@@ -808,10 +808,10 @@ inputs:
 
     in25:
         nr: 25
-        name: none
+        name: Piwnica_2
         type: switch 
-        enabled: 0
-        enabledOutputRelated: 0
+        enabled: 1
+        enabledOutputRelated: 1
         outputRelated: 25
 
     in26:
