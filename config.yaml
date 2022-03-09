@@ -565,7 +565,7 @@ outputs:
         nr: 59
         name: odkurzacz_centr
         type: power  
-        defaultState: 1
+        defaultState: 0
         enabled: 1
         bistable: 0
         inputRelated: 1
