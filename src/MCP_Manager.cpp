@@ -16,7 +16,8 @@ void MCP_Manager::MCP_Init(){
     mcpc_in[2]= &mcpc_in_2;
     mcpc_in_3.MCP_Init(mcp_config->get_in4Path(), mcp_config->get_in4Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in[3]= &mcpc_in_3;
-    
+    std::cout<<"input mcp started " << std::endl;
+
     mcpc_out_0.MCP_Init(mcp_config->get_out1Path(), mcp_config->get_out1Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
     mcpc_out[0] = &mcpc_out_0;
     mcpc_out_1.MCP_Init(mcp_config->get_out2Path(), mcp_config->get_out2Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
@@ -33,6 +34,8 @@ void MCP_Manager::MCP_Init(){
     mcpc_out[6] = &mcpc_out_6;
     mcpc_out_7.MCP_Init(mcp_config->get_out8Path(), mcp_config->get_out8Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP); 
     mcpc_out[7] = &mcpc_out_7; 
+    std::cout<<"output mcp started " << std::endl;
+
  }
 
 void MCP_Manager::update_io(){
