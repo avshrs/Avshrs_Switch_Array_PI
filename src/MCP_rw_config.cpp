@@ -60,51 +60,51 @@ void MCP_rw_config::read_config(){
 
     std::cout << "I2C settings loading" << std::endl;
 
-    i2c1_config.out1Address = config["i2c1"]["out1Address"].as<uint8_t>()
+    i2c1_config.out1Address = config["i2c1"]["out1Address"].as<uint8_t>();
     i2c1_config.out1Path = config["i2c1"]["out1Path"].as<std::string>();
     i2c1_config.out1enable = static_cast<bool>(config["i2c1"]["out1enable"].as<int>());
 
-    i2c1_config.out2Address = config["i2c1"]["out2Address"].as<uint8_t>()
+    i2c1_config.out2Address = config["i2c1"]["out2Address"].as<uint8_t>();
     i2c1_config.out2Path = config["i2c1"]["out2Path"].as<std::string>();
     i2c1_config.out2enable = static_cast<bool>(config["i2c1"]["out2enable"].as<int>());
 
-    i2c1_config.out3Address = config["i2c1"]["out3Address"].as<uint8_t>()
+    i2c1_config.out3Address = config["i2c1"]["out3Address"].as<uint8_t>();
     i2c1_config.out3Path = config["i2c1"]["out3Path"].as<std::string>();
     i2c1_config.out3enable = static_cast<bool>(config["i2c1"]["out3enable"].as<int>());
 
-    i2c1_config.out4Address = config["i2c1"]["out4Address"].as<uint8_t>()
+    i2c1_config.out4Address = config["i2c1"]["out4Address"].as<uint8_t>();
     i2c1_config.out4Path = config["i2c1"]["out4Path"].as<std::string>();
     i2c1_config.out4enable = static_cast<bool>(config["i2c1"]["out4enable"].as<int>());
 
-    i2c1_config.out5Address = config["i2c1"]["out5Address"].as<uint8_t>()
+    i2c1_config.out5Address = config["i2c1"]["out5Address"].as<uint8_t>();
     i2c1_config.out5Path = config["i2c1"]["out5Path"].as<std::string>();
     i2c1_config.out5enable = static_cast<bool>(config["i2c1"]["out5enable"].as<int>());
 
-    i2c1_config.out6Address = config["i2c1"]["out6Address"].as<uint8_t>()
+    i2c1_config.out6Address = config["i2c1"]["out6Address"].as<uint8_t>();
     i2c1_config.out6Path = config["i2c1"]["out6Path"].as<std::string>();
     i2c1_config.out6enable = static_cast<bool>(config["i2c1"]["out6enable"].as<int>());
 
-    i2c1_config.out7Address = config["i2c1"]["out7Address"].as<uint8_t>()
+    i2c1_config.out7Address = config["i2c1"]["out7Address"].as<uint8_t>();
     i2c1_config.out7Path = config["i2c1"]["out7Path"].as<std::string>();
     i2c1_config.out7enable = static_cast<bool>(config["i2c1"]["out7enable"].as<int>());
 
-    i2c1_config.out8Address = config["i2c1"]["out8Address"].as<uint8_t>()
+    i2c1_config.out8Address = config["i2c1"]["out8Address"].as<uint8_t>();
     i2c1_config.out8Path = config["i2c1"]["out8Path"].as<std::string>();
     i2c1_config.out8enable = static_cast<bool>(config["i2c1"]["out8enable"].as<int>());
 
-    i2c1_config.in1Address = config["i2c1"]["in1Address"].as<uint8_t>()
+    i2c1_config.in1Address = config["i2c1"]["in1Address"].as<uint8_t>();
     i2c1_config.in1Path = config["i2c1"]["in1Path"].as<std::string>();
     i2c1_config.in1enable = static_cast<bool>(config["i2c1"]["in1enable"].as<int>());
 
-    i2c1_config.in2Address = config["i2c1"]["in2Address"].as<uint8_t>()
+    i2c1_config.in2Address = config["i2c1"]["in2Address"].as<uint8_t>();
     i2c1_config.in2Path = config["i2c1"]["in2Path"].as<std::string>();
     i2c1_config.in2enable = static_cast<bool>(config["i2c1"]["in2enable"].as<int>());
 
-    i2c1_config.in3Address = config["i2c1"]["in3Address"].as<uint8_t>()
+    i2c1_config.in3Address = config["i2c1"]["in3Address"].as<uint8_t>();
     i2c1_config.in3Path = config["i2c1"]["in3Path"].as<std::string>();
     i2c1_config.in3enable = static_cast<bool>(config["i2c1"]["in3enable"].as<int>());
 
-    i2c1_config.in4Address = config["i2c1"]["in4Address"].as<uint8_t>()
+    i2c1_config.in4Address = config["i2c1"]["in4Address"].as<uint8_t>();
     i2c1_config.in4Path = config["i2c1"]["in4Path"].as<std::string>();
     i2c1_config.in4enable = static_cast<bool>(config["i2c1"]["in4enable"].as<int>());
     std::cout << "I2C settings loaded" << std::endl;
