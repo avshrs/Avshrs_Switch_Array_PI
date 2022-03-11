@@ -21,49 +21,38 @@ i2c1:
     out1Address: 32
     out1Path: /dev/i2c-1
     out1enable: 1
-    
     out2Address: 33
-    out2Path: /dev/i2c-1 
+    out2Path: /dev/i2c-1
     out2enable: 1
-
     out3Address: 34
-    out2Path: /dev/i2c-1 
+    out3Path: /dev/i2c-1
     out3enable: 1
-
     out4Address: 35
-    out4Path: /dev/i2c-1 
+    out4Path: /dev/i2c-1
     out4enable: 1
-
     out5Address: 32
-    out5Path: /dev/i2c-5 
+    out5Path: /dev/i2c-5
     out5enable: 1
-
     out6Address: 33
-    out6Path: /dev/i2c-5 
+    out6Path: /dev/i2c-5
     out6enable: 1
-    
     out7Address: 34
-    out7Path: /dev/i2c-5 
+    out7Path: /dev/i2c-5
     out7enable: 1
-
     out8Address: 35
-    out8Path: /dev/i2c-5 
+    out8Path: /dev/i2c-5
     out8enable: 1
-
     in1Address: 36
-    in1Path: /dev/i2c-1 
+    in1Path: /dev/i2c-1
     in1enable: 1
-
     in2Address: 37
-    in2Path: /dev/i2c-1 
+    in2Path: /dev/i2c-1
     int2enable: 1
-
     in3Address: 38
-    in3Path: /dev/i2c-1 
+    in3Path: /dev/i2c-1
     in3enable: 1
-
     in4Address: 39
-    in4Path: /dev/i2c-1 
+    in4Path: /dev/i2c-1
     in4enable: 1
 outputs:
     out0:
