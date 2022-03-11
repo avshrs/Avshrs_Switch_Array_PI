@@ -633,6 +633,240 @@ outputs:
         bistable: 0
         inputRelated: 0
 
+    out64:
+        nr: 64
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
+
+    out65:
+        nr: 65
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
+        
+    out66:
+        nr: 66
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0
+    
+    out67:
+        nr: 67
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out68:
+        nr: 68
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out69:
+        nr: 69
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out70:
+        nr: 70
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out71:
+        nr: 71
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out72:
+        nr: 72
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out73:
+        nr: 73
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out74:
+        nr: 74
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out75:
+        nr: 75
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0      
+    
+    out76:
+        nr: 76
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out77:
+        nr: 77
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out78:
+        nr: 78
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out79:
+        nr: 79
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out80:
+        nr: 80
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out81:
+        nr: 81
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out82:
+        nr: 82
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out83:
+        nr: 83
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out84:
+        nr: 84
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out85:
+        nr: 85
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out86:
+        nr: 86
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out87:
+        nr: 87
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out88:
+        nr: 88
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+    
+    out89:
+        nr: 89
+        name: none
+        type: power  
+        defaultState: 1
+        enabled: 0
+        bistable: 0
+        inputRelated: 0    
+
 
 inputs:
     in0:
