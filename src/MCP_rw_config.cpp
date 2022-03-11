@@ -437,12 +437,12 @@ bool MCP_rw_config::get_in4enable()
 
 }
 
-uint8_t get_input_len()
+uint8_t MCP_rw_config::get_input_len()
 {
     return  i2c1_config.input_len;
 
 }
-uint8_t get_output_len()
+uint8_t MCP_rw_config::get_output_len()
 {
     return  i2c1_config.output_len;
 
