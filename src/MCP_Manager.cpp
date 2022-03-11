@@ -8,6 +8,7 @@
 
 
 void MCP_Manager::MCP_Init(){
+    std::cout<<"input mcp 0.0 start" << std::endl;
     mcpc_in_0.MCP_Init(mcp_config->get_in1Path(), mcp_config->get_in1Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     std::cout<<"input mcp 0.0 started " << std::endl;
     mcpc_in[0]= &mcpc_in_0;
