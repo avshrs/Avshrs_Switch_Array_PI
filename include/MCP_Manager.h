@@ -9,14 +9,14 @@ class MCP_Manager
 {
     
     private:
-        MCP *mcpc_in[8];
+        MCP *mcpc_in[9];
         MCP mcpc_in_0;
         MCP mcpc_in_1;
         MCP mcpc_in_2;
         MCP mcpc_in_3;
         
 
-        MCP *mcpc_out[8];
+        MCP *mcpc_out[9];
         MCP mcpc_out_0;
         MCP mcpc_out_1;
         MCP mcpc_out_2;

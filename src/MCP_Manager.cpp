@@ -9,8 +9,9 @@
 
 void MCP_Manager::MCP_Init(){
     mcpc_in_0.MCP_Init(mcp_config->get_in1Path(), mcp_config->get_in1Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
+    std::cout<<"input mcp 0.0 started " << std::endl;
     mcpc_in[0]= &mcpc_in_0;
-    std::cout<<"input mcp 0 started " << std::endl;
+    std::cout<<"input mcp 0.1 started " << std::endl;
     mcpc_in_1.MCP_Init(mcp_config->get_in2Path(), mcp_config->get_in2Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in[1]= &mcpc_in_1;
     std::cout<<"input mcp 2 started " << std::endl;
