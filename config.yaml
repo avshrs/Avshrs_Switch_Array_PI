@@ -47,7 +47,7 @@ i2c1:
     in1enable: 1
     in2Address: 37
     in2Path: /dev/i2c-1
-    int2enable: 1
+    in2enable: 1
     in3Address: 38
     in3Path: /dev/i2c-1
     in3enable: 1
