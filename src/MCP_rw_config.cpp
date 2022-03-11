@@ -6,8 +6,6 @@
 
 void MCP_rw_config::read_config(){
     YAML::Node config = YAML::LoadFile("config.yaml");
-    max_out = config["output_len"].as<int>();
-    max_in = config["input_len"].as<int>();
     std::cout << "outputs settings loading" << std::endl;
     const YAML::Node& outputs_ = config["outputs"];
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
