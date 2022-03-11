@@ -63,15 +63,15 @@ void MCP_rw_config::read_config(){
     i2c1_config.out1Address = config["i2c1"]["out1Address"].as<int>();
     i2c1_config.out1Path = config["i2c1"]["out1Path"].as<std::string>();
     i2c1_config.out1enable = static_cast<bool>(config["i2c1"]["out1enable"].as<int>());
-
+    std::cout << "1" << std::endl;
     i2c1_config.out2Address = config["i2c1"]["out2Address"].as<int>();
     i2c1_config.out2Path = config["i2c1"]["out2Path"].as<std::string>();
     i2c1_config.out2enable = static_cast<bool>(config["i2c1"]["out2enable"].as<int>());
-
+    std::cout << "2" << std::endl;
     i2c1_config.out3Address = config["i2c1"]["out3Address"].as<int>();
     i2c1_config.out3Path = config["i2c1"]["out3Path"].as<std::string>();
     i2c1_config.out3enable = static_cast<bool>(config["i2c1"]["out3enable"].as<int>());
-
+    std::cout << "3" << std::endl;
     i2c1_config.out4Address = config["i2c1"]["out4Address"].as<int>();
     i2c1_config.out4Path = config["i2c1"]["out4Path"].as<std::string>();
     i2c1_config.out4enable = static_cast<bool>(config["i2c1"]["out4enable"].as<int>());
