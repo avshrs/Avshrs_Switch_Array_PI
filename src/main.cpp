@@ -63,6 +63,7 @@ int main(){
     mcp_rw_cfg.read_config();
     std::cout<<"read config started" << std::endl;
     std::cout<<"mcp init starting" << std::endl;
+    mcp.register_mcp_config(&mcp_rw_cfg);
     mcp.MCP_Init();
     std::cout<<"mcp init started" << std::endl;
     
@@ -72,7 +73,6 @@ int main(){
     mqtt.register_mcp_manager(&mcp);
     mqtt.register_mcp_config(&mcp_rw_cfg);
     mcp.register_mcp_mqtt(&mqtt);
-    mcp.register_mcp_config(&mcp_rw_cfg);
     mcp.update_io();
     std::thread t2(th2, &mqtt);
     std::thread t3(th3, &mqtt);
