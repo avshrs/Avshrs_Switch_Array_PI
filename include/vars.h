@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 #define    IN_RANGE     (64) 
-#define    OUT_RANGE    (64) 
+#define    OUT_RANGE    (128) 
 
 #define    FORCE        (0xFF) 
 #define    NFORCE       (0x00) 
@@ -128,13 +128,41 @@ struct Mqtt_config{
 };
 
 struct I2c1_config{
-    std::string i2cPath;
     uint8_t out1Address;
+    std::string out1Path;
+    bool out1enable;
     uint8_t out2Address;
+    std::string out2Path;
+    bool out2enable;
     uint8_t out3Address;
+    std::string out3Path;
+    bool out3enable;
     uint8_t out4Address;
+    std::string out4Path;
+    bool out4enable;
+    uint8_t out5Address;
+    std::string out5Path;
+    bool out5enable;
+    uint8_t out6Address;
+    std::string out6Path;
+    bool out6enable;
+    uint8_t out7Address;
+    std::string out7Path;
+    bool out7enable;
+    uint8_t out8Address;
+    std::string out8Path;
+    bool out8enable;
+
     uint8_t in1Address;
+    std::string in1Path;
+    bool in1enable;
     uint8_t in2Address;
+    std::string in2Path;
+    bool in2enable;
     uint8_t in3Address;
+    std::string in3Path;
+    bool in3enable;
     uint8_t in4Address;
+    std::string in4Path;
+    bool in4enable;
 };

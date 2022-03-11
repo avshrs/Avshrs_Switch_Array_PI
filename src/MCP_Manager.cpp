@@ -8,33 +8,35 @@
 
 
 void MCP_Manager::MCP_Init(){
-    std::string i2c_path = "/dev/i2c-1";
-    // std::string i2c_path2 = "/dev/i2c-4";
-    mcpc_in_0.MCP_Init(i2c_path, MCP5_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
-    mcpc_in_1.MCP_Init(i2c_path, MCP6_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
-    mcpc_in_2.MCP_Init(i2c_path, MCP7_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
-    mcpc_in_3.MCP_Init(i2c_path, MCP8_ADDR, MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
-    
+    mcpc_in_0.MCP_Init(mcp_config->get_in1Path(), mcp_config->get_in1Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in[0]= &mcpc_in_0;
+    mcpc_in_1.MCP_Init(mcp_config->get_in2Path(), mcp_config->get_in2Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in[1]= &mcpc_in_1;
+    mcpc_in_2.MCP_Init(mcp_config->get_in3Path(), mcp_config->get_in3Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in[2]= &mcpc_in_2;
+    mcpc_in_3.MCP_Init(mcp_config->get_in4Path(), mcp_config->get_in4Address(), MCP_IN, MCP_PULLUP, MCP_IN, MCP_PULLUP);
     mcpc_in[3]= &mcpc_in_3;
     
-    mcpc_out_0.MCP_Init(i2c_path, MCP1_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
-    mcpc_out_1.MCP_Init(i2c_path, MCP2_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
-    mcpc_out_2.MCP_Init(i2c_path, MCP3_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);    
-    mcpc_out_3.MCP_Init(i2c_path, MCP4_ADDR, MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP); 
-    
+    mcpc_out_0.MCP_Init(mcp_config->get_out1Path(), mcp_config->get_out1Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
     mcpc_out[0] = &mcpc_out_0;
+    mcpc_out_1.MCP_Init(mcp_config->get_out2Path(), mcp_config->get_out2Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
     mcpc_out[1] = &mcpc_out_1;
+    mcpc_out_2.MCP_Init(mcp_config->get_out3Path(), mcp_config->get_out3Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);    
     mcpc_out[2] = &mcpc_out_2;
+    mcpc_out_3.MCP_Init(mcp_config->get_out4Path(), mcp_config->get_out4Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP); 
     mcpc_out[3] = &mcpc_out_3;
-    
- 
-}   
+    mcpc_out_4.MCP_Init(mcp_config->get_out5Path(), mcp_config->get_out5Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
+    mcpc_out[4] = &mcpc_out_4;    
+    mcpc_out_5.MCP_Init(mcp_config->get_out6Path(), mcp_config->get_out6Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);
+    mcpc_out[5] = &mcpc_out_5;
+    mcpc_out_6.MCP_Init(mcp_config->get_out7Path(), mcp_config->get_out7Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP);    
+    mcpc_out[6] = &mcpc_out_6;
+    mcpc_out_7.MCP_Init(mcp_config->get_out8Path(), mcp_config->get_out8Address(), MCP_OUT, MCP_NOT_PULLUP, MCP_OUT, MCP_NOT_PULLUP); 
+    mcpc_out[7] = &mcpc_out_7; 
+ }
 
 void MCP_Manager::update_io(){
-        for(int i=0; i < 64;i++){
+        for(int i=0; i < IN_RANGE;i++){
         in_states[i] = read_input_direct(i);
         if (mcp_config->get_out_enabled(i)){
             if (mcp_config->get_out_def_state(i)){

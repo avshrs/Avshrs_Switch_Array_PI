@@ -1,6 +1,6 @@
 config: 1
-input_len: 65
-output_len: 64
+input_len: 64
+output_len: 128
 mqtt:
     ClientId: Avshrs_SwitchArray
     ServerIp: 192.168.1.111
@@ -18,17 +18,55 @@ mqtt:
     ONTIMEMsg: ONTIME
 
 i2c1:
-    i2cPath: "/dev/i2c-1"
-    # address decimal value eg 32 == 0x20
+    
+    
     out1Address: 32
+    out1Path: "/dev/i2c-1"
+    out1enable: 1
+    
     out2Address: 33
-    out3Address: 34
-    out4Address: 35
-    in1Address: 36
-    in2Address: 37
-    in3Address: 38
-    in4Address: 39
+    out2Path: "/dev/i2c-1"
+    out2enable: 1
 
+    out3Address: 34
+    out2Path: "/dev/i2c-1"
+    out3enable: 1
+
+    out4Address: 35
+    out4Path: "/dev/i2c-1"
+    out4enable: 1
+
+    out5Address: 32
+    out5Path: "/dev/i2c-5"
+    out5enable: 1
+
+    out6Address: 33
+    out6Path: "/dev/i2c-5"
+    out6enable: 1
+    
+    out7Address: 34
+    out7Path: "/dev/i2c-5"
+    out7enable: 1
+
+    out8Address: 35
+    out8Path: "/dev/i2c-5"
+    out8enable: 1
+
+    in1Address: 36
+    in1Path: "/dev/i2c-1"
+    in1enable: 1
+
+    in2Address: 37
+    in2Path: "/dev/i2c-1"
+    int2enable: 1
+
+    in3Address: 38
+    in3Path: "/dev/i2c-1"
+    in3enable: 1
+
+    in4Address: 39
+    in4Path: "/dev/i2c-1"
+    in4enable: 1
 outputs:
     out0:
         nr: 0
@@ -605,6 +643,8 @@ outputs:
         enabled: 0
         bistable: 0
         inputRelated: 0
+
+
 inputs:
     in0:
         nr: 0

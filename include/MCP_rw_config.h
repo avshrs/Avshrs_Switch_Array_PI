@@ -41,4 +41,43 @@ class MCP_rw_config{
     std::string get_mqtt_ONTIMEMsg();
     std::string get_mqtt_password();
     std::string get_mqtt_username();
+    
+    uint8_t get_out1Address();
+    std::string get_out1Path();
+    bool get_out1enable();
+    uint8_t get_out2Address();
+    std::string get_out2Path();
+    bool get_out2enable();
+    uint8_t get_out3Address();
+    std::string get_out3Path();
+    bool get_out3enable();
+    uint8_t get_out4Address();
+    std::string get_out4Path();
+    bool get_out4enable();
+    uint8_t get_out5Address();
+    std::string get_out5Path();
+    bool get_out5enable();
+    uint8_t get_out6Address();
+    std::string get_out6Path();
+    bool get_out6enable();
+    uint8_t get_out7Address();
+    std::string get_out7Path();
+    bool get_out7enable();
+    uint8_t get_out8Address();
+    std::string get_out8Path();
+    bool get_out8enable();
+
+    uint8_t get_in1Address();
+    std::string get_in1Path();
+    bool get_in1enable();
+    uint8_t get_in2Address();
+    std::string get_in2Path();
+    bool get_in2enable();
+    uint8_t get_in3Address();
+    std::string get_in3Path();
+    bool get_in3enable();
+    uint8_t get_in4Address();
+    std::string get_in4Path();
+    bool get_in4enable();
+
 };

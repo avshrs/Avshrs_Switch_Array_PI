@@ -9,17 +9,22 @@ class MCP_Manager
 {
     
     private:
-        MCP *mcpc_in[4];
+        MCP *mcpc_in[8];
         MCP mcpc_in_0;
         MCP mcpc_in_1;
         MCP mcpc_in_2;
         MCP mcpc_in_3;
+        
 
-        MCP *mcpc_out[4];
+        MCP *mcpc_out[8];
         MCP mcpc_out_0;
         MCP mcpc_out_1;
         MCP mcpc_out_2;
         MCP mcpc_out_3;
+        MCP mcpc_out_4;
+        MCP mcpc_out_5;
+        MCP mcpc_out_6;
+        MCP mcpc_out_7;
 
         MCP_rw_config *mcp_config;
         MCP_Data mcp_data;
