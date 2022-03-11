@@ -45,7 +45,7 @@ void MCP_Manager::MCP_Init(){
  }
 
 void MCP_Manager::update_io(){
-        for(int i=0; i < IN_RANGE;i++){
+        for(int i=0; i < static_cast<int>(mcp_config->get_input_len());i++){
         in_states[i] = read_input_direct(i);
         if (mcp_config->get_out_enabled(i)){
             if (mcp_config->get_out_def_state(i)){
@@ -72,7 +72,7 @@ void MCP_Manager::register_mcp_mqtt(mqtt_client *mqtt_){
 }
 
 void MCP_Manager::scan_all_inputs(){
-    for(int in = 0; in < IN_RANGE ; in++){
+    for(int in = 0; in < static_cast<int>(mcp_config->get_input_len()) ; in++){
         if (mcp_config->get_in_enabled(in)){
             bool value = read_input_direct(in);
             if (in_states[in] != value){

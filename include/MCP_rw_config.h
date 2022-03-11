@@ -80,4 +80,7 @@ class MCP_rw_config{
     std::string get_in4Path();
     bool get_in4enable();
 
+    uint8_t get_input_len();
+    uint8_t get_output_len();
+
 };

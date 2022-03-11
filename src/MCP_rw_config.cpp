@@ -107,7 +107,13 @@ void MCP_rw_config::read_config(){
     i2c1_config.in4Address = config["i2c1"]["in4Address"].as<int>();
     i2c1_config.in4Path = config["i2c1"]["in4Path"].as<std::string>();
     i2c1_config.in4enable = static_cast<bool>(config["i2c1"]["in4enable"].as<int>());
+    i2c1_config.input_len = config["i2c1"]["input_len"].as<int>();
+    i2c1_config.output_len = config["i2c1"]["output_len"].as<int>();
+
+
     std::cout << "I2C settings loaded" << std::endl;
+
+
 }
     
 std::string MCP_rw_config::get_out_name(int out){
@@ -428,5 +434,16 @@ std::string MCP_rw_config::get_in4Path()
 bool MCP_rw_config::get_in4enable()
 {
     return  i2c1_config.in4enable;
+
+}
+
+uint8_t get_input_len()
+{
+    return  i2c1_config.input_len;
+
+}
+uint8_t get_output_len()
+{
+    return  i2c1_config.output_len;
 
 }

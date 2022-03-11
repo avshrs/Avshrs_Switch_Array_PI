@@ -171,8 +171,11 @@ struct I2c1_config{
     uint8_t in3Address;
     std::string in3Path;
     bool in3enable;
-    
+
     uint8_t in4Address;
     std::string in4Path;
     bool in4enable;
+
+    uint8_t input_len;
+    uint8_t output_len;
 };

@@ -13,7 +13,7 @@ void keep_alive_message(mqtt_client *mqtt){
 
     while (true){
         mqtt->publish(NULL, mcp_rw_cfg.get_mqtt_keepAliveTopic().c_str(), msg.length(), msg.c_str());
-        for(int i = 0; i < 64; i++){
+        for(int i = 0; i < static_cast<int>(mcp_rw_cfg.get_output_len()); i++){
             if(mcp_rw_cfg.get_out_enabled(i)){
                 bool value = mcp.read_output_buffer(i);
                 std::string msg; 
@@ -31,7 +31,7 @@ void keep_alive_message(mqtt_client *mqtt){
                 usleep(1000);
             }
         }
-        for(int i = 0; i < 64; i++){
+        for(int i = 0; i < static_cast<int>(mcp_rw_cfg.get_input_len()); i++){
             if(mcp_rw_cfg.get_in_enabled(i)){
                 bool value = mcp.read_input_buffer(i);
                 std::string msg; 

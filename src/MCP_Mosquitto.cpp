@@ -28,7 +28,7 @@ void mqtt_client::client_loop_forever(){
 }
 
 void mqtt_client::register_subs(){
-    for(int i = 0; i<64; i++){
+    for(int i = 0; i<static_cast<int>(mcp_cfg->get_output_len()); i++){
         std::string sub = mcp_cfg->get_mqtt_outSubstring();
         sub += std::to_string(i);
         subscribe(NULL, sub.c_str());
@@ -41,7 +41,7 @@ void mqtt_client::register_subs(){
 }
 
 void mqtt_client::unregister_subs(){
-    for(int i = 0; i<64; i++){
+    for(int i = 0; i<static_cast<int>(mcp_cfg->get_output_len()); i++){
         std::string sub = mcp_cfg->get_mqtt_outSubstring();
         sub += std::to_string(i);
         unsubscribe(NULL, sub.c_str());
