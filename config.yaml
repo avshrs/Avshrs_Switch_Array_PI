@@ -18,8 +18,6 @@ mqtt:
     ONTIMEMsg: ONTIME
 
 i2c1:
-    
-    
     out1Address: 32
     out1Path: "/dev/i2c-1"
     out1enable: 1
