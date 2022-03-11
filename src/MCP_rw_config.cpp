@@ -252,180 +252,180 @@ std::string MCP_rw_config::get_mqtt_username(){
 }
 
 
-uint8_t get_out1Address()
+uint8_t MCP_rw_config::get_out1Address()
 {
     return  i2c1_config.out1Address;
 }
-std::string get_out1Path()
+std::string MCP_rw_config::get_out1Path()
 {
     return  i2c1_config.out1Path;
 }
-bool get_out1enable()
+bool MCP_rw_config::get_out1enable()
 {
     return  i2c1_config.out1enable;
 
 }
-uint8_t get_out2Address()
+uint8_t MCP_rw_config::get_out2Address()
 {
     return  i2c1_config.out2Address;
 
 }
-std::string get_out2Path()
+std::string MCP_rw_config::get_out2Path()
 {
     return  i2c1_config.out2Path;
 
 }
-bool get_out2enable()
+bool MCP_rw_config::get_out2enable()
 {
     return  i2c1_config.out2enable;
 
 }
-uint8_t get_out3Address()
+uint8_t MCP_rw_config::get_out3Address()
 {
     return  i2c1_config.out3Address;
 
 }
-std::string get_out3Path()
+std::string MCP_rw_config::get_out3Path()
 {
     return  i2c1_config.out3Path;
 
 }
-bool get_out3enable()
+bool MCP_rw_config::get_out3enable()
 {
     return  i2c1_config.out3enable;
 
 }
-uint8_t get_out4Address()
+uint8_t MCP_rw_config::get_out4Address()
 {
     return  i2c1_config.out4Address;
 
 }
-std::string get_out4Path()
+std::string MCP_rw_config::get_out4Path()
 {
     return  i2c1_config.out4Path;
 
 }
-bool get_out4enable()
+bool MCP_rw_config::get_out4enable()
 {
     return  i2c1_config.out4enable;
 
 }
-uint8_t get_out5Address()
+uint8_t MCP_rw_config::get_out5Address()
 {
     return  i2c1_config.out5Address;
 
 }
-std::string get_out5Path()
+std::string MCP_rw_config::get_out5Path()
 {
     return  i2c1_config.out5Path;
 
 }
-bool get_out5enable()
+bool MCP_rw_config::get_out5enable()
 {
     return  i2c1_config.out5enable;
 
 }
-uint8_t get_out6Address()
+uint8_t MCP_rw_config::get_out6Address()
 {
     return  i2c1_config.out6Address;
 
 }
-std::string get_out6Path()
+std::string MCP_rw_config::get_out6Path()
 {
     return  i2c1_config.out6Path;
 
 }
-bool get_out6enable()
+bool MCP_rw_config::get_out6enable()
 {
     return  i2c1_config.out6enable;
 
 }
-uint8_t get_out7Address()
+uint8_t MCP_rw_config::get_out7Address()
 {
     return  i2c1_config.out7Address;
 
 }
-std::string get_out7Path()
+std::string MCP_rw_config::get_out7Path()
 {
     return  i2c1_config.out7Path;
 
 }
-bool get_out7enable()
+bool MCP_rw_config::get_out7enable()
 {
     return  i2c1_config.out7enable;
 
 }
-uint8_t get_out8Address()
+uint8_t MCP_rw_config::get_out8Address()
 {
     return  i2c1_config.out8Address;
 
 }
-std::string get_out8Path()
+std::string MCP_rw_config::get_out8Path()
 {
     return  i2c1_config.out8Path;
 
 }
-bool get_out8enable()
+bool MCP_rw_config::get_out8enable()
 {
     return  i2c1_config.out8enable;
 
 }
-uint8_t get_in1Address()
+uint8_t MCP_rw_config::get_in1Address()
 {
     return  i2c1_config.in1Address;
 
 }
-std::string get_in1Path()
+std::string MCP_rw_config::get_in1Path()
 {
     return  i2c1_config.in1Path;
 
 }
-bool get_in1enable()
+bool MCP_rw_config::get_in1enable()
 {
     return  i2c1_config.in1enable;
 
 }
-uint8_t get_in2Address()
+uint8_t MCP_rw_config::get_in2Address()
 {
     return  i2c1_config.in2Address;
 
 }
-std::string get_in2Path()
+std::string MCP_rw_config::get_in2Path()
 {
     return  i2c1_config.in2Path;
 
 }
-bool get_in2enable()
+bool MCP_rw_config::get_in2enable()
 {
     return  i2c1_config.in2enable;
 
 }
-uint8_t get_in3Address()
+uint8_t MCP_rw_config::get_in3Address()
 {
     return  i2c1_config.in3Address;
 
 }
-std::string get_in3Path()
+std::string MCP_rw_config::get_in3Path()
 {
     return  i2c1_config.in3Path;
 
 }
-bool get_in3enable()
+bool MCP_rw_config::get_in3enable()
 {
     return  i2c1_config.in3enable;
 
 }
-uint8_t get_in4Address()
+uint8_t MCP_rw_config::get_in4Address()
 {
     return  i2c1_config.in4Address;
 
 }
-std::string get_in4Path()
+std::string MCP_rw_config::get_in4Path()
 {
     return  i2c1_config.in4Path;
 
 }
-bool get_in4enable()
+bool MCP_rw_config::get_in4enable()
 {
     return  i2c1_config.in4enable;
 
