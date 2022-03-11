@@ -60,9 +60,10 @@ void th3(mqtt_client *mqtt){
 
 int main(){ 
     std::cout<<"main started" << std::endl;
+    mcp_rw_cfg.read_config();
     mcp.MCP_Init();
     std::cout<<"mcp init started" << std::endl;
-    mcp_rw_cfg.read_config();
+    
     std::cout<<"read config started" << std::endl;
     mqtt_client mqtt(mcp_rw_cfg.get_mqtt_ClientId().c_str(), mcp_rw_cfg.get_mqtt_ip().c_str(), mcp_rw_cfg.get_mqtt_port(), mcp_rw_cfg.get_mqtt_username().c_str(), mcp_rw_cfg.get_mqtt_password().c_str());
     std::cout<<"mqtt client started" << std::endl;
