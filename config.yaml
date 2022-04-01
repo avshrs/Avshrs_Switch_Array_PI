@@ -635,7 +635,7 @@ outputs:
 
     out64:
         nr: 64
-        name: gniazdo_router_garaz
+        name: zasilanie_odkurzacz_centralny
         type: power  
         defaultState: 1
         enabled: 1
@@ -644,7 +644,7 @@ outputs:
 
     out65:
         nr: 65
-        name: Gniazdo_brama_garazowa
+        name: zasilanie_switch_poe_garaz
         type: power  
         defaultState: 1
         enabled: 1
@@ -653,7 +653,7 @@ outputs:
         
     out66:
         nr: 66
-        name: Zasilanie_brama_wjazdowa
+        name: zasilanie_na_zewnatrz_przod
         type: power  
         defaultState: 1
         enabled: 1
@@ -662,7 +662,7 @@ outputs:
     
     out67:
         nr: 67
-        name: gniazda_piwnica_1
+        name: zasilanie_na_zewnatrz_tyl
         type: power  
         defaultState: 1
         enabled: 1
@@ -671,7 +671,7 @@ outputs:
     
     out68:
         nr: 68
-        name: gniazda_piwnica_2
+        name: gniazda_garaz_ont_internet
         type: power  
         defaultState: 1
         enabled: 0
@@ -680,7 +680,7 @@ outputs:
     
     out69:
         nr: 69
-        name: gniazda_garaz_1
+        name: zasilanie_brama_zewnetrza
         type: power  
         defaultState: 1
         enabled: 1
@@ -689,7 +689,7 @@ outputs:
     
     out70:
         nr: 70
-        name: gniazda_garaz_1
+        name: zasilanie_brama_garazowa
         type: power  
         defaultState: 1
         enabled: 1
@@ -698,37 +698,37 @@ outputs:
     
     out71:
         nr: 71
-        name: none
+        name: gniazda_piwnica_1
         type: power  
         defaultState: 1
-        enabled: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0      
     
     out72:
         nr: 72
-        name: none
+        name: gniazda_piwnica_2
         type: power  
         defaultState: 1
-        enabled: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0      
     
     out73:
         nr: 73
-        name: none
+        name: gniazda_rozdielnia_garaz
         type: power  
         defaultState: 1
-        enabled: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0      
     
     out74:
         nr: 74
-        name: none
+        name: gniazda_garaz_sciana
         type: power  
         defaultState: 1
-        enabled: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0      
     
