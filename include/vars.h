@@ -1,8 +1,6 @@
 #pragma once
 #include <cstdint>
 #include <string>
-#define    IN_RANGE     (64) 
-#define    OUT_RANGE    (128) 
 
 #define    FORCE        (0xFF) 
 #define    NFORCE       (0x00) 

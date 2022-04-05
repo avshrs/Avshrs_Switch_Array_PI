@@ -4,9 +4,7 @@
 
 class MCP_rw_config{
     public:
-    int max_out = 64;
-    int max_in = 64;
-
+ 
     Mqtt_config mqtt_config;
     I2c1_config i2c1_config;
 
