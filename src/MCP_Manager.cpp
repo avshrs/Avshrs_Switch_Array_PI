@@ -44,22 +44,34 @@ void MCP_Manager::MCP_Init(){
 
  }
 
-void MCP_Manager::update_io(){
+void MCP_Manager::update_io()
+{
+    for(int i=0; i < static_cast<int>(mcp_config->get_output_len());i++)
+    {
+        if(mcp_config->get_out_enabled(i))
+        {
+            if (mcp_config->get_out_def_state(i))
+            {
+                write_output(i, true, 998);
+            }
+            else
+            {
+                write_output(i, false, 998);
+            }
+        }
+    }    
     for(int i=0; i < static_cast<int>(mcp_config->get_input_len());i++)
     {
         if(mcp_config->get_in_enabled(i))
         {
             in_states[i] = read_input_direct(i);   
             mqtt->pub_in_state(i, in_states[i]);             
-            if (mcp_config->get_out_enabled(i))
+            if (mcp_config->get_in_enabledOutputRelated(i))
             {
-                if (mcp_config->get_out_def_state(i))
+                int out = mcp_config->get_in_output_related(i);
+                if (mcp_config->get_out_enabled(out))
                 {
-                    write_output(i, true, 998);
-                }
-                else
-                {
-                    write_output(i, false, 998);
+                    write_output(out, in_states[i], 998);
                 }
             }
         }
