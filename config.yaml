@@ -674,7 +674,7 @@ outputs:
         name: gniazda_garaz_ont_internet
         type: power  
         defaultState: 1
-        enabled: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0      
     
