@@ -60,7 +60,8 @@ void th3(mqtt_client *mqtt){
 
 int main(int argc, char * argv[]){ 
 
-    std::cout<<"main started" << std::endl;
+    
+    std::cout<<"App executed with paramiters: " << argc -1 << "  |  config path: " << argv[1] <<  std::endl;
     mcp_rw_cfg.register_config(static_cast<std::string>((argv[1])));
     mcp_rw_cfg.read_config();
     std::cout<<"read config started" << std::endl;
