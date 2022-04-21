@@ -114,7 +114,7 @@ void MCP_rw_config::read_config(){
 
 }
     
-void MCP_rw_config::register_config(string config_path_){
+void MCP_rw_config::register_config(std::string config_path_){
     config_path = config_path_;
 }
 
