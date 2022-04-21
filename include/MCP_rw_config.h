@@ -7,10 +7,12 @@ class MCP_rw_config{
  
     Mqtt_config mqtt_config;
     I2c1_config i2c1_config;
+    std::string config_path;
 
     std::vector< Output_conf > output_conf_;
     std::vector< Input_conf > input_conf_;
 
+    void register_config(std::string config_path_);
     void read_config();
     std::string get_out_name(int out);
     std::string get_out_type(int out);

@@ -58,8 +58,10 @@ void th3(mqtt_client *mqtt){
     keep_alive_message(mqtt);
 }
 
-int main(){ 
+int main(int argc, char * argv[]){ 
+
     std::cout<<"main started" << std::endl;
+    mcp_rw_cfg.register_config(static_cast<std::string>((argv[1])));
     mcp_rw_cfg.read_config();
     std::cout<<"read config started" << std::endl;
     std::cout<<"mcp init starting" << std::endl;

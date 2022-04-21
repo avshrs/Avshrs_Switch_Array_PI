@@ -5,7 +5,7 @@
 #include <algorithm>
 
 void MCP_rw_config::read_config(){
-    YAML::Node config = YAML::LoadFile("config.yaml");
+    YAML::Node config = YAML::LoadFile(config_path);
     std::cout << "outputs settings loading" << std::endl;
     const YAML::Node& outputs_ = config["outputs"];
     for (YAML::const_iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
@@ -114,6 +114,10 @@ void MCP_rw_config::read_config(){
 
 }
     
+void MCP_rw_config::register_config(string config_path_){
+    config_path = config_path_;
+}
+
 std::string MCP_rw_config::get_out_name(int out){
     for (auto i : output_conf_){
         if( i.nr == out){
