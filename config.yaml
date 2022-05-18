@@ -734,82 +734,82 @@ outputs:
     
     out75:
         nr: 75
-        name: none
+        name: zraszacz_zawor_glowny
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0      
     
     out76:
         nr: 76
-        name: none
+        name: zraszacz_sekcja_1_zachod
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out77:
         nr: 77
-        name: none
+        name: zraszacz_sekcja_2_kroplownica_zachod
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out78:
         nr: 78
-        name: none
+        name: zraszacz_sekcja_3_przybramce
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out79:
         nr: 79
-        name: none
+        name: zraszacz_sekcja_4_kroplownica_wejscie
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out80:
         nr: 80
-        name: none
+        name: zraszacz_sekcja_5_polodnie
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out81:
         nr: 81
-        name: none
+        name: zraszacz_sekcja_6
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out82:
         nr: 82
-        name: none
+        name: zraszacz_sekcja_7
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out83:
         nr: 83
-        name: none
+        name: zraszacz_sekcja_8
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
