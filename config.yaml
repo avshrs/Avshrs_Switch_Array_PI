@@ -815,19 +815,19 @@ outputs:
     
     out84:
         nr: 84
-        name: none
+        name: Elektrozaczep_bramka
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
     out85:
         nr: 85
-        name: none
+        name: Elektrozaczep_kojec
         type: power  
-        defaultState: 1
-        enabled: 0
+        defaultState: 0
+        enabled: 1
         bistable: 0
         inputRelated: 0    
     
